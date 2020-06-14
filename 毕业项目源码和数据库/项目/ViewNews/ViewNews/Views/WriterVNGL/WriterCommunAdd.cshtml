@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>评议编辑</title>
+    <link href="~/Content/XiaLaKuang/jquery.searchableSelect.css" rel="stylesheet" />
+    <script src="~/Scripts/XiaLaKuang/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/XiaLaKuang/jquery.searchableSelect.js"></script>
+    <style>
+        .news {
+            margin: 1em;
+        }
+
+        .juli {
+            margin-top: 2em;
+            margin-left: 2em;
+        }
+        label {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="news">
+            <h2>评议编辑</h2>
+            <div class="juli">
+                <form>
+                    <div class="form-group">
+                        <label for="WCTitle">作家文章标题</label>
+                        <input type="text" class="form-control" name="WCTitle" id="WCTitle">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="WCImage">作家文章封面图片</label>
+                        <input type="file" name="WCImage" id="WCImage">
+                    </div>
+                    <div class="form-group">
+                        <label for="WCContent">作家文章内容</label>
+                        <textarea class="form-control" name="WCContent" id="WCContent" rows="3">这里要改成富文本的</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="WriterID">作家</label>
+                        <br />
+                        <select name="WriterID">
+                            <option value="源码之家">源码之家</option>
+                            <option value="BlackBerry">BlackBerry</option>
+                            <option value="device">device</option>
+                        </select>
+                        <script>
+                            $(function () {
+                                $('select').searchableSelect();
+                            });
+                        </script>
+                    </div>
+                        <div class="form-group">
+                            <input type="hidden" name="WCTime" id="WCTime" value="获取系统时间在后台写">
+                            <input type="hidden" name="WCClick" id="WCClick" value="0">
+                            <input type="hidden" name="EditorID" id="EditorID" value="">
+                        </div>
+
+                        <button type="submit" class="btn btn-default">添加</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
