@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+@using ViewNews.Models
+@{
+    Editor edi = ViewBag.ditor;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>责任编辑修改</title>
+    @Styles.Render("~/Content/css")
+    <style>
+        .news {
+            margin: 1em;
+        }
+
+        .juli {
+            margin-top: 2em;
+            margin-left: 2em;
+        }
+
+        label {
+            font-size: 20px;
+        }
+
+        #NewsTitle {
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="button" name=”Submit” onclick="javascript:history.back(-1);" class="btn btn-success fanhui" value="返回">
+        <div class="news">
+            <h2>责任编辑修改</h2>
+            <div class="juli">
+                <form action="/EditorVNGL/EditorEdits" method="post">
+                    <div class="form-group">
+                        <label for="EditorAccount">责任编辑账号</label>
+                        <input type="text" class="form-control" name="EditorAccount" id="EditorAccount" value="@edi.EditorAccount">
+                    </div>
+                    <div class="form-group">
+                        <label for="EditorPwd">责任编辑密码</label>
+                        <input type="text" class="form-control" name="EditorPwd" id="EditorPwd" value="@edi.EditorPwd">
+                    </div>
+                    <div class="form-group">
+                        <label for="EditorName">责任编辑名字</label>
+                        <input type="text" class="form-control" name="EditorName" id="EditorName" value="@edi.EditorName">
+                    </div>
+
+                    <input type="submit" class="btn btn-default" value="修改">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

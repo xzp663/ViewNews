@@ -2,13 +2,17 @@
 @{
     Layout = null;
 }
-
+@using ViewNews.Models
+@{
+    Editor edi = Session["Editors"] as Editor;
+}
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>评议编辑</title>
+    
     <link href="~/Content/XiaLaKuang/jquery.searchableSelect.css" rel="stylesheet" />
     <script src="~/Scripts/XiaLaKuang/jquery-1.11.1.min.js"></script>
     <script src="~/Scripts/XiaLaKuang/jquery.searchableSelect.js"></script>
@@ -21,6 +25,7 @@
             margin-top: 2em;
             margin-left: 2em;
         }
+
         label {
             font-size: 20px;
         }
@@ -31,7 +36,7 @@
         <div class="news">
             <h2>评议编辑</h2>
             <div class="juli">
-                <form>
+                <form action="/WriterVNGL/WriterCommunAdd" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="WCTitle">作家文章标题</label>
                         <input type="text" class="form-control" name="WCTitle" id="WCTitle">
@@ -49,9 +54,10 @@
                         <label for="WriterID">作家</label>
                         <br />
                         <select name="WriterID">
-                            <option value="源码之家">源码之家</option>
-                            <option value="BlackBerry">BlackBerry</option>
-                            <option value="device">device</option>
+                            @foreach (var item in ViewBag.writers as List<Writer>)
+                            {
+                                <option value="@item.WriterID">@item.WriterName</option>
+                            }
                         </select>
                         <script>
                             $(function () {
@@ -59,13 +65,13 @@
                             });
                         </script>
                     </div>
-                        <div class="form-group">
-                            <input type="hidden" name="WCTime" id="WCTime" value="获取系统时间在后台写">
-                            <input type="hidden" name="WCClick" id="WCClick" value="0">
-                            <input type="hidden" name="EditorID" id="EditorID" value="">
-                        </div>
+                    <div class="form-group">
+                        <input type="hidden" name="WCTime" id="WCTime">
+                        <input type="hidden" name="WCClick" id="WCClick" value="0">
+                        <input type="hidden" name="EditorID" id="EditorID" value="@edi.EditorID">
+                    </div>
 
-                        <button type="submit" class="btn btn-default">添加</button>
+                    <button type="submit" class="btn btn-default">添加</button>
                 </form>
             </div>
         </div>

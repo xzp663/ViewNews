@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = null;
+}
+@using ViewNews.Models
+@{
+    News newss = ViewBag.news;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NewsEdits</title>
+    @Styles.Render("~/Content/css")
+    <style>
+        .news {
+            margin: 1em;
+        }
+
+        .juli {
+            margin-top: 2em;
+            margin-left: 2em;
+        }
+
+        label {
+            font-size: 20px;
+        }
+
+        #NewsTitle {
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="button" name=”Submit” onclick="javascript:history.back(-1);" class="btn btn-success fanhui" value="返回">
+        <div class="news">
+            <h2>新闻编辑</h2>
+            <div class="juli">
+                <form action="/NewsVNGL/NewsEdits" method="post" enctype="multipart/form-data" class="form">
+                    <div class="form-group">
+                        <label for="NewsTitle">新闻标题</label>
+                        <input type="text" class="form-control" name="NewsTitle" id="NewsTitle" value="@newss.NewsTitle">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="NewsImage">新闻封面图片</label>
+                        <br />
+                        <img src="~/Content/NewsImage/@newss.NewsImage" width="100" />
+                        <input type="hidden" name="NewsImage" id="NewsImage" value="@newss.NewsImage">
+                        <input type="file" name="ENewsImage" id="ENewsImage">
+                    </div>
+                    <div class="form-group">
+                        <label for="NewsContent">新闻内容</label>
+                        <textarea class="form-control" name="NewsContent" id="NewsContent" rows="3">@newss.NewsContent</textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="NewsID" id="NewsID" value="@newss.NewsID">
+                        <input type="hidden" name="NewsTime" id="NewsTime">
+                        <input type="hidden" name="NewsClick" id="NewsClick" value="0">
+                        <input type="hidden" name="EditorID" id="EditorID" value="@newss.EditorID">
+                    </div>
+                    <input type="submit" class="btn btn-default" value="修改">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

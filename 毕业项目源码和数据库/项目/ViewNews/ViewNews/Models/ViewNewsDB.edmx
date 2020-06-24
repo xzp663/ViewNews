@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ViewNewsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Editor">
+          <Key>
+            <PropertyRef Name="EditorID" />
+          </Key>
+          <Property Name="EditorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EditorAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EditorPwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EditorName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EssayCommun">
+          <Key>
+            <PropertyRef Name="EssayCommunID" />
+          </Key>
+          <Property Name="EssayCommunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ECTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ECContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ECState" Type="int" Nullable="false" />
+          <Property Name="ECClick" Type="int" Nullable="false" />
+          <Property Name="ECReturns" Type="nvarchar" MaxLength="50" />
+          <Property Name="ECTime" Type="datetime" Nullable="false" />
+          <Property Name="NewsUserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EssayCommunComment">
+          <Key>
+            <PropertyRef Name="EssayCommunCommentID" />
+          </Key>
+          <Property Name="EssayCommunCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EssayCommunID" Type="int" Nullable="false" />
+          <Property Name="NewsUserID" Type="int" Nullable="false" />
+          <Property Name="ECCContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ECCTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EssayCommunFalse">
+          <Key>
+            <PropertyRef Name="EssayCommunFalseID" />
+          </Key>
+          <Property Name="EssayCommunFalseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ECFTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="ECFContent" Type="nvarchar(max)" />
+          <Property Name="ECFState" Type="int" />
+          <Property Name="ECFClick" Type="int" />
+          <Property Name="ECFReturns" Type="nvarchar" MaxLength="50" />
+          <Property Name="ECFTime" Type="datetime" />
+          <Property Name="NewsUserID" Type="int" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NewsImage" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NewsContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NewsTime" Type="datetime" Nullable="false" />
+          <Property Name="NewsClick" Type="int" Nullable="false" />
+          <Property Name="EditorID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsComment">
+          <Key>
+            <PropertyRef Name="NewsComment" />
+          </Key>
+          <Property Name="NewsComment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsID" Type="int" Nullable="false" />
+          <Property Name="NewsUserID" Type="int" Nullable="false" />
+          <Property Name="NCContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NCTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsFalse">
+          <Key>
+            <PropertyRef Name="NewsFalseID" />
+          </Key>
+          <Property Name="NewsFalseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsFalseTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="NewsFalseImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="NewsFalseContent" Type="nvarchar(max)" />
+          <Property Name="NewsFalseTime" Type="datetime" />
+          <Property Name="NewsFalseClick" Type="int" />
+          <Property Name="EditorID" Type="int" />
+        </EntityType>
+        <EntityType Name="NewsUser">
+          <Key>
+            <PropertyRef Name="NewsUserID" />
+          </Key>
+          <Property Name="NewsUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsUserAccount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NewsUserPwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NewsUserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NewsUserImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="NewsUserSex" Type="nvarchar" MaxLength="10" />
+          <Property Name="NewsUserMotto" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Writer">
+          <Key>
+            <PropertyRef Name="WriterID" />
+          </Key>
+          <Property Name="WriterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WriterName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="WriterImage" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WriterPosition" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WriterCommun">
+          <Key>
+            <PropertyRef Name="WriterCommunID" />
+          </Key>
+          <Property Name="WriterCommunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WCTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WCImage" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WCContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WCTime" Type="datetime" Nullable="false" />
+          <Property Name="WCClick" Type="int" Nullable="false" />
+          <Property Name="WriterID" Type="int" Nullable="false" />
+          <Property Name="EditorID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WriterCommunComment">
+          <Key>
+            <PropertyRef Name="WriterCommunCommentID" />
+          </Key>
+          <Property Name="WriterCommunCommentID" Type="int" Nullable="false" />
+          <Property Name="WriterCommunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsUserID" Type="int" Nullable="false" />
+          <Property Name="WCCContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WCCTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WriterCommunFalse">
+          <Key>
+            <PropertyRef Name="WriterCommunFalseID" />
+          </Key>
+          <Property Name="WriterCommunFalseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WCFTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="WCFImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="WCFContent" Type="nvarchar(max)" />
+          <Property Name="WCFTime" Type="datetime" />
+          <Property Name="WCFClick" Type="int" />
+          <Property Name="WriterID" Type="int" />
+          <Property Name="EditorID" Type="int" />
+        </EntityType>
+        <Association Name="FK_EssayCommun_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+          <End Role="EssayCommun" Type="Self.EssayCommun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="EssayCommun">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EssayCommunComment_EssayCommun">
+          <End Role="EssayCommun" Type="Self.EssayCommun" Multiplicity="1" />
+          <End Role="EssayCommunComment" Type="Self.EssayCommunComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EssayCommun">
+              <PropertyRef Name="EssayCommunID" />
+            </Principal>
+            <Dependent Role="EssayCommunComment">
+              <PropertyRef Name="EssayCommunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EssayCommunComment_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+          <End Role="EssayCommunComment" Type="Self.EssayCommunComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="EssayCommunComment">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EssayCommunFalse_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="0..1" />
+          <End Role="EssayCommunFalse" Type="Self.EssayCommunFalse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="EssayCommunFalse">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_Editor">
+          <End Role="Editor" Type="Self.Editor" Multiplicity="1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editor">
+              <PropertyRef Name="EditorID" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="EditorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsComment_News">
+          <End Role="News" Type="Self.News" Multiplicity="1" />
+          <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsID" />
+            </Principal>
+            <Dependent Role="NewsComment">
+              <PropertyRef Name="NewsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsComment_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+          <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="NewsComment">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsFalse_Editor">
+          <End Role="Editor" Type="Self.Editor" Multiplicity="0..1" />
+          <End Role="NewsFalse" Type="Self.NewsFalse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editor">
+              <PropertyRef Name="EditorID" />
+            </Principal>
+            <Dependent Role="NewsFalse">
+              <PropertyRef Name="EditorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommun_Editor">
+          <End Role="Editor" Type="Self.Editor" Multiplicity="1" />
+          <End Role="WriterCommun" Type="Self.WriterCommun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editor">
+              <PropertyRef Name="EditorID" />
+            </Principal>
+            <Dependent Role="WriterCommun">
+              <PropertyRef Name="EditorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommun_Writer">
+          <End Role="Writer" Type="Self.Writer" Multiplicity="1" />
+          <End Role="WriterCommun" Type="Self.WriterCommun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="WriterID" />
+            </Principal>
+            <Dependent Role="WriterCommun">
+              <PropertyRef Name="WriterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommunComment_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+          <End Role="WriterCommunComment" Type="Self.WriterCommunComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="WriterCommunComment">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommunComment_WriterCommun">
+          <End Role="WriterCommun" Type="Self.WriterCommun" Multiplicity="1" />
+          <End Role="WriterCommunComment" Type="Self.WriterCommunComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WriterCommun">
+              <PropertyRef Name="WriterCommunID" />
+            </Principal>
+            <Dependent Role="WriterCommunComment">
+              <PropertyRef Name="WriterCommunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommunFalse_Editor">
+          <End Role="Editor" Type="Self.Editor" Multiplicity="0..1" />
+          <End Role="WriterCommunFalse" Type="Self.WriterCommunFalse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editor">
+              <PropertyRef Name="EditorID" />
+            </Principal>
+            <Dependent Role="WriterCommunFalse">
+              <PropertyRef Name="EditorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommunFalse_Writer">
+          <End Role="Writer" Type="Self.Writer" Multiplicity="0..1" />
+          <End Role="WriterCommunFalse" Type="Self.WriterCommunFalse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="WriterID" />
+            </Principal>
+            <Dependent Role="WriterCommunFalse">
+              <PropertyRef Name="WriterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ViewNewsModelStoreContainer">
+          <EntitySet Name="Editor" EntityType="Self.Editor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EssayCommun" EntityType="Self.EssayCommun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EssayCommunComment" EntityType="Self.EssayCommunComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EssayCommunFalse" EntityType="Self.EssayCommunFalse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsComment" EntityType="Self.NewsComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsFalse" EntityType="Self.NewsFalse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsUser" EntityType="Self.NewsUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Writer" EntityType="Self.Writer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WriterCommun" EntityType="Self.WriterCommun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WriterCommunComment" EntityType="Self.WriterCommunComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WriterCommunFalse" EntityType="Self.WriterCommunFalse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EssayCommun_NewsUser" Association="Self.FK_EssayCommun_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="EssayCommun" EntitySet="EssayCommun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EssayCommunComment_EssayCommun" Association="Self.FK_EssayCommunComment_EssayCommun">
+            <End Role="EssayCommun" EntitySet="EssayCommun" />
+            <End Role="EssayCommunComment" EntitySet="EssayCommunComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EssayCommunComment_NewsUser" Association="Self.FK_EssayCommunComment_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="EssayCommunComment" EntitySet="EssayCommunComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EssayCommunFalse_NewsUser" Association="Self.FK_EssayCommunFalse_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="EssayCommunFalse" EntitySet="EssayCommunFalse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_Editor" Association="Self.FK_News_Editor">
+            <End Role="Editor" EntitySet="Editor" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsComment_News" Association="Self.FK_NewsComment_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsComment" EntitySet="NewsComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsComment_NewsUser" Association="Self.FK_NewsComment_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="NewsComment" EntitySet="NewsComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsFalse_Editor" Association="Self.FK_NewsFalse_Editor">
+            <End Role="Editor" EntitySet="Editor" />
+            <End Role="NewsFalse" EntitySet="NewsFalse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommun_Editor" Association="Self.FK_WriterCommun_Editor">
+            <End Role="Editor" EntitySet="Editor" />
+            <End Role="WriterCommun" EntitySet="WriterCommun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommun_Writer" Association="Self.FK_WriterCommun_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="WriterCommun" EntitySet="WriterCommun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommunComment_NewsUser" Association="Self.FK_WriterCommunComment_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="WriterCommunComment" EntitySet="WriterCommunComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommunComment_WriterCommun" Association="Self.FK_WriterCommunComment_WriterCommun">
+            <End Role="WriterCommun" EntitySet="WriterCommun" />
+            <End Role="WriterCommunComment" EntitySet="WriterCommunComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommunFalse_Editor" Association="Self.FK_WriterCommunFalse_Editor">
+            <End Role="Editor" EntitySet="Editor" />
+            <End Role="WriterCommunFalse" EntitySet="WriterCommunFalse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommunFalse_Writer" Association="Self.FK_WriterCommunFalse_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="WriterCommunFalse" EntitySet="WriterCommunFalse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ViewNewsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Editor">
+          <Key>
+            <PropertyRef Name="EditorID" />
+          </Key>
+          <Property Name="EditorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EditorAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EditorPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EditorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="Self.FK_News_Editor" FromRole="Editor" ToRole="News" />
+          <NavigationProperty Name="NewsFalse" Relationship="Self.FK_NewsFalse_Editor" FromRole="Editor" ToRole="NewsFalse" />
+          <NavigationProperty Name="WriterCommun" Relationship="Self.FK_WriterCommun_Editor" FromRole="Editor" ToRole="WriterCommun" />
+          <NavigationProperty Name="WriterCommunFalse" Relationship="Self.FK_WriterCommunFalse_Editor" FromRole="Editor" ToRole="WriterCommunFalse" />
+        </EntityType>
+        <EntityType Name="EssayCommun">
+          <Key>
+            <PropertyRef Name="EssayCommunID" />
+          </Key>
+          <Property Name="EssayCommunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ECTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ECContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ECState" Type="Int32" Nullable="false" />
+          <Property Name="ECClick" Type="Int32" Nullable="false" />
+          <Property Name="ECReturns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ECTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NewsUser" Relationship="Self.FK_EssayCommun_NewsUser" FromRole="EssayCommun" ToRole="NewsUser" />
+          <NavigationProperty Name="EssayCommunComment" Relationship="Self.FK_EssayCommunComment_EssayCommun" FromRole="EssayCommun" ToRole="EssayCommunComment" />
+        </EntityType>
+        <EntityType Name="EssayCommunComment">
+          <Key>
+            <PropertyRef Name="EssayCommunCommentID" />
+          </Key>
+          <Property Name="EssayCommunCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EssayCommunID" Type="Int32" Nullable="false" />
+          <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+          <Property Name="ECCContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ECCTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="EssayCommun" Relationship="Self.FK_EssayCommunComment_EssayCommun" FromRole="EssayCommunComment" ToRole="EssayCommun" />
+          <NavigationProperty Name="NewsUser" Relationship="Self.FK_EssayCommunComment_NewsUser" FromRole="EssayCommunComment" ToRole="NewsUser" />
+        </EntityType>
+        <EntityType Name="EssayCommunFalse">
+          <Key>
+            <PropertyRef Name="EssayCommunFalseID" />
+          </Key>
+          <Property Name="EssayCommunFalseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ECFTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ECFContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ECFState" Type="Int32" />
+          <Property Name="ECFClick" Type="Int32" />
+          <Property Name="ECFReturns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ECFTime" Type="DateTime" Precision="3" />
+          <Property Name="NewsUserID" Type="Int32" />
+          <NavigationProperty Name="NewsUser" Relationship="Self.FK_EssayCommunFalse_NewsUser" FromRole="EssayCommunFalse" ToRole="NewsUser" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NewsImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NewsContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NewsTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NewsClick" Type="Int32" Nullable="false" />
+          <Property Name="EditorID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Editor" Relationship="Self.FK_News_Editor" FromRole="News" ToRole="Editor" />
+          <NavigationProperty Name="NewsComment" Relationship="Self.FK_NewsComment_News" FromRole="News" ToRole="NewsComment" />
+        </EntityType>
+        <EntityType Name="NewsComment">
+          <Key>
+            <PropertyRef Name="NewsComment1" />
+          </Key>
+          <Property Name="NewsComment1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsID" Type="Int32" Nullable="false" />
+          <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+          <Property Name="NCContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NCTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="News" Relationship="Self.FK_NewsComment_News" FromRole="NewsComment" ToRole="News" />
+          <NavigationProperty Name="NewsUser" Relationship="Self.FK_NewsComment_NewsUser" FromRole="NewsComment" ToRole="NewsUser" />
+        </EntityType>
+        <EntityType Name="NewsFalse">
+          <Key>
+            <PropertyRef Name="NewsFalseID" />
+          </Key>
+          <Property Name="NewsFalseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsFalseTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NewsFalseImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NewsFalseContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewsFalseTime" Type="DateTime" Precision="3" />
+          <Property Name="NewsFalseClick" Type="Int32" />
+          <Property Name="EditorID" Type="Int32" />
+          <NavigationProperty Name="Editor" Relationship="Self.FK_NewsFalse_Editor" FromRole="NewsFalse" ToRole="Editor" />
+        </EntityType>
+        <EntityType Name="NewsUser">
+          <Key>
+            <PropertyRef Name="NewsUserID" />
+          </Key>
+          <Property Name="NewsUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsUserAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NewsUserPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NewsUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NewsUserImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NewsUserSex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NewsUserMotto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EssayCommun" Relationship="Self.FK_EssayCommun_NewsUser" FromRole="NewsUser" ToRole="EssayCommun" />
+          <NavigationProperty Name="EssayCommunComment" Relationship="Self.FK_EssayCommunComment_NewsUser" FromRole="NewsUser" ToRole="EssayCommunComment" />
+          <NavigationProperty Name="EssayCommunFalse" Relationship="Self.FK_EssayCommunFalse_NewsUser" FromRole="NewsUser" ToRole="EssayCommunFalse" />
+          <NavigationProperty Name="NewsComment" Relationship="Self.FK_NewsComment_NewsUser" FromRole="NewsUser" ToRole="NewsComment" />
+          <NavigationProperty Name="WriterCommunComment" Relationship="Self.FK_WriterCommunComment_NewsUser" FromRole="NewsUser" ToRole="WriterCommunComment" />
+        </EntityType>
+        <EntityType Name="Writer">
+          <Key>
+            <PropertyRef Name="WriterID" />
+          </Key>
+          <Property Name="WriterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WriterName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WriterImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WriterPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="WriterCommun" Relationship="Self.FK_WriterCommun_Writer" FromRole="Writer" ToRole="WriterCommun" />
+          <NavigationProperty Name="WriterCommunFalse" Relationship="Self.FK_WriterCommunFalse_Writer" FromRole="Writer" ToRole="WriterCommunFalse" />
+        </EntityType>
+        <EntityType Name="WriterCommun">
+          <Key>
+            <PropertyRef Name="WriterCommunID" />
+          </Key>
+          <Property Name="WriterCommunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WCTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WCImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WCContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WCTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WCClick" Type="Int32" Nullable="false" />
+          <Property Name="WriterID" Type="Int32" Nullable="false" />
+          <Property Name="EditorID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Editor" Relationship="Self.FK_WriterCommun_Editor" FromRole="WriterCommun" ToRole="Editor" />
+          <NavigationProperty Name="Writer" Relationship="Self.FK_WriterCommun_Writer" FromRole="WriterCommun" ToRole="Writer" />
+          <NavigationProperty Name="WriterCommunComment" Relationship="Self.FK_WriterCommunComment_WriterCommun" FromRole="WriterCommun" ToRole="WriterCommunComment" />
+        </EntityType>
+        <EntityType Name="WriterCommunComment">
+          <Key>
+            <PropertyRef Name="WriterCommunCommentID" />
+          </Key>
+          <Property Name="WriterCommunCommentID" Type="Int32" Nullable="false" />
+          <Property Name="WriterCommunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+          <Property Name="WCCContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WCCTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="NewsUser" Relationship="Self.FK_WriterCommunComment_NewsUser" FromRole="WriterCommunComment" ToRole="NewsUser" />
+          <NavigationProperty Name="WriterCommun" Relationship="Self.FK_WriterCommunComment_WriterCommun" FromRole="WriterCommunComment" ToRole="WriterCommun" />
+        </EntityType>
+        <EntityType Name="WriterCommunFalse">
+          <Key>
+            <PropertyRef Name="WriterCommunFalseID" />
+          </Key>
+          <Property Name="WriterCommunFalseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WCFTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WCFImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WCFContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WCFTime" Type="DateTime" Precision="3" />
+          <Property Name="WCFClick" Type="Int32" />
+          <Property Name="WriterID" Type="Int32" />
+          <Property Name="EditorID" Type="Int32" />
+          <NavigationProperty Name="Editor" Relationship="Self.FK_WriterCommunFalse_Editor" FromRole="WriterCommunFalse" ToRole="Editor" />
+          <NavigationProperty Name="Writer" Relationship="Self.FK_WriterCommunFalse_Writer" FromRole="WriterCommunFalse" ToRole="Writer" />
+        </EntityType>
+        <Association Name="FK_News_Editor">
+          <End Role="Editor" Type="Self.Editor" Multiplicity="1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editor">
+              <PropertyRef Name="EditorID" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="EditorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsFalse_Editor">
+          <End Role="Editor" Type="Self.Editor" Multiplicity="0..1" />
+          <End Role="NewsFalse" Type="Self.NewsFalse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editor">
+              <PropertyRef Name="EditorID" />
+            </Principal>
+            <Dependent Role="NewsFalse">
+              <PropertyRef Name="EditorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommun_Editor">
+          <End Role="Editor" Type="Self.Editor" Multiplicity="1" />
+          <End Role="WriterCommun" Type="Self.WriterCommun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editor">
+              <PropertyRef Name="EditorID" />
+            </Principal>
+            <Dependent Role="WriterCommun">
+              <PropertyRef Name="EditorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommunFalse_Editor">
+          <End Role="Editor" Type="Self.Editor" Multiplicity="0..1" />
+          <End Role="WriterCommunFalse" Type="Self.WriterCommunFalse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editor">
+              <PropertyRef Name="EditorID" />
+            </Principal>
+            <Dependent Role="WriterCommunFalse">
+              <PropertyRef Name="EditorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EssayCommun_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+          <End Role="EssayCommun" Type="Self.EssayCommun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="EssayCommun">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EssayCommunComment_EssayCommun">
+          <End Role="EssayCommun" Type="Self.EssayCommun" Multiplicity="1" />
+          <End Role="EssayCommunComment" Type="Self.EssayCommunComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EssayCommun">
+              <PropertyRef Name="EssayCommunID" />
+            </Principal>
+            <Dependent Role="EssayCommunComment">
+              <PropertyRef Name="EssayCommunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EssayCommunComment_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+          <End Role="EssayCommunComment" Type="Self.EssayCommunComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="EssayCommunComment">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EssayCommunFalse_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="0..1" />
+          <End Role="EssayCommunFalse" Type="Self.EssayCommunFalse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="EssayCommunFalse">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsComment_News">
+          <End Role="News" Type="Self.News" Multiplicity="1" />
+          <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsID" />
+            </Principal>
+            <Dependent Role="NewsComment">
+              <PropertyRef Name="NewsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewsComment_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+          <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="NewsComment">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommunComment_NewsUser">
+          <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+          <End Role="WriterCommunComment" Type="Self.WriterCommunComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsUser">
+              <PropertyRef Name="NewsUserID" />
+            </Principal>
+            <Dependent Role="WriterCommunComment">
+              <PropertyRef Name="NewsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommun_Writer">
+          <End Role="Writer" Type="Self.Writer" Multiplicity="1" />
+          <End Role="WriterCommun" Type="Self.WriterCommun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="WriterID" />
+            </Principal>
+            <Dependent Role="WriterCommun">
+              <PropertyRef Name="WriterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommunFalse_Writer">
+          <End Role="Writer" Type="Self.Writer" Multiplicity="0..1" />
+          <End Role="WriterCommunFalse" Type="Self.WriterCommunFalse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="WriterID" />
+            </Principal>
+            <Dependent Role="WriterCommunFalse">
+              <PropertyRef Name="WriterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterCommunComment_WriterCommun">
+          <End Role="WriterCommun" Type="Self.WriterCommun" Multiplicity="1" />
+          <End Role="WriterCommunComment" Type="Self.WriterCommunComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WriterCommun">
+              <PropertyRef Name="WriterCommunID" />
+            </Principal>
+            <Dependent Role="WriterCommunComment">
+              <PropertyRef Name="WriterCommunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ViewNewsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Editor" EntityType="Self.Editor" />
+          <EntitySet Name="EssayCommun" EntityType="Self.EssayCommun" />
+          <EntitySet Name="EssayCommunComment" EntityType="Self.EssayCommunComment" />
+          <EntitySet Name="EssayCommunFalse" EntityType="Self.EssayCommunFalse" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="NewsComment" EntityType="Self.NewsComment" />
+          <EntitySet Name="NewsFalse" EntityType="Self.NewsFalse" />
+          <EntitySet Name="NewsUser" EntityType="Self.NewsUser" />
+          <EntitySet Name="Writer" EntityType="Self.Writer" />
+          <EntitySet Name="WriterCommun" EntityType="Self.WriterCommun" />
+          <EntitySet Name="WriterCommunComment" EntityType="Self.WriterCommunComment" />
+          <EntitySet Name="WriterCommunFalse" EntityType="Self.WriterCommunFalse" />
+          <AssociationSet Name="FK_News_Editor" Association="Self.FK_News_Editor">
+            <End Role="Editor" EntitySet="Editor" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsFalse_Editor" Association="Self.FK_NewsFalse_Editor">
+            <End Role="Editor" EntitySet="Editor" />
+            <End Role="NewsFalse" EntitySet="NewsFalse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommun_Editor" Association="Self.FK_WriterCommun_Editor">
+            <End Role="Editor" EntitySet="Editor" />
+            <End Role="WriterCommun" EntitySet="WriterCommun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommunFalse_Editor" Association="Self.FK_WriterCommunFalse_Editor">
+            <End Role="Editor" EntitySet="Editor" />
+            <End Role="WriterCommunFalse" EntitySet="WriterCommunFalse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EssayCommun_NewsUser" Association="Self.FK_EssayCommun_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="EssayCommun" EntitySet="EssayCommun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EssayCommunComment_EssayCommun" Association="Self.FK_EssayCommunComment_EssayCommun">
+            <End Role="EssayCommun" EntitySet="EssayCommun" />
+            <End Role="EssayCommunComment" EntitySet="EssayCommunComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EssayCommunComment_NewsUser" Association="Self.FK_EssayCommunComment_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="EssayCommunComment" EntitySet="EssayCommunComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EssayCommunFalse_NewsUser" Association="Self.FK_EssayCommunFalse_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="EssayCommunFalse" EntitySet="EssayCommunFalse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsComment_News" Association="Self.FK_NewsComment_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsComment" EntitySet="NewsComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewsComment_NewsUser" Association="Self.FK_NewsComment_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="NewsComment" EntitySet="NewsComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommunComment_NewsUser" Association="Self.FK_WriterCommunComment_NewsUser">
+            <End Role="NewsUser" EntitySet="NewsUser" />
+            <End Role="WriterCommunComment" EntitySet="WriterCommunComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommun_Writer" Association="Self.FK_WriterCommun_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="WriterCommun" EntitySet="WriterCommun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommunFalse_Writer" Association="Self.FK_WriterCommunFalse_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="WriterCommunFalse" EntitySet="WriterCommunFalse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterCommunComment_WriterCommun" Association="Self.FK_WriterCommunComment_WriterCommun">
+            <End Role="WriterCommun" EntitySet="WriterCommun" />
+            <End Role="WriterCommunComment" EntitySet="WriterCommunComment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ViewNewsModelStoreContainer" CdmEntityContainer="ViewNewsEntities">
+          <EntitySetMapping Name="Editor">
+            <EntityTypeMapping TypeName="ViewNewsModel.Editor">
+              <MappingFragment StoreEntitySet="Editor">
+                <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+                <ScalarProperty Name="EditorAccount" ColumnName="EditorAccount" />
+                <ScalarProperty Name="EditorPwd" ColumnName="EditorPwd" />
+                <ScalarProperty Name="EditorName" ColumnName="EditorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EssayCommun">
+            <EntityTypeMapping TypeName="ViewNewsModel.EssayCommun">
+              <MappingFragment StoreEntitySet="EssayCommun">
+                <ScalarProperty Name="EssayCommunID" ColumnName="EssayCommunID" />
+                <ScalarProperty Name="ECTitle" ColumnName="ECTitle" />
+                <ScalarProperty Name="ECContent" ColumnName="ECContent" />
+                <ScalarProperty Name="ECState" ColumnName="ECState" />
+                <ScalarProperty Name="ECClick" ColumnName="ECClick" />
+                <ScalarProperty Name="ECReturns" ColumnName="ECReturns" />
+                <ScalarProperty Name="ECTime" ColumnName="ECTime" />
+                <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EssayCommunComment">
+            <EntityTypeMapping TypeName="ViewNewsModel.EssayCommunComment">
+              <MappingFragment StoreEntitySet="EssayCommunComment">
+                <ScalarProperty Name="EssayCommunCommentID" ColumnName="EssayCommunCommentID" />
+                <ScalarProperty Name="EssayCommunID" ColumnName="EssayCommunID" />
+                <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+                <ScalarProperty Name="ECCContent" ColumnName="ECCContent" />
+                <ScalarProperty Name="ECCTime" ColumnName="ECCTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EssayCommunFalse">
+            <EntityTypeMapping TypeName="ViewNewsModel.EssayCommunFalse">
+              <MappingFragment StoreEntitySet="EssayCommunFalse">
+                <ScalarProperty Name="EssayCommunFalseID" ColumnName="EssayCommunFalseID" />
+                <ScalarProperty Name="ECFTitle" ColumnName="ECFTitle" />
+                <ScalarProperty Name="ECFContent" ColumnName="ECFContent" />
+                <ScalarProperty Name="ECFState" ColumnName="ECFState" />
+                <ScalarProperty Name="ECFClick" ColumnName="ECFClick" />
+                <ScalarProperty Name="ECFReturns" ColumnName="ECFReturns" />
+                <ScalarProperty Name="ECFTime" ColumnName="ECFTime" />
+                <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="ViewNewsModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+                <ScalarProperty Name="NewsTitle" ColumnName="NewsTitle" />
+                <ScalarProperty Name="NewsImage" ColumnName="NewsImage" />
+                <ScalarProperty Name="NewsContent" ColumnName="NewsContent" />
+                <ScalarProperty Name="NewsTime" ColumnName="NewsTime" />
+                <ScalarProperty Name="NewsClick" ColumnName="NewsClick" />
+                <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsComment">
+            <EntityTypeMapping TypeName="ViewNewsModel.NewsComment">
+              <MappingFragment StoreEntitySet="NewsComment">
+                <ScalarProperty Name="NewsComment1" ColumnName="NewsComment" />
+                <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+                <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+                <ScalarProperty Name="NCContent" ColumnName="NCContent" />
+                <ScalarProperty Name="NCTime" ColumnName="NCTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsFalse">
+            <EntityTypeMapping TypeName="ViewNewsModel.NewsFalse">
+              <MappingFragment StoreEntitySet="NewsFalse">
+                <ScalarProperty Name="NewsFalseID" ColumnName="NewsFalseID" />
+                <ScalarProperty Name="NewsFalseTitle" ColumnName="NewsFalseTitle" />
+                <ScalarProperty Name="NewsFalseImage" ColumnName="NewsFalseImage" />
+                <ScalarProperty Name="NewsFalseContent" ColumnName="NewsFalseContent" />
+                <ScalarProperty Name="NewsFalseTime" ColumnName="NewsFalseTime" />
+                <ScalarProperty Name="NewsFalseClick" ColumnName="NewsFalseClick" />
+                <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsUser">
+            <EntityTypeMapping TypeName="ViewNewsModel.NewsUser">
+              <MappingFragment StoreEntitySet="NewsUser">
+                <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+                <ScalarProperty Name="NewsUserAccount" ColumnName="NewsUserAccount" />
+                <ScalarProperty Name="NewsUserPwd" ColumnName="NewsUserPwd" />
+                <ScalarProperty Name="NewsUserName" ColumnName="NewsUserName" />
+                <ScalarProperty Name="NewsUserImage" ColumnName="NewsUserImage" />
+                <ScalarProperty Name="NewsUserSex" ColumnName="NewsUserSex" />
+                <ScalarProperty Name="NewsUserMotto" ColumnName="NewsUserMotto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Writer">
+            <EntityTypeMapping TypeName="ViewNewsModel.Writer">
+              <MappingFragment StoreEntitySet="Writer">
+                <ScalarProperty Name="WriterID" ColumnName="WriterID" />
+                <ScalarProperty Name="WriterName" ColumnName="WriterName" />
+                <ScalarProperty Name="WriterImage" ColumnName="WriterImage" />
+                <ScalarProperty Name="WriterPosition" ColumnName="WriterPosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WriterCommun">
+            <EntityTypeMapping TypeName="ViewNewsModel.WriterCommun">
+              <MappingFragment StoreEntitySet="WriterCommun">
+                <ScalarProperty Name="WriterCommunID" ColumnName="WriterCommunID" />
+                <ScalarProperty Name="WCTitle" ColumnName="WCTitle" />
+                <ScalarProperty Name="WCImage" ColumnName="WCImage" />
+                <ScalarProperty Name="WCContent" ColumnName="WCContent" />
+                <ScalarProperty Name="WCTime" ColumnName="WCTime" />
+                <ScalarProperty Name="WCClick" ColumnName="WCClick" />
+                <ScalarProperty Name="WriterID" ColumnName="WriterID" />
+                <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WriterCommunComment">
+            <EntityTypeMapping TypeName="ViewNewsModel.WriterCommunComment">
+              <MappingFragment StoreEntitySet="WriterCommunComment">
+                <ScalarProperty Name="WriterCommunCommentID" ColumnName="WriterCommunCommentID" />
+                <ScalarProperty Name="WriterCommunID" ColumnName="WriterCommunID" />
+                <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+                <ScalarProperty Name="WCCContent" ColumnName="WCCContent" />
+                <ScalarProperty Name="WCCTime" ColumnName="WCCTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WriterCommunFalse">
+            <EntityTypeMapping TypeName="ViewNewsModel.WriterCommunFalse">
+              <MappingFragment StoreEntitySet="WriterCommunFalse">
+                <ScalarProperty Name="WriterCommunFalseID" ColumnName="WriterCommunFalseID" />
+                <ScalarProperty Name="WCFTitle" ColumnName="WCFTitle" />
+                <ScalarProperty Name="WCFImage" ColumnName="WCFImage" />
+                <ScalarProperty Name="WCFContent" ColumnName="WCFContent" />
+                <ScalarProperty Name="WCFTime" ColumnName="WCFTime" />
+                <ScalarProperty Name="WCFClick" ColumnName="WCFClick" />
+                <ScalarProperty Name="WriterID" ColumnName="WriterID" />
+                <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

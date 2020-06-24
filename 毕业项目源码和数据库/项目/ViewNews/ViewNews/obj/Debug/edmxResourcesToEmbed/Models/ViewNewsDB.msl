@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ViewNewsModelStoreContainer" CdmEntityContainer="ViewNewsEntities">
+    <EntitySetMapping Name="Editor">
+      <EntityTypeMapping TypeName="ViewNewsModel.Editor">
+        <MappingFragment StoreEntitySet="Editor">
+          <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+          <ScalarProperty Name="EditorAccount" ColumnName="EditorAccount" />
+          <ScalarProperty Name="EditorPwd" ColumnName="EditorPwd" />
+          <ScalarProperty Name="EditorName" ColumnName="EditorName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EssayCommun">
+      <EntityTypeMapping TypeName="ViewNewsModel.EssayCommun">
+        <MappingFragment StoreEntitySet="EssayCommun">
+          <ScalarProperty Name="EssayCommunID" ColumnName="EssayCommunID" />
+          <ScalarProperty Name="ECTitle" ColumnName="ECTitle" />
+          <ScalarProperty Name="ECContent" ColumnName="ECContent" />
+          <ScalarProperty Name="ECState" ColumnName="ECState" />
+          <ScalarProperty Name="ECClick" ColumnName="ECClick" />
+          <ScalarProperty Name="ECReturns" ColumnName="ECReturns" />
+          <ScalarProperty Name="ECTime" ColumnName="ECTime" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EssayCommunComment">
+      <EntityTypeMapping TypeName="ViewNewsModel.EssayCommunComment">
+        <MappingFragment StoreEntitySet="EssayCommunComment">
+          <ScalarProperty Name="EssayCommunCommentID" ColumnName="EssayCommunCommentID" />
+          <ScalarProperty Name="EssayCommunID" ColumnName="EssayCommunID" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="ECCContent" ColumnName="ECCContent" />
+          <ScalarProperty Name="ECCTime" ColumnName="ECCTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EssayCommunFalse">
+      <EntityTypeMapping TypeName="ViewNewsModel.EssayCommunFalse">
+        <MappingFragment StoreEntitySet="EssayCommunFalse">
+          <ScalarProperty Name="EssayCommunFalseID" ColumnName="EssayCommunFalseID" />
+          <ScalarProperty Name="ECFTitle" ColumnName="ECFTitle" />
+          <ScalarProperty Name="ECFContent" ColumnName="ECFContent" />
+          <ScalarProperty Name="ECFState" ColumnName="ECFState" />
+          <ScalarProperty Name="ECFClick" ColumnName="ECFClick" />
+          <ScalarProperty Name="ECFReturns" ColumnName="ECFReturns" />
+          <ScalarProperty Name="ECFTime" ColumnName="ECFTime" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="ViewNewsModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+          <ScalarProperty Name="NewsTitle" ColumnName="NewsTitle" />
+          <ScalarProperty Name="NewsImage" ColumnName="NewsImage" />
+          <ScalarProperty Name="NewsContent" ColumnName="NewsContent" />
+          <ScalarProperty Name="NewsTime" ColumnName="NewsTime" />
+          <ScalarProperty Name="NewsClick" ColumnName="NewsClick" />
+          <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsComment">
+      <EntityTypeMapping TypeName="ViewNewsModel.NewsComment">
+        <MappingFragment StoreEntitySet="NewsComment">
+          <ScalarProperty Name="NewsComment1" ColumnName="NewsComment" />
+          <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="NCContent" ColumnName="NCContent" />
+          <ScalarProperty Name="NCTime" ColumnName="NCTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsFalse">
+      <EntityTypeMapping TypeName="ViewNewsModel.NewsFalse">
+        <MappingFragment StoreEntitySet="NewsFalse">
+          <ScalarProperty Name="NewsFalseID" ColumnName="NewsFalseID" />
+          <ScalarProperty Name="NewsFalseTitle" ColumnName="NewsFalseTitle" />
+          <ScalarProperty Name="NewsFalseImage" ColumnName="NewsFalseImage" />
+          <ScalarProperty Name="NewsFalseContent" ColumnName="NewsFalseContent" />
+          <ScalarProperty Name="NewsFalseTime" ColumnName="NewsFalseTime" />
+          <ScalarProperty Name="NewsFalseClick" ColumnName="NewsFalseClick" />
+          <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsUser">
+      <EntityTypeMapping TypeName="ViewNewsModel.NewsUser">
+        <MappingFragment StoreEntitySet="NewsUser">
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="NewsUserAccount" ColumnName="NewsUserAccount" />
+          <ScalarProperty Name="NewsUserPwd" ColumnName="NewsUserPwd" />
+          <ScalarProperty Name="NewsUserName" ColumnName="NewsUserName" />
+          <ScalarProperty Name="NewsUserImage" ColumnName="NewsUserImage" />
+          <ScalarProperty Name="NewsUserSex" ColumnName="NewsUserSex" />
+          <ScalarProperty Name="NewsUserMotto" ColumnName="NewsUserMotto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Writer">
+      <EntityTypeMapping TypeName="ViewNewsModel.Writer">
+        <MappingFragment StoreEntitySet="Writer">
+          <ScalarProperty Name="WriterID" ColumnName="WriterID" />
+          <ScalarProperty Name="WriterName" ColumnName="WriterName" />
+          <ScalarProperty Name="WriterImage" ColumnName="WriterImage" />
+          <ScalarProperty Name="WriterPosition" ColumnName="WriterPosition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WriterCommun">
+      <EntityTypeMapping TypeName="ViewNewsModel.WriterCommun">
+        <MappingFragment StoreEntitySet="WriterCommun">
+          <ScalarProperty Name="WriterCommunID" ColumnName="WriterCommunID" />
+          <ScalarProperty Name="WCTitle" ColumnName="WCTitle" />
+          <ScalarProperty Name="WCImage" ColumnName="WCImage" />
+          <ScalarProperty Name="WCContent" ColumnName="WCContent" />
+          <ScalarProperty Name="WCTime" ColumnName="WCTime" />
+          <ScalarProperty Name="WCClick" ColumnName="WCClick" />
+          <ScalarProperty Name="WriterID" ColumnName="WriterID" />
+          <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WriterCommunComment">
+      <EntityTypeMapping TypeName="ViewNewsModel.WriterCommunComment">
+        <MappingFragment StoreEntitySet="WriterCommunComment">
+          <ScalarProperty Name="WriterCommunCommentID" ColumnName="WriterCommunCommentID" />
+          <ScalarProperty Name="WriterCommunID" ColumnName="WriterCommunID" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="WCCContent" ColumnName="WCCContent" />
+          <ScalarProperty Name="WCCTime" ColumnName="WCCTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WriterCommunFalse">
+      <EntityTypeMapping TypeName="ViewNewsModel.WriterCommunFalse">
+        <MappingFragment StoreEntitySet="WriterCommunFalse">
+          <ScalarProperty Name="WriterCommunFalseID" ColumnName="WriterCommunFalseID" />
+          <ScalarProperty Name="WCFTitle" ColumnName="WCFTitle" />
+          <ScalarProperty Name="WCFImage" ColumnName="WCFImage" />
+          <ScalarProperty Name="WCFContent" ColumnName="WCFContent" />
+          <ScalarProperty Name="WCFTime" ColumnName="WCFTime" />
+          <ScalarProperty Name="WCFClick" ColumnName="WCFClick" />
+          <ScalarProperty Name="WriterID" ColumnName="WriterID" />
+          <ScalarProperty Name="EditorID" ColumnName="EditorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

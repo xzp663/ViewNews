@@ -2,27 +2,33 @@
 @{
     Layout = null;
 }
-
+@using ViewNews.Models
+@{
+    List<News> news = ViewBag.newss;
+}
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>新闻列表</title>
-<style>
-    .news {
-    margin-top:1em;
-    margin-left:2em;
-    width:95%;
-    }
-    .juli {
-        margin: 1em;
-        vertical-align: middle;
-    }
-</style>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <style>
+        .news {
+            margin-top: 1em;
+            margin-left: 2em;
+            width: 95%;
+        }
+
+        .juli {
+            margin: 1em;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
-    <div> 
+    <div>
         <div class="news">
             <h2>新闻列表</h2>
             <div class="juli">
@@ -30,28 +36,34 @@
                     <tr>
                         <th>新闻标题</th>
                         <th>新闻封面图片</th>
-                        <th>新闻内容</th>
                         <th>发表时间</th>
                         <th>点击数</th>
                         <th>责任编辑</th>
                         <th>操作</th>
                     </tr>
-                    <tr class="success">
-                        <td>新闻标题</td>
-                        <td>新闻封面图片</td>
-                        <td>新闻内容</td>
-                        <td>发表时间</td>
-                        <td>点击数</td>
-                        <td>责任编辑</td>
-                        <td>
-                            <a href="#" class="btn btn-success">详情</a>
-                            <a href="#" class="btn btn-warning">删除</a>
-                        </td>
-                    </tr>
+                    @foreach (var item in news)
+                    {
+                        <tr class="success">
+                            <td>@item.NewsTitle</td>
+                            <td>
+                                <img src="~/Content/NewsImage/@item.NewsImage" width="50" />
+                            </td>
+                            <td>@item.NewsTime</td>
+                            <td>@item.NewsClick</td>
+                            <td>@item.Editor.EditorName</td>
+                            <td>
+                                <a href="/NewsVNGL/NewsXiangXi/?NewsID=@item.NewsID" class="btn btn-success">详情</a>
+                                <a href="/NewsVNGL/NewsEdits/?NewsID=@item.NewsID" class="btn btn-primary">修改</a>
+                                <a href="/NewsVNGL/NewsDel/?NewsID=@item.NewsID" onclick="return confirm('确定删除 @item.NewsTitle 吗')" class="btn btn-warning">删除</a>
+                            </td>
+                        </tr>
+                    }
 
                 </table>
             </div>
         </div>
     </div>
 </body>
+
 </html>
+

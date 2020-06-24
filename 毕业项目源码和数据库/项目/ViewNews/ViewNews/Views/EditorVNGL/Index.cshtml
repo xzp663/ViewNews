@@ -4,7 +4,10 @@
 }
 
 <!DOCTYPE html>
-
+@using ViewNews.Models
+@{
+    List<Editor> edit = ViewBag.Edits;
+}
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -34,14 +37,19 @@
                         <th>责任编辑名字</th>
                         <th>操作</th>
                     </tr>
-                    <tr class="active">
-                        <td>责任编辑账号</td>
-                        <td>责任编辑账号</td>
-                        <td>责任编辑账号</td>
-                        <td>
-                            <a href="/EditorVNGL/EditorLook" data-ajax-update="#main" data-ajax="true"class="btn btn-primary">查看记录</a>
-                        </td>
-                    </tr>
+                    @foreach (var item in edit)
+                    {
+                <tr class="active">
+                    <td>@item.EditorAccount</td>
+                    <td>@item.EditorPwd</td>
+                    <td>@item.EditorName</td>
+                    <td>
+                        <a href="/EditorVNGL/EditorEdits/?EditorID=@item.EditorID" class="btn btn-primary">修改</a>
+                        <a href="/EditorVNGL/EditorLook/?EditorID=@item.EditorID" class="btn btn-primary">查看记录</a>
+                    </td>
+                </tr>
+                    }
+                    
                 </table>
             </div>
         </div>

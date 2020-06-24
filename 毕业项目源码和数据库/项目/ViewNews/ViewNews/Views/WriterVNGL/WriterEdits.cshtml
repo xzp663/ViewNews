@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+@using ViewNews.Models
+@{
+    WriterCommun wrc = ViewBag.writer;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>评议文章修改</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/XiaLaKuang/jquery.searchableSelect.css" rel="stylesheet" />
+    <script src="~/Scripts/XiaLaKuang/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/XiaLaKuang/jquery.searchableSelect.js"></script>
+    <style>
+        .news {
+            margin: 1em;
+        }
+
+        .juli {
+            margin-top: 2em;
+            margin-left: 2em;
+        }
+
+        label {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="button" name=”Submit” onclick="javascript:history.back(-1);" class="btn btn-success fanhui" value="返回">
+        <div class="news">
+            <h2>评议文章修改</h2>
+            <div class="juli">
+                <form action="/WriterVNGL/WriterEdits" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="WCTitle">作家文章标题</label>
+                        <input type="text" class="form-control" name="WCTitle" id="WCTitle" value="@wrc.WCTitle">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="WCImage">作家文章封面图片</label>
+                        <br />
+                        <img src="~/Content/WriterImage/Commun/@wrc.WCImage" width="100" />
+                        <input type="hidden" name="WCImage" id="WCImage" value="@wrc.WCImage">
+                        <input type="file" name="EWCImage" id="EWCImage">
+                    </div>
+                    <div class="form-group">
+                        <label for="WCContent">作家文章内容</label>
+                        <textarea class="form-control" name="WCContent" id="WCContent" rows="3">@wrc.WCContent</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="WriterID">作家</label>
+                        <br />
+                        <select name="WriterID">
+                            @foreach (var item in ViewBag.writers as List<Writer>)
+                            {
+                                if (item.WriterID == wrc.WriterID)
+                                {
+                                    <option value="@item.WriterID" selected>@item.WriterName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.WriterID">@item.WriterName</option>
+                                }
+
+                            }
+                        </select>
+                        <script>
+                            $(function () {
+                                $('select').searchableSelect();
+                            });
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="WCTime" id="WCTime">
+                        <input type="hidden" name="WCClick" id="WCClick" value="@wrc.WCClick">
+                        <input type="hidden" name="EditorID" id="EditorID" value="@wrc.EditorID">
+                        <input type="hidden" name="WriterCommunID" id="WriterCommunID" value="@wrc.WriterCommunID">
+                    </div>
+
+                    <button type="submit" class="btn btn-default">修改</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -2,7 +2,11 @@
 @{
     Layout = null;
 }
+@using ViewNews.Models
+@{
+    List<Writer> wri = ViewBag.zuojia;
 
+}
 <!DOCTYPE html>
 
 <html>
@@ -20,6 +24,18 @@
             margin: 1em;
             vertical-align: middle;
         }
+        .writer_tu_image {
+            background-color: #FF0000;
+            width: 45px;
+            height: 50px;
+            overflow: hidden;
+            float: left;
+        }
+
+            .writer_tu_image img {
+                height: 50px;
+                margin: 0 calc(50% - 30px);
+            }
     </style>
 </head>
 <body>
@@ -33,17 +49,22 @@
                         <th>作家头像</th>
                         <th>作家职称</th>
                         <th>操作</th>
-                    </tr>
-                    <tr class="warning">
-                        <td>作家名字</td>
-                        <td>作家头像</td>
-                        <td>作家职称</td>
-                        <td>
-                            <a href="#" class="btn btn-info">添加</a>
-                            <a href="#" class="btn btn-success">修改</a>
-                            <a href="#" class="btn btn-warning">删除</a>
-                        </td>
-                    </tr>
+                    </tr> @foreach (var item in wri)
+                    {
+                <tr class="warning">
+                    <td>@item.WriterName</td>
+                    <td>
+                        <div class="writer_tu_image">
+                            <img src="~/Content/WriterImage/Men/@item.WriterImage"/>
+                        </div>
+                    </td>
+                    <td>@item.WriterPosition</td>
+                    <td>
+                        <a href="/WriterVNGL/WriterZuoJiaEdits/?WriterID=@item.WriterID" class="btn btn-primary">修改</a>
+                        <a href="/WriterVNGL/WriterZuoJiaDel?WriterID=@item.WriterID" onclick="return confirm('确定删除 @item.WriterName  吗')" class="btn btn-warning">删除</a>
+                    </td>
+                </tr>
+                    }
                 </table>
             </div>
         </div>

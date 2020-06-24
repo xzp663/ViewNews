@@ -2,25 +2,28 @@
 @{
     Layout = null;
 }
-
+@using ViewNews.Models
+@{
+    List<WriterCommun> wrc = ViewBag.writer;
+}
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>评议列表</title>
-<style>
-    .news {
-        margin-top: 1em;
-        margin-left: 2em;
-        width: 95%;
-    }
+    <style>
+        .news {
+            margin-top: 1em;
+            margin-left: 2em;
+            width: 95%;
+        }
 
-    .juli {
-        margin: 1em;
-        vertical-align: middle;
-    }
-</style>
+        .juli {
+            margin: 1em;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -31,26 +34,30 @@
                     <tr>
                         <th>作家文章标题</th>
                         <th>作家文章封面图片</th>
-                        <th>作家文章内容</th>
                         <th>发表时间</th>
                         <th>点击数</th>
                         <th>作家</th>
                         <th>责任编辑</th>
                         <th>操作</th>
                     </tr>
-                    <tr class="warning">
-                        <td>作家文章标题</td>
-                        <td>作家文章封面图片</td>
-                        <td>作家文章内容</td>
-                        <td>发表时间</td>
-                        <td>点击数</td>
-                        <td>作家</td>
-                        <td>责任编辑</td>
-                        <td>
-                            <a href="#" class="btn btn-success">修改</a>
-                            <a href="#" class="btn btn-warning">删除</a>
-                        </td>
-                    </tr>
+                    @foreach (var item in wrc)
+                    {
+                <tr class="warning">
+                    <td>@item.WCTitle</td>
+                    <td>
+                        <img src="~/Content/WriterImage/Commun/@item.WCImage" width="50" />
+                    </td>
+                    <td>@item.WCTime</td>
+                    <td>@item.WCClick</td>
+                    <td>@item.Writer.WriterName</td>
+                    <td>@item.Editor.EditorName</td>
+                    <td>
+                        <a href="/WriterVNGL/WriterXiangXi/?WriterID=@item.WriterCommunID" class="btn btn-success">详情</a>
+                        <a href="/WriterVNGL/WriterEdits/?WriterID=@item.WriterCommunID" class="btn btn-primary">修改</a>
+                        <a href="/WriterVNGL/WriterDel?WriterID=@item.WriterCommunID" onclick="return confirm('确定删除 @item.WCTitle  吗')" class="btn btn-warning">删除</a>
+                    </td>
+                </tr>
+                    }
                 </table>
             </div>
         </div>

@@ -1,5 +1,8 @@
 ﻿<!DOCTYPE html>
-
+@*@using ViewNews.Models
+@{ 
+    Editor edi = Session["Editors"] as Editor;
+}*@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,10 +16,8 @@
         <div class="navigation">
             <ul>
                 <li>欢迎您！</li>
-                <li><a href="">张山</a></li>
-                <li><a href="">修改密码</a></li>
-                <li><a href="">设置</a></li>
-                <li><a href="">退出</a></li>
+                <li><a href="">@*@edi.EditorName*@</a></li>
+                <li><a href="/LoginVNGL/Login">退出</a></li>
             </ul>
         </div>
     </div>
@@ -24,7 +25,7 @@
         @RenderBody()
     </div>
     <div class="bottom"></div>
-    <div id="footer"><p>Copyright©  2015 版权所有 京ICP备05019125号-10  来源:<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p></div>
+    <div id="footer"><p>Copyright©  2015 版权所有 京ICP备05019125号-10 </p></div>
     <script>navList(12);</script>
 </body>
 </html>
