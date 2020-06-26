@@ -1,0 +1,160 @@
+﻿
+@{
+    Layout = null;
+}
+@using ViewNews.Models
+@{
+    NewsUser user = ViewBag.user;
+    List<NewsComment> newss= ViewBag.newss;
+    List<WriterCommunComment> writers = ViewBag.writers;
+    List<EssayCommun> essayC = ViewBag.essayC;
+    List<EssayCommunComment> essayCC = ViewBag.essayCC;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>用户详情</title>
+    <link href="~/HelpSSS/简单好看的个人主页模板/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/HelpSSS/简单好看的个人主页模板/css/blog.css" rel="stylesheet" />
+    <style type="text/css">
+        .writer_tu_image {
+        padding-top:50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <input type="button" name=”Submit” onclick="javascript:history.back(-1);" class="btn btn-success fanhui" value="返回">
+                <a class="blog-nav-item active" href="index.html">首页</a>
+                <a class="blog-nav-item" href="#part3">记录</a>
+            </nav>
+        </div>
+    </div>
+    <div class="intr">
+        <div class="writer_tu_image">
+            @if (user.NewsUserImage == null)
+            {
+                <img src="~/Content/imageKeHu/User/通用.png" width="150" height="150" />
+            }
+            else
+            {
+                <img src="~/Content/imageKeHu/User/@user.NewsUserImage" width="150" height="150" />
+            }
+        </div>
+        <p class="peointr">@user.NewsUserName</p>
+        @if (user.NewsUserMotto == null)
+        {
+            <p class="peointr">这个人什么都没说</p>
+        }
+        else
+        {
+            <p class="peointr">@user.NewsUserMotto</p>
+        }
+        <p class="peointr">性别：@user.NewsUserSex</p>
+    </div>   
+
+    <div class="title" id="part3">记录</div>   
+    <div class="content">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#home" role="tab" data-toggle="tab">新闻评论</a></li>
+            <li><a href="#profile" role="tab" data-toggle="tab">专家文章评论</a></li>
+            <li><a href="#messages" role="tab" data-toggle="tab">社区文章评论</a></li>
+            <li><a href="#fabiao" role="tab" data-toggle="tab">社区文章发表</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                @if (newss == null)
+                {
+                    <p class="text"><div>暂无记录</div></p>
+                }
+                else
+                {
+                    foreach (var item in newss)
+                    {
+                        <p class="text">
+                            <a href="#"> @item.NCTime 评论了 @item.News.NewsTitle</a>
+                        </p>
+                    }
+                }
+            </div>
+            <div class="tab-pane" id="profile">
+                @if (writers == null)
+                {
+                    <p class="text"><div>暂无记录</div></p>
+                }
+                else
+                {
+                    foreach (var item in writers)
+                    {
+                        <p class="text">
+                            <a href="#"> @item.WCCTime 评论了专家 @item.WriterCommun.Writer 的 @item.WriterCommun.WCTitle</a>
+                        </p>
+                    }
+                }
+            </div>
+            <div class="tab-pane" id="messages">
+                @if (essayCC == null)
+                {
+                    <p class="text"><div>暂无记录</div></p>
+                }
+                else
+                {
+                    foreach (var item in essayCC)
+                    {
+                        <p class="text">
+                            <a href="#"> @item.ECCTime 评论了用户 @item.EssayCommun.NewsUser.NewsUserName 的 @item.EssayCommun.ECTitle</a>
+                        </p>
+                    }
+                }
+            </div>
+            <div class="tab-pane" id="fabiao">
+                @if (essayCC == null)
+                {
+                    <p class="text"><div>暂无记录</div></p>
+                }
+                else
+                {
+                    foreach (var item in essayC)
+                    {
+                        @*未审核*@
+                        if (item.ECState == 0)
+                        {
+                            <p class="text">
+                                <a href="#"> @item.ECTime 发表了 @item.ECTitle 状态 未审核</a>
+                            </p>
+                        }
+                        @*通过*@
+                        if (item.ECState == 1)
+                        {
+                            <p class="text">
+                                <a href="#"> @item.ECTime 发表了 @item.ECTitle 状态 已通过</a>
+                            </p>
+                        }
+                        @*被打回*@
+                        if (item.ECState == 1)
+                        {
+                            <p class="text">
+                                <a href="#"> @item.ECTime 发表了 @item.ECTitle 状态 被打回 理由 @item.ECReturns</a>
+                            </p>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+        <a href="" class="btt">顶部</a>
+        <!-- Js-->
+        <script src="~/HelpSSS/简单好看的个人主页模板/js/jquery-1.9.1.min.js"></script>
+        <script src="~/HelpSSS/简单好看的个人主页模板/js/bootstrap.min.js"></script>
+        <script src="~/HelpSSS/简单好看的个人主页模板/js/plugin.js"></script>
+</body>
+</html>
+

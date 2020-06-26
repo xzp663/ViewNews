@@ -24,6 +24,7 @@
             margin: 1em;
             vertical-align: middle;
         }
+
         * {
             padding: 0px;
             margin: 0px;
@@ -75,7 +76,7 @@
         }
 
         .pop-ok {
-            height:42px;
+            height: 42px;
             padding: 1px 10px;
             margin: 8px 5px;
             border: none;
@@ -158,15 +159,20 @@
                                 @if (item.ECState == 0)
                                 {
                                     <a href="/UserVNGL/EssayCommunTongYi/?EssayCoID=@item.EssayCommunID" class="btn btn-success">通过</a>
-                                    <a href="javascript:void(0)" class="btn btn-danger click_pop">打回</a>
+                                    <a href="javascript:void(0)" class="btn btn-danger click_pop" id="dahui">
+                                        打回
+                                    </a>
                                 }
                                 @if (item.ECState == 1)
                                 {
                                 }
                                 @if (item.ECState == 2)
                                 {
-                                    <a href="javascript:void(0)" class="btn btn-danger click_pop">打回</a>
-                                }
+                                    <a href="javascript:void(0)" class="btn btn-danger click_pop" id="dahui">
+                                        打回
+                                    </a>
+                                } 
+                                <input type="hidden" name="ESSCid" id="ESSCid" value="@item.EssayCommunID" />
                                 @*社区文章表要加两个字段，一个点击数，一个打回理由*@
                             </td>
                         </tr>
@@ -183,16 +189,14 @@
             <h2>打回理由</h2>
             <span class="pop-close">Ｘ</span>
         </div>
-        <form action="/" method="post">
+        <form action="/UserVNGL/EssayCommunDaHui" method="post">
             <div class="pop-content">
                 <div class="pop-content-left">
                     <img src="" alt="" class="teathumb">
                 </div>
                 <div class="pop-content-right">
-
-                    <input type="text" name="name" value="" />
-                    <input type="hidden" name="name" value="" />
-
+                    <input type="text" name="ECReturns" id="ECReturns" value="" />
+                    <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="" />
                 </div>
             </div>
             <div class="pop-foot">
@@ -208,8 +212,12 @@
             $('.click_pop').click(function () {
                 $('.bgPop,.pop').show();
             });
+            $("#dahui").click(function () {
+                var id = $(this).next().val();
+                $("#EssayCommunID").val(id);
+            });
         })
-
+       
     </script>
 </body>
 </html>

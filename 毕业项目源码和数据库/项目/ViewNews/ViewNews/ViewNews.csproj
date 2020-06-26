@@ -214,7 +214,6 @@
     <Content Include="Content\imageGuanLi\statistics.png" />
     <Content Include="Content\imageGuanLi\syetem_management.png" />
     <Content Include="Content\imageGuanLi\system.png" />
-    <Content Include="Content\imageKeHu\User\通用.jpg" />
     <Content Include="Content\imageKeHu\User\通用.png" />
     <Content Include="Content\style.css" />
     <Content Include="Content\styleLogin.css" />
@@ -226,6 +225,22 @@
     <Content Include="Content\Site.css" />
     <Content Include="HelpSSS\弹出框\jQuery点击显示弹出框关闭按钮代码\index.html" />
     <Content Include="HelpSSS\弹出框\jQuery点击显示弹出框关闭按钮代码\js\jquery-1.8.0.min.js" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\css\blog.css" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\css\bootstrap.css" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\css\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\image\2.jpg" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\image\content.jpg" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\image\h1.jpg" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\image\h2.jpg" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\image\h3.jpg" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\image\s1.jpg" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\image\s2.jpg" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\image\s3.jpg" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\index.html" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\js\bootstrap.js" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\js\bootstrap.min.js" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\js\jquery-1.9.1.min.js" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\js\plugin.js" />
     <Content Include="Models\ViewNewsDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ViewNewsDB.Context.cs</LastGenOutput>
@@ -245,6 +260,10 @@
     <Content Include="Models\ViewNewsDB.edmx.diagram">
       <DependentUpon>ViewNewsDB.edmx</DependentUpon>
     </Content>
+    <Content Include="HelpSSS\简单好看的个人主页模板\css\bootstrap\glyphicons-halflings-regular.eot" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\css\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\css\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="HelpSSS\简单好看的个人主页模板\image\Thumbs.db" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -296,6 +315,8 @@
     <Content Include="Views\WriterVNGL\WriterEdits.cshtml" />
     <Content Include="Views\WriterVNGL\WriterZuoJiaEdits.cshtml" />
     <Content Include="Views\EditorVNGL\EditorEdits.cshtml" />
+    <Content Include="Views\UserVNGL\UserXiangxi.cshtml" />
+    <Content Include="Views\UserVNGL\EssayCommunXianQing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

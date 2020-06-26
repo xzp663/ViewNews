@@ -25,6 +25,7 @@ namespace ViewNews.Controllers.ViewNewsGuanLi
         public ActionResult EssayCommunXianQing(int? EssayCoID)
         {
             ViewBag.EComm = db.EssayCommun.Find(EssayCoID);
+            ViewBag.comments =  db.EssayCommunComment.Where(a => a.EssayCommunID == EssayCoID).Count();
             return View();
         }
 
@@ -37,13 +38,24 @@ namespace ViewNews.Controllers.ViewNewsGuanLi
             return RedirectToAction("Index", "LoginVNGL");
         }
 
-        public ActionResult EssayCommunDaHui(int? EssayCoID)
+        public ActionResult EssayCommunDaHui(string ECReturns,int EssayCommunID)
         {
-            EssayCommun essc = db.EssayCommun.Find(EssayCoID);
+            EssayCommun essc = db.EssayCommun.Find(EssayCommunID);
+            essc.ECReturns = ECReturns;
             essc.ECState = 1;
             db.Entry(essc).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index", "LoginVNGL");
+        }
+
+        public ActionResult UserXiangxi(int UserID)
+        {
+            ViewBag.user = db.NewsUser.Find(UserID);
+            ViewBag.newss = db.NewsComment.Where(a => a.NewsUserID == UserID).ToList();
+            ViewBag.writers = db.WriterCommunComment.Where(a => a.NewsUserID == UserID).ToList();
+            ViewBag.essayC = db.EssayCommun.Where(a => a.NewsUserID == UserID).ToList();
+            ViewBag.essayCC = db.EssayCommunComment.Where(a => a.NewsUserID == UserID).ToList();
+            return View();
         }
     }
 }
