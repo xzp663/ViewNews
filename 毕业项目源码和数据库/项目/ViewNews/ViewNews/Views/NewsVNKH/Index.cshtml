@@ -31,30 +31,36 @@
             }
     </style>
 }
+@using ViewNews.Models
+@{ 
+    List<News> news = ViewBag.newss;
+}
 <div class="sub-search-box clearfix">
-    <form action="#" class="search-form" method="post">
-        <input type="text" placeholder="请输入搜索的标题" name="s" class="search-text" />
+    <form action="/NewsVNKH/Index" class="search-form" method="post">
+        <input type="text" placeholder="请输入搜索的标题" name="Title" id="Title" class="search-text" value="@ViewBag.name" />
         <input type="submit" value="" name="submit" class="search-submit" />
     </form>
-
 </div>
 <div class="daxiao">
     <h2>时事新闻</h2>
     <div class="row">
+        @foreach (var item in news)
+        {
         <div class="col-sm-6 col-md-3">
-            <a href="#">
+            <a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID">
                 <div class="thumbnail">
                     <div class="writer_tu_image">
-                        <img src="~/Content/NewsImage/背景.PNG" />
+                        <img src="~/Content/NewsImage/@item.NewsImage" />
                     </div>
                     <div class="caption">
-                        <h3>这个是标题这个是标题这个是标题</h3>
-                        <p><div>点击数</div><div>评论数</div></p>
-                        <p><div>时间</div></p>
+                        <h3>@item.NewsTitle</h3>
+                        <p><div>点击数:@item.NewsClick</div><div>评论数:@item.NewsComment.Count()</div></p>
+                        <p><div>时间:@item.NewsTime</div></p>
                     </div>
 
                 </div>
             </a>
         </div>
+        }
     </div>
 </div>

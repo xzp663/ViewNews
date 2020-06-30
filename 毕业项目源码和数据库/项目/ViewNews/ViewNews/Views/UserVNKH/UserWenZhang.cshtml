@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "UserWenZhang";
+    Layout = "~/Views/Shared/_LayoutWenZhang.cshtml";
+    @Styles.Render("~/Content/css")
+    <style type="text/css">
+        .fanhui, .bianji {
+            margin-left: 1em;
+        }
+
+        h1, #contentText {
+            color: black;
+        }
+
+        .news_quan {
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .news_zhong {
+            color: darkgray;
+            margin: 1em;
+        }
+
+        .new_time {
+            float: left;
+        }
+
+        .new_ziti {
+            margin-left: 100px;
+            float: left;
+        }
+
+        .new_yuan {
+            margin-left: 100px;
+            float: left;
+        }
+
+        .dibu {
+            text-align: right;
+            margin-right: 1em;
+        }
+
+        .writer_tu {
+            overflow: hidden;
+            margin: 1em;
+        }
+
+        .writer_tu_image {
+            background-color: #FF0000;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            float: left;
+        }
+
+            .writer_tu_image img {
+                height: 50px;
+                margin: 0 calc(50% - 25px);
+                border: 1px solid darkgray;
+            }
+
+        .writer_tu_man {
+            margin-left: 55px;
+            font-size: 12px;
+        }
+
+        .writer_tu_manname {
+            color: black;
+        }
+
+        .writer_tu_manPPP {
+            margin-top: 10px;
+            color: slategrey
+        }
+    </style>
+    <script type=text/javascript>
+        function $(xixi) {
+            return document.getElementById(xixi);
+        }
+        //转换字号
+        function doZoom(size) {
+            if (size == 12) {
+                $("contentText").style.fontSize = size + "px";
+                $("fs12").style.display = "";
+                $("fs14").style.display = "none";
+                $("fs16").style.display = "none";
+            }
+            if (size == 18) {
+                $("contentText").style.fontSize = size + "px";
+                $("fs12").style.display = "none";
+                $("fs14").style.display = "";
+                $("fs16").style.display = "none";
+            }
+            if (size == 24) {
+                $("contentText").style.fontSize = size + "px";
+                $("fs12").style.display = "none";
+                $("fs14").style.display = "none";
+                $("fs16").style.display = "";
+            }
+        }
+    </script>
+}
+@using ViewNews.Models
+@{
+    EssayCommun EComm = ViewBag.EssComm;
+}
+
+<div class="news_quan">
+    <h1>@EComm.ECTitle</h1>
+    <div class="writer_tu">
+        <div class="writer_tu_image">
+            @if (@EComm.NewsUser.NewsUserImage == null)
+            {
+                <img src="~/Content/imageKeHu/User/通用.png" />
+            }
+            else
+            {
+                <img src="~/Content/imageKeHu/User/@EComm.NewsUser.NewsUserImage">
+            }
+        </div>
+        <div class="writer_tu_man">
+            <div class="writer_tu_manname">@EComm.NewsUser.NewsUserName</div>
+            <div class="writer_tu_manPPP">@EComm.NewsUser.NewsUserMotto</div>
+        </div>
+    </div>
+    <div class="news_zhong">
+        <div class="new_time"> @EComm.ECTime </div>
+        <div class="new_ziti">
+            <DIV class=fontSize id=fs12 style="DISPLAY: none">
+                <A href="javascript:doZoom(24)">大</A> <A href="javascript:doZoom(18)">中</A> <SPAN>小</SPAN>
+            </DIV>
+            <DIV class=fontSize id=fs14>
+                <A href="javascript:doZoom(24)">大</A> <SPAN>中</SPAN> <A href="javascript:doZoom(12)">小</A>
+            </DIV>
+            <DIV class=fontSize id=fs16 style="DISPLAY: none">
+                <SPAN>大</SPAN> <A href="javascript:doZoom(18)">中</A> <A href="javascript:doZoom(12)">小</A>
+            </DIV>
+        </div>
+    </div>
+
+    <br /><br />
+
+    <DIV id=contentText>
+
+        @EComm.ECContent
+
+    </DIV>
+    <div>
+        <br />
+        <h4>
+            &nbsp;&nbsp;文章内容纯属用户个人观点，不代表平台观点
+        </h4>
+    </div>
+    <div class="dibu">
+        <div>
+            点击数：@EComm.ECClick
+        </div>
+        <div>
+            评论数：@EComm.EssayCommunComment.Count()
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="~/HelpSSS/一个新闻模板/xinwenmoban/css/reset.css" rel="stylesheet" media="all" />
+    <link href="~/HelpSSS/一个新闻模板/xinwenmoban/css/nivoslider.css" rel="stylesheet" media="all" />
+    <link href="~/HelpSSS/一个新闻模板/xinwenmoban/css/prettyPhoto.css" rel="stylesheet" media="screen" />
+    <link href="~/HelpSSS/一个新闻模板/xinwenmoban/style.css" rel="stylesheet" media="screen" />
+    <link href="~/HelpSSS/一个新闻模板/xinwenmoban/css/responsive.css" rel="stylesheet" media="all" />
+
+    <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/jquery-1.7.1.min.js"></script>
+    <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/jquery.nivo.slider.pack.js"></script>
+    <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/jquery.carouFredSel-5.6.2.js"></script>
+    <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/jquery.prettyPhoto.js"></script>
+    <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/jquery.sticky.js"></script>
+    <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/jquery-scroller-v1.min.js"></script>
+    <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/kendo.web.min.js"></script>
+    <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/custom.js"></script>
+</head>
+<body class="sub-1sidebar">
+    <header id="header">
+        <div id="header-top">
+            <div class="wrapper clearfix">
+                <div id="welcome">
+                    欢迎来到视野新闻网!
+                </div><!--end:welcome-->
+                <nav id="top-nav">
+                    <ul id="top-menu" class="clearfix">
+                        <li class="current-menu-item"><a href="/LoginVNKH/LoginUser">登录/注册</a></li>
+                    </ul>
+                </nav><!--end:top-nav-->
+            </div><!--wrapper-->
+        </div><!--header-top-->
+        <div id="header-middle">
+            <div class="wrapper clearfix">
+                <div id="logo-image">
+                    <a href="index.html">
+                        <img src="~/Content/imageKeHu/UI/视野新闻网logo.png" alt="logo" width="200" />
+                    </a>
+                </div>
+            </div><!--wrapper-->
+        </div><!--header-middle-->
+        <div id="navigation">
+            <nav id="secondary-menu" class="wrapper clearfix">
+                <ul class="clearfix" id="main-nav">
+                    <li><a href="/NewsVNKH/Index">时事新闻</a></li>
+                    <li>
+                        <a href="/WriterVNKH/Index">专家评议</a>
+                        <ul>
+                            <li><a href="news.html">Sport</a></li>
+                            <li>
+                                <a href="#">Asia</a>
+                                <ul>
+                                    <li><a href="#">Sport</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/UserVNKH/Index">用户社区</a>
+                    </li>
+                </ul><!--end:main-nav-->
+            </nav><!--end:secondary-menu-->
+        </div><!--navigation-->
+    </header>
+    <div class="wrapper">
+        <div class="primary">
+            @RenderBody()
+        </div>
+        <div class="secondary">
+            <div id="sidebar-b" class="sidebar">
+                <aside class="widget box-hover">
+                    <header class="entry-header">
+                        <h4 class="widget-title clearfix"><span>热门新闻</span></h4>
+                    </header>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                </aside>
+
+                <aside class="widget box-hover">
+                    <header class="entry-header">
+                        <h4 class="widget-title clearfix"><span>精选评议</span></h4>
+                    </header>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                </aside>
+                <aside class="widget box-hover">
+                    <header class="entry-header">
+                        <h4 class="widget-title clearfix"><span>社区热议</span></h4>
+                    </header>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                    <article class="entry-box clearfix">
+                        <div class="entry-content">
+                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
+                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
+                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                        </div><!--end:entry_content-->
+                    </article>
+                </aside>
+                <div class="clear"></div>
+            </div><!--end:sidebar-->
+            <div class="clear"></div>
+        </div>
+
+        <footer>
+            <div class="wrapper clearfix">
+                <p id="copyrights">Copyright © 2012 视野新闻网，源于1999</p>   <a id="scroll-to-top" href="#top">返回顶部</a>
+            </div><!--end:wrapper-->
+        </footer>
+    </div>
+</body>
+</html>

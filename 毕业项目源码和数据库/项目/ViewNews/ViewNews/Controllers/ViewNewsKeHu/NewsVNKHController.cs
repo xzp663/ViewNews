@@ -13,7 +13,23 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         // GET: NewsVNKH
         public ActionResult Index()
         {
+            ViewBag.newss = db.News.OrderByDescending(a=>a.NewsTime).ToList();
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult Index(string Title = "")
+        {
+            ViewBag.newss = db.News.OrderByDescending(p => p.NewsTime)
+               .Where(p => Title == "" || p.NewsTitle.Contains(Title))
+               .ToList();
+            ViewBag.name = Title;
+            return View();
+        }
+
+        public ActionResult NewsWenZhang(int? Newsid)
+        {
+            ViewBag.newsS = db.News.Find(Newsid);
             return View();
         }
     }
