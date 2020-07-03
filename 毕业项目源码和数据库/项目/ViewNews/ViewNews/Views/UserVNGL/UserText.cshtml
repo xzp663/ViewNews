@@ -143,7 +143,7 @@
                             <td>
                                 @if (item.ECState == 0)
                                 {
-                                    <div>未通过</div>
+                                    <div>未审核</div>
                                 }
                                 @if (item.ECState == 1)
                                 {
@@ -152,6 +152,10 @@
                                 @if (item.ECState == 2)
                                 {
                                     <div>通过</div>
+                                }
+                                @if (item.ECState == 3)
+                                {
+                                    <div>已封禁</div>
                                 }
                             </td>
                             <td>
@@ -168,12 +172,17 @@
                                 }
                                 @if (item.ECState == 2)
                                 {
-                                    <a href="javascript:void(0)" class="btn btn-danger click_pop" id="dahui">
-                                        打回
+                                    <a href="/UserVNGL/EssayCommunFengJin/?EssayCoID=@item.EssayCommunID" class="btn btn-danger">
+                                        封禁
                                     </a>
-                                } 
+                                }
+                                @if (item.ECState == 3)
+                                {
+                                    <a href="/UserVNGL/EssayCommunJieFeng/?EssayCoID=@item.EssayCommunID" class="btn btn-success">
+                                        解封
+                                    </a>
+                                }
                                 <input type="hidden" name="ESSCid" id="ESSCid" value="@item.EssayCommunID" />
-                                @*社区文章表要加两个字段，一个点击数，一个打回理由*@
                             </td>
                         </tr>
                     }

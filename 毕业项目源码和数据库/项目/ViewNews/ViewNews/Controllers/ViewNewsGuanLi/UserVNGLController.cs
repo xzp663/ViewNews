@@ -9,7 +9,7 @@ namespace ViewNews.Controllers.ViewNewsGuanLi
 {
     public class UserVNGLController : Controller
     {
-        ViewNewsEntities db = new ViewNewsEntities();
+        ViewNewsEntities1 db = new ViewNewsEntities1();
         // GET: UserVNGL
         public ActionResult Index()
         {
@@ -43,6 +43,24 @@ namespace ViewNews.Controllers.ViewNewsGuanLi
             EssayCommun essc = db.EssayCommun.Find(EssayCommunID);
             essc.ECReturns = ECReturns;
             essc.ECState = 1;
+            db.Entry(essc).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "LoginVNGL");
+        }
+
+        public ActionResult EssayCommunFengJin(int? EssayCoID)
+        {
+            EssayCommun essc = db.EssayCommun.Find(EssayCoID);
+            essc.ECState = 3;
+            db.Entry(essc).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "LoginVNGL");
+        }
+
+        public ActionResult EssayCommunJieFeng(int? EssayCoID)
+        {
+            EssayCommun essc = db.EssayCommun.Find(EssayCoID);
+            essc.ECState = 2;
             db.Entry(essc).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index", "LoginVNGL");

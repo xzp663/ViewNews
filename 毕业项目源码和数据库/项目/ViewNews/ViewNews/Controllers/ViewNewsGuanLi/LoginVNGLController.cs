@@ -11,7 +11,7 @@ namespace ViewNews.Controllers.ViewNewsGuanLi
 {
     public class LoginVNGLController : Controller
     {
-        ViewNewsEntities db = new ViewNewsEntities();
+        ViewNewsEntities1 db = new ViewNewsEntities1();
         // GET: LoginVNGL
         public ActionResult Index()
         {

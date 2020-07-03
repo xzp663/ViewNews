@@ -1,6 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ViewNewsModelStoreContainer" CdmEntityContainer="ViewNewsEntities">
+  <EntityContainerMapping StorageEntityContainer="ViewNewsModelStoreContainer" CdmEntityContainer="ViewNewsEntities1">
+    <EntitySetMapping Name="ECCLike">
+      <EntityTypeMapping TypeName="ViewNewsModel.ECCLike">
+        <MappingFragment StoreEntitySet="ECCLike">
+          <ScalarProperty Name="ECCLikeID" ColumnName="ECCLikeID" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="EssayCommunCommentID" ColumnName="EssayCommunCommentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ECCReport">
+      <EntityTypeMapping TypeName="ViewNewsModel.ECCReport">
+        <MappingFragment StoreEntitySet="ECCReport">
+          <ScalarProperty Name="ECCReportID" ColumnName="ECCReportID" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="EssayCommunCommentID" ColumnName="EssayCommunCommentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Editor">
       <EntityTypeMapping TypeName="ViewNewsModel.Editor">
         <MappingFragment StoreEntitySet="Editor">
@@ -33,6 +51,9 @@
           <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
           <ScalarProperty Name="ECCContent" ColumnName="ECCContent" />
           <ScalarProperty Name="ECCTime" ColumnName="ECCTime" />
+          <ScalarProperty Name="ECCLike" ColumnName="ECCLike" />
+          <ScalarProperty Name="ECCReport" ColumnName="ECCReport" />
+          <ScalarProperty Name="ECCCID" ColumnName="ECCCID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -47,6 +68,24 @@
           <ScalarProperty Name="ECFReturns" ColumnName="ECFReturns" />
           <ScalarProperty Name="ECFTime" ColumnName="ECFTime" />
           <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NCLike">
+      <EntityTypeMapping TypeName="ViewNewsModel.NCLike">
+        <MappingFragment StoreEntitySet="NCLike">
+          <ScalarProperty Name="NCLikeID" ColumnName="NCLikeID" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="NewsCommentID" ColumnName="NewsCommentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NCReport">
+      <EntityTypeMapping TypeName="ViewNewsModel.NCReport">
+        <MappingFragment StoreEntitySet="NCReport">
+          <ScalarProperty Name="NCReportID" ColumnName="NCReportID" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="NewsCommentID" ColumnName="NewsCommentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -66,11 +105,14 @@
     <EntitySetMapping Name="NewsComment">
       <EntityTypeMapping TypeName="ViewNewsModel.NewsComment">
         <MappingFragment StoreEntitySet="NewsComment">
-          <ScalarProperty Name="NewsComment1" ColumnName="NewsComment" />
+          <ScalarProperty Name="NewsCommentID" ColumnName="NewsCommentID" />
           <ScalarProperty Name="NewsID" ColumnName="NewsID" />
           <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
           <ScalarProperty Name="NCContent" ColumnName="NCContent" />
           <ScalarProperty Name="NCTime" ColumnName="NCTime" />
+          <ScalarProperty Name="NCLike" ColumnName="NCLike" />
+          <ScalarProperty Name="NCReport" ColumnName="NCReport" />
+          <ScalarProperty Name="NCID" ColumnName="NCID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -97,6 +139,24 @@
           <ScalarProperty Name="NewsUserImage" ColumnName="NewsUserImage" />
           <ScalarProperty Name="NewsUserSex" ColumnName="NewsUserSex" />
           <ScalarProperty Name="NewsUserMotto" ColumnName="NewsUserMotto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WCCLike">
+      <EntityTypeMapping TypeName="ViewNewsModel.WCCLike">
+        <MappingFragment StoreEntitySet="WCCLike">
+          <ScalarProperty Name="WCCLikeID" ColumnName="WCCLikeID" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="WriterCommunCommentID" ColumnName="WriterCommunCommentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WCCReport">
+      <EntityTypeMapping TypeName="ViewNewsModel.WCCReport">
+        <MappingFragment StoreEntitySet="WCCReport">
+          <ScalarProperty Name="WCCReportID" ColumnName="WCCReportID" />
+          <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
+          <ScalarProperty Name="WriterCommunCommentID" ColumnName="WriterCommunCommentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -132,6 +192,9 @@
           <ScalarProperty Name="NewsUserID" ColumnName="NewsUserID" />
           <ScalarProperty Name="WCCContent" ColumnName="WCCContent" />
           <ScalarProperty Name="WCCTime" ColumnName="WCCTime" />
+          <ScalarProperty Name="WCCLike" ColumnName="WCCLike" />
+          <ScalarProperty Name="WCCReport" ColumnName="WCCReport" />
+          <ScalarProperty Name="WCCID" ColumnName="WCCID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

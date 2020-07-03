@@ -2,7 +2,10 @@
 @{
     Layout = null;
 }
-
+@using ViewNews.Models
+@{ 
+    NewsUser user = ViewBag.accc;
+}
 <!DOCTYPE html>
 
 <html>
@@ -26,7 +29,14 @@
                     <div class="form">
                         <h2>登录账号</h2>
                         <form action="/LoginVNKH/LoginUser" method="post">
-                            <input type="text" name="NewsUserAccount" id="NewsUserAccount" placeholder="用户名" required="" />
+                            @if (ViewBag.accc != null)
+                            {
+                            <input type="text" name="NewsUserAccount" id="NewsUserAccount" placeholder="用户名" required="" value="@user.NewsUserAccount"/>
+                            }
+                            else { 
+                                <input type="text" name="NewsUserAccount" id="NewsUserAccount" placeholder="用户名" required="" />
+                            }
+                            
                             <input type="password" name="NewsUserPwd" id="NewsUserPwd" placeholder="密码" required="" />
                             @if (ViewBag.tishi != null)
                             {

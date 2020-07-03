@@ -9,15 +9,16 @@ namespace ViewNews.Controllers.ViewNewsKeHu
 {
     public class LoginVNKHController : Controller
     {
-        ViewNewsEntities db = new ViewNewsEntities();
+        ViewNewsEntities1 db = new ViewNewsEntities1();
         // GET: LoginVNKH
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult LoginUser()
+        public ActionResult LoginUser(int? acc)
         {
+            ViewBag.accc = db.NewsUser.Find(acc);
             return View();
         }
 
@@ -44,9 +45,10 @@ namespace ViewNews.Controllers.ViewNewsKeHu
             if (newsuser == null)
             {
                 nuser.NewsUserSex = "保密";
+                nuser.NewsUserImage = "通用.png";
                 db.NewsUser.Add(nuser);
                 db.SaveChanges();
-                return RedirectToAction("Index", "NewsVNKH");
+                return RedirectToAction("LoginUser", "LoginVNKH",new { acc=nuser.NewsUserID });
             }
             else 
             {
@@ -54,6 +56,12 @@ namespace ViewNews.Controllers.ViewNewsKeHu
                 return RedirectToAction("LoginUser", "LoginVNKH");
             
             }
+        }
+
+        public ActionResult OutLogin()
+        {
+            Session["userLogin"] = null;
+            return RedirectToAction("Index", "NewsVNKH");
         }
     }
 }

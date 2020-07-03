@@ -1,5 +1,8 @@
 ﻿<!DOCTYPE html>
-
+@using ViewNews.Models
+@{
+    NewsUser user = Session["userLogin"] as NewsUser;
+}
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,6 +22,35 @@
     <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/jquery-scroller-v1.min.js"></script>
     <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/kendo.web.min.js"></script>
     <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/custom.js"></script>
+
+    <style>
+        #yonghu {
+            text-decoration:none;
+        }
+       
+            #yonghutu img {
+                border: 1px solid darkgrey;
+            }
+        #yonghutu:hover {
+            color: firebrick;
+        }
+        .writer_tu_user {
+            background-color: white;
+            width: 26px;
+            height: 26px;
+            overflow: hidden;
+            float: left;
+            text-align: center;
+        }
+
+            .writer_tu_user img {
+                width: 26px;
+                margin: 0 auto;
+            }
+        #outLogin a{
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body class="sub-1sidebar">
     <header id="header">
@@ -29,7 +61,38 @@
                 </div><!--end:welcome-->
                 <nav id="top-nav">
                     <ul id="top-menu" class="clearfix">
-                        <li class="current-menu-item"><a href="/LoginVNKH/LoginUser">登录/注册</a></li>
+                        <li class="current-menu-item">
+                            @if (Session["userLogin"] == null)
+                            {
+                                <a href="/LoginVNKH/LoginUser">登录/注册</a>
+                            }
+                            else
+                            {
+                                <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@user.NewsUserID" id="yonghu">
+                                    <div id="yonghutu">
+                                            <div class="writer_tu_user">
+                                                <img src="~/Content/imageKeHu/User/@user.NewsUserImage" />
+                                            </div>
+                                        @user.NewsUserName
+                                    </div>
+                                </a>
+                            }
+
+                        </li>
+                        @if (Session["userLogin"] == null)
+                        {
+
+                        }
+                        else
+                        {
+                            <li class="current-menu-item" id="outLogin">
+                                <a href="/LoginVNKH/OutLogin">
+                                    <div id="yonghutu">
+                                        注销
+                                    </div>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </nav><!--end:top-nav-->
             </div><!--wrapper-->
@@ -49,15 +112,13 @@
                     <li><a href="/NewsVNKH/Index">时事新闻</a></li>
                     <li>
                         <a href="/WriterVNKH/Index">专家评议</a>
-                        <ul>
-                            <li><a href="news.html">Sport</a></li>
-                            <li>
-                                <a href="#">Asia</a>
-                                <ul>
-                                    <li><a href="#">Sport</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        @if (Session["userLogin"] == null)
+                        {
+                    <ul>
+                        <li><a href="/LoginVNKH/LoginUser">需要登录才可观看 点击登录</a></li>
+                    </ul>
+                        }
+                        
                     </li>
                     <li>
                         <a href="/UserVNKH/Index">用户社区</a>
@@ -67,7 +128,7 @@
         </div><!--navigation-->
     </header>
     <div class="wrapper">
-            @RenderBody()
+        @RenderBody()
     </div>
 </body>
 </html>

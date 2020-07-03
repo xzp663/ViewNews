@@ -13,10 +13,10 @@ namespace ViewNews.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ViewNewsEntities : DbContext
+    public partial class ViewNewsEntities1 : DbContext
     {
-        public ViewNewsEntities()
-            : base("name=ViewNewsEntities")
+        public ViewNewsEntities1()
+            : base("name=ViewNewsEntities1")
         {
         }
     
@@ -25,14 +25,20 @@ namespace ViewNews.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ECCLike> ECCLike { get; set; }
+        public virtual DbSet<ECCReport> ECCReport { get; set; }
         public virtual DbSet<Editor> Editor { get; set; }
         public virtual DbSet<EssayCommun> EssayCommun { get; set; }
         public virtual DbSet<EssayCommunComment> EssayCommunComment { get; set; }
         public virtual DbSet<EssayCommunFalse> EssayCommunFalse { get; set; }
+        public virtual DbSet<NCLike> NCLike { get; set; }
+        public virtual DbSet<NCReport> NCReport { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<NewsComment> NewsComment { get; set; }
         public virtual DbSet<NewsFalse> NewsFalse { get; set; }
         public virtual DbSet<NewsUser> NewsUser { get; set; }
+        public virtual DbSet<WCCLike> WCCLike { get; set; }
+        public virtual DbSet<WCCReport> WCCReport { get; set; }
         public virtual DbSet<Writer> Writer { get; set; }
         public virtual DbSet<WriterCommun> WriterCommun { get; set; }
         public virtual DbSet<WriterCommunComment> WriterCommunComment { get; set; }

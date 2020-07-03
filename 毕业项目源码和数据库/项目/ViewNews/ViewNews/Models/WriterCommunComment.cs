@@ -14,13 +14,31 @@ namespace ViewNews.Models
     
     public partial class WriterCommunComment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public WriterCommunComment()
+        {
+            this.WCCLike1 = new HashSet<WCCLike>();
+            this.WCCReport1 = new HashSet<WCCReport>();
+            this.WriterCommunComment1 = new HashSet<WriterCommunComment>();
+        }
+    
         public int WriterCommunCommentID { get; set; }
         public int WriterCommunID { get; set; }
         public int NewsUserID { get; set; }
         public string WCCContent { get; set; }
         public System.DateTime WCCTime { get; set; }
+        public Nullable<int> WCCLike { get; set; }
+        public Nullable<int> WCCReport { get; set; }
+        public Nullable<int> WCCID { get; set; }
     
         public virtual NewsUser NewsUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WCCLike> WCCLike1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WCCReport> WCCReport1 { get; set; }
         public virtual WriterCommun WriterCommun { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WriterCommunComment> WriterCommunComment1 { get; set; }
+        public virtual WriterCommunComment WriterCommunComment2 { get; set; }
     }
 }

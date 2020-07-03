@@ -10,7 +10,7 @@ namespace ViewNews.Controllers.ViewNewsGuanLi
 {
     public class WriterVNGLController : Controller
     {
-        ViewNewsEntities db = new ViewNewsEntities();
+        ViewNewsEntities1 db = new ViewNewsEntities1();
         // GET: WriterVNGL
         public ActionResult Index(int? WriterID)
         {

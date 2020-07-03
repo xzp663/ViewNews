@@ -47,7 +47,7 @@
         @foreach (var item in news)
         {
         <div class="col-sm-6 col-md-3">
-            <a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID">
+            <a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID" @*target="_blank"跳转创建新页面*@>
                 <div class="thumbnail">
                     <div class="writer_tu_image">
                         <img src="~/Content/NewsImage/@item.NewsImage" />

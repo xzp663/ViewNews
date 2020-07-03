@@ -9,7 +9,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
 {
     public class NewsVNKHController : Controller
     {
-        ViewNewsEntities db = new ViewNewsEntities();
+        ViewNewsEntities1 db = new ViewNewsEntities1();
         // GET: NewsVNKH
         public ActionResult Index()
         {

@@ -27,9 +27,10 @@
     <h2>用户社区</h2>
     <div id="xian"></div>
     
-        @*<a href="#"><img class="hover-effect responsive-img" src="placeholders/244x117/244x117-8.jpg" alt="" /></a>*@
-        @foreach (var item in esscomm)
-        {
+
+    @*<a href="#"><img class="hover-effect responsive-img" src="placeholders/244x117/244x117-8.jpg" alt="" /></a>*@
+    @foreach (var item in esscomm)
+    {
         <article class="entry-item box-hover clearfix">
             <div class="entry-content">
                 <span class="entry-category">发表人:&nbsp;</span>
@@ -39,7 +40,7 @@
                 <span class="entry-author">评论数:&nbsp;</span><a class="entry-author">@item.EssayCommunComment.Count()</a>
             </div>
         </article>
-        }
+    }
 
 </div>
 

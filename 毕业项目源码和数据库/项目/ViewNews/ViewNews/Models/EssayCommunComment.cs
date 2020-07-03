@@ -14,13 +14,31 @@ namespace ViewNews.Models
     
     public partial class EssayCommunComment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public EssayCommunComment()
+        {
+            this.ECCLike1 = new HashSet<ECCLike>();
+            this.ECCReport1 = new HashSet<ECCReport>();
+            this.EssayCommunComment1 = new HashSet<EssayCommunComment>();
+        }
+    
         public int EssayCommunCommentID { get; set; }
         public int EssayCommunID { get; set; }
         public int NewsUserID { get; set; }
         public string ECCContent { get; set; }
         public System.DateTime ECCTime { get; set; }
+        public Nullable<int> ECCLike { get; set; }
+        public Nullable<int> ECCReport { get; set; }
+        public Nullable<int> ECCCID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ECCLike> ECCLike1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ECCReport> ECCReport1 { get; set; }
         public virtual EssayCommun EssayCommun { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EssayCommunComment> EssayCommunComment1 { get; set; }
+        public virtual EssayCommunComment EssayCommunComment2 { get; set; }
         public virtual NewsUser NewsUser { get; set; }
     }
 }

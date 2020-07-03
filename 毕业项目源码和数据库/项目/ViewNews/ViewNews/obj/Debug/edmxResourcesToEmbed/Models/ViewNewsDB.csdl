@@ -1,5 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ViewNewsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ECCLike">
+    <Key>
+      <PropertyRef Name="ECCLikeID" />
+    </Key>
+    <Property Name="ECCLikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+    <Property Name="EssayCommunCommentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EssayCommunComment" Relationship="Self.FK_ECCLike_EssayCommunComment" FromRole="ECCLike" ToRole="EssayCommunComment" />
+    <NavigationProperty Name="NewsUser" Relationship="Self.FK_ECCLike_NewsUser" FromRole="ECCLike" ToRole="NewsUser" />
+  </EntityType>
+  <EntityType Name="ECCReport">
+    <Key>
+      <PropertyRef Name="ECCReportID" />
+    </Key>
+    <Property Name="ECCReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+    <Property Name="EssayCommunCommentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EssayCommunComment" Relationship="Self.FK_ECCReport_EssayCommunComment" FromRole="ECCReport" ToRole="EssayCommunComment" />
+    <NavigationProperty Name="NewsUser" Relationship="Self.FK_ECCReport_NewsUser" FromRole="ECCReport" ToRole="NewsUser" />
+  </EntityType>
   <EntityType Name="Editor">
     <Key>
       <PropertyRef Name="EditorID" />
@@ -37,7 +57,14 @@
     <Property Name="NewsUserID" Type="Int32" Nullable="false" />
     <Property Name="ECCContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ECCTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ECCLike" Type="Int32" />
+    <Property Name="ECCReport" Type="Int32" />
+    <Property Name="ECCCID" Type="Int32" />
+    <NavigationProperty Name="ECCLike1" Relationship="Self.FK_ECCLike_EssayCommunComment" FromRole="EssayCommunComment" ToRole="ECCLike" />
+    <NavigationProperty Name="ECCReport1" Relationship="Self.FK_ECCReport_EssayCommunComment" FromRole="EssayCommunComment" ToRole="ECCReport" />
     <NavigationProperty Name="EssayCommun" Relationship="Self.FK_EssayCommunComment_EssayCommun" FromRole="EssayCommunComment" ToRole="EssayCommun" />
+    <NavigationProperty Name="EssayCommunComment1" Relationship="Self.FK_EssayCommunComment_EssayCommunComment" FromRole="EssayCommunComment" ToRole="EssayCommunComment1" />
+    <NavigationProperty Name="EssayCommunComment2" Relationship="Self.FK_EssayCommunComment_EssayCommunComment" FromRole="EssayCommunComment1" ToRole="EssayCommunComment" />
     <NavigationProperty Name="NewsUser" Relationship="Self.FK_EssayCommunComment_NewsUser" FromRole="EssayCommunComment" ToRole="NewsUser" />
   </EntityType>
   <EntityType Name="EssayCommunFalse">
@@ -53,6 +80,26 @@
     <Property Name="ECFTime" Type="DateTime" Precision="3" />
     <Property Name="NewsUserID" Type="Int32" />
     <NavigationProperty Name="NewsUser" Relationship="Self.FK_EssayCommunFalse_NewsUser" FromRole="EssayCommunFalse" ToRole="NewsUser" />
+  </EntityType>
+  <EntityType Name="NCLike">
+    <Key>
+      <PropertyRef Name="NCLikeID" />
+    </Key>
+    <Property Name="NCLikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+    <Property Name="NewsCommentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="NewsComment" Relationship="Self.FK_NCLike_NewsComment" FromRole="NCLike" ToRole="NewsComment" />
+    <NavigationProperty Name="NewsUser" Relationship="Self.FK_NCLike_NewsUser" FromRole="NCLike" ToRole="NewsUser" />
+  </EntityType>
+  <EntityType Name="NCReport">
+    <Key>
+      <PropertyRef Name="NCReportID" />
+    </Key>
+    <Property Name="NCReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+    <Property Name="NewsCommentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="NewsComment" Relationship="Self.FK_NCReport_NewsComment" FromRole="NCReport" ToRole="NewsComment" />
+    <NavigationProperty Name="NewsUser" Relationship="Self.FK_NCReport_NewsUser" FromRole="NCReport" ToRole="NewsUser" />
   </EntityType>
   <EntityType Name="News">
     <Key>
@@ -70,14 +117,21 @@
   </EntityType>
   <EntityType Name="NewsComment">
     <Key>
-      <PropertyRef Name="NewsComment1" />
+      <PropertyRef Name="NewsCommentID" />
     </Key>
-    <Property Name="NewsComment1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NewsID" Type="Int32" Nullable="false" />
     <Property Name="NewsUserID" Type="Int32" Nullable="false" />
     <Property Name="NCContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="NCTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NCLike" Type="Int32" />
+    <Property Name="NCReport" Type="Int32" />
+    <Property Name="NCID" Type="Int32" />
+    <NavigationProperty Name="NCLike1" Relationship="Self.FK_NCLike_NewsComment" FromRole="NewsComment" ToRole="NCLike" />
+    <NavigationProperty Name="NCReport1" Relationship="Self.FK_NCReport_NewsComment" FromRole="NewsComment" ToRole="NCReport" />
     <NavigationProperty Name="News" Relationship="Self.FK_NewsComment_News" FromRole="NewsComment" ToRole="News" />
+    <NavigationProperty Name="NewsComment1" Relationship="Self.FK_NewsComment_NewsComment" FromRole="NewsComment" ToRole="NewsComment1" />
+    <NavigationProperty Name="NewsComment2" Relationship="Self.FK_NewsComment_NewsComment" FromRole="NewsComment1" ToRole="NewsComment" />
     <NavigationProperty Name="NewsUser" Relationship="Self.FK_NewsComment_NewsUser" FromRole="NewsComment" ToRole="NewsUser" />
   </EntityType>
   <EntityType Name="NewsFalse">
@@ -104,11 +158,37 @@
     <Property Name="NewsUserImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NewsUserSex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="NewsUserMotto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ECCLike" Relationship="Self.FK_ECCLike_NewsUser" FromRole="NewsUser" ToRole="ECCLike" />
+    <NavigationProperty Name="ECCReport" Relationship="Self.FK_ECCReport_NewsUser" FromRole="NewsUser" ToRole="ECCReport" />
     <NavigationProperty Name="EssayCommun" Relationship="Self.FK_EssayCommun_NewsUser" FromRole="NewsUser" ToRole="EssayCommun" />
     <NavigationProperty Name="EssayCommunComment" Relationship="Self.FK_EssayCommunComment_NewsUser" FromRole="NewsUser" ToRole="EssayCommunComment" />
     <NavigationProperty Name="EssayCommunFalse" Relationship="Self.FK_EssayCommunFalse_NewsUser" FromRole="NewsUser" ToRole="EssayCommunFalse" />
+    <NavigationProperty Name="NCLike" Relationship="Self.FK_NCLike_NewsUser" FromRole="NewsUser" ToRole="NCLike" />
+    <NavigationProperty Name="NCReport" Relationship="Self.FK_NCReport_NewsUser" FromRole="NewsUser" ToRole="NCReport" />
     <NavigationProperty Name="NewsComment" Relationship="Self.FK_NewsComment_NewsUser" FromRole="NewsUser" ToRole="NewsComment" />
+    <NavigationProperty Name="WCCLike" Relationship="Self.FK_WCCLike_NewsUser" FromRole="NewsUser" ToRole="WCCLike" />
+    <NavigationProperty Name="WCCReport" Relationship="Self.FK_WCCReport_NewsUser" FromRole="NewsUser" ToRole="WCCReport" />
     <NavigationProperty Name="WriterCommunComment" Relationship="Self.FK_WriterCommunComment_NewsUser" FromRole="NewsUser" ToRole="WriterCommunComment" />
+  </EntityType>
+  <EntityType Name="WCCLike">
+    <Key>
+      <PropertyRef Name="WCCLikeID" />
+    </Key>
+    <Property Name="WCCLikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+    <Property Name="WriterCommunCommentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="NewsUser" Relationship="Self.FK_WCCLike_NewsUser" FromRole="WCCLike" ToRole="NewsUser" />
+    <NavigationProperty Name="WriterCommunComment" Relationship="Self.FK_WCCLike_WriterCommunComment" FromRole="WCCLike" ToRole="WriterCommunComment" />
+  </EntityType>
+  <EntityType Name="WCCReport">
+    <Key>
+      <PropertyRef Name="WCCReportID" />
+    </Key>
+    <Property Name="WCCReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsUserID" Type="Int32" Nullable="false" />
+    <Property Name="WriterCommunCommentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="NewsUser" Relationship="Self.FK_WCCReport_NewsUser" FromRole="WCCReport" ToRole="NewsUser" />
+    <NavigationProperty Name="WriterCommunComment" Relationship="Self.FK_WCCReport_WriterCommunComment" FromRole="WCCReport" ToRole="WriterCommunComment" />
   </EntityType>
   <EntityType Name="Writer">
     <Key>
@@ -141,13 +221,20 @@
     <Key>
       <PropertyRef Name="WriterCommunCommentID" />
     </Key>
-    <Property Name="WriterCommunCommentID" Type="Int32" Nullable="false" />
-    <Property Name="WriterCommunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WriterCommunCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WriterCommunID" Type="Int32" Nullable="false" />
     <Property Name="NewsUserID" Type="Int32" Nullable="false" />
     <Property Name="WCCContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="WCCTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="WCCLike" Type="Int32" />
+    <Property Name="WCCReport" Type="Int32" />
+    <Property Name="WCCID" Type="Int32" />
     <NavigationProperty Name="NewsUser" Relationship="Self.FK_WriterCommunComment_NewsUser" FromRole="WriterCommunComment" ToRole="NewsUser" />
+    <NavigationProperty Name="WCCLike1" Relationship="Self.FK_WCCLike_WriterCommunComment" FromRole="WriterCommunComment" ToRole="WCCLike" />
+    <NavigationProperty Name="WCCReport1" Relationship="Self.FK_WCCReport_WriterCommunComment" FromRole="WriterCommunComment" ToRole="WCCReport" />
     <NavigationProperty Name="WriterCommun" Relationship="Self.FK_WriterCommunComment_WriterCommun" FromRole="WriterCommunComment" ToRole="WriterCommun" />
+    <NavigationProperty Name="WriterCommunComment1" Relationship="Self.FK_WriterCommunComment_WriterCommunComment" FromRole="WriterCommunComment" ToRole="WriterCommunComment1" />
+    <NavigationProperty Name="WriterCommunComment2" Relationship="Self.FK_WriterCommunComment_WriterCommunComment" FromRole="WriterCommunComment1" ToRole="WriterCommunComment" />
   </EntityType>
   <EntityType Name="WriterCommunFalse">
     <Key>
@@ -164,6 +251,54 @@
     <NavigationProperty Name="Editor" Relationship="Self.FK_WriterCommunFalse_Editor" FromRole="WriterCommunFalse" ToRole="Editor" />
     <NavigationProperty Name="Writer" Relationship="Self.FK_WriterCommunFalse_Writer" FromRole="WriterCommunFalse" ToRole="Writer" />
   </EntityType>
+  <Association Name="FK_ECCLike_EssayCommunComment">
+    <End Role="EssayCommunComment" Type="Self.EssayCommunComment" Multiplicity="1" />
+    <End Role="ECCLike" Type="Self.ECCLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EssayCommunComment">
+        <PropertyRef Name="EssayCommunCommentID" />
+      </Principal>
+      <Dependent Role="ECCLike">
+        <PropertyRef Name="EssayCommunCommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ECCLike_NewsUser">
+    <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+    <End Role="ECCLike" Type="Self.ECCLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsUser">
+        <PropertyRef Name="NewsUserID" />
+      </Principal>
+      <Dependent Role="ECCLike">
+        <PropertyRef Name="NewsUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ECCReport_EssayCommunComment">
+    <End Role="EssayCommunComment" Type="Self.EssayCommunComment" Multiplicity="1" />
+    <End Role="ECCReport" Type="Self.ECCReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EssayCommunComment">
+        <PropertyRef Name="EssayCommunCommentID" />
+      </Principal>
+      <Dependent Role="ECCReport">
+        <PropertyRef Name="EssayCommunCommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ECCReport_NewsUser">
+    <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+    <End Role="ECCReport" Type="Self.ECCReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsUser">
+        <PropertyRef Name="NewsUserID" />
+      </Principal>
+      <Dependent Role="ECCReport">
+        <PropertyRef Name="NewsUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_News_Editor">
     <End Role="Editor" Type="Self.Editor" Multiplicity="1" />
     <End Role="News" Type="Self.News" Multiplicity="*" />
@@ -236,6 +371,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_EssayCommunComment_EssayCommunComment">
+    <End Role="EssayCommunComment" Type="Self.EssayCommunComment" Multiplicity="0..1" />
+    <End Role="EssayCommunComment1" Type="Self.EssayCommunComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EssayCommunComment">
+        <PropertyRef Name="EssayCommunCommentID" />
+      </Principal>
+      <Dependent Role="EssayCommunComment1">
+        <PropertyRef Name="ECCCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_EssayCommunComment_NewsUser">
     <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
     <End Role="EssayCommunComment" Type="Self.EssayCommunComment" Multiplicity="*" />
@@ -260,6 +407,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_NCLike_NewsComment">
+    <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="1" />
+    <End Role="NCLike" Type="Self.NCLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsComment">
+        <PropertyRef Name="NewsCommentID" />
+      </Principal>
+      <Dependent Role="NCLike">
+        <PropertyRef Name="NewsCommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NCLike_NewsUser">
+    <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+    <End Role="NCLike" Type="Self.NCLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsUser">
+        <PropertyRef Name="NewsUserID" />
+      </Principal>
+      <Dependent Role="NCLike">
+        <PropertyRef Name="NewsUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NCReport_NewsComment">
+    <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="1" />
+    <End Role="NCReport" Type="Self.NCReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsComment">
+        <PropertyRef Name="NewsCommentID" />
+      </Principal>
+      <Dependent Role="NCReport">
+        <PropertyRef Name="NewsCommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NCReport_NewsUser">
+    <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+    <End Role="NCReport" Type="Self.NCReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsUser">
+        <PropertyRef Name="NewsUserID" />
+      </Principal>
+      <Dependent Role="NCReport">
+        <PropertyRef Name="NewsUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_NewsComment_News">
     <End Role="News" Type="Self.News" Multiplicity="1" />
     <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="*" />
@@ -269,6 +464,18 @@
       </Principal>
       <Dependent Role="NewsComment">
         <PropertyRef Name="NewsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComment_NewsComment">
+    <End Role="NewsComment" Type="Self.NewsComment" Multiplicity="0..1" />
+    <End Role="NewsComment1" Type="Self.NewsComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsComment">
+        <PropertyRef Name="NewsCommentID" />
+      </Principal>
+      <Dependent Role="NewsComment1">
+        <PropertyRef Name="NCID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -284,6 +491,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_WCCLike_NewsUser">
+    <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+    <End Role="WCCLike" Type="Self.WCCLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsUser">
+        <PropertyRef Name="NewsUserID" />
+      </Principal>
+      <Dependent Role="WCCLike">
+        <PropertyRef Name="NewsUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WCCReport_NewsUser">
+    <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
+    <End Role="WCCReport" Type="Self.WCCReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsUser">
+        <PropertyRef Name="NewsUserID" />
+      </Principal>
+      <Dependent Role="WCCReport">
+        <PropertyRef Name="NewsUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_WriterCommunComment_NewsUser">
     <End Role="NewsUser" Type="Self.NewsUser" Multiplicity="1" />
     <End Role="WriterCommunComment" Type="Self.WriterCommunComment" Multiplicity="*" />
@@ -293,6 +524,30 @@
       </Principal>
       <Dependent Role="WriterCommunComment">
         <PropertyRef Name="NewsUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WCCLike_WriterCommunComment">
+    <End Role="WriterCommunComment" Type="Self.WriterCommunComment" Multiplicity="1" />
+    <End Role="WCCLike" Type="Self.WCCLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WriterCommunComment">
+        <PropertyRef Name="WriterCommunCommentID" />
+      </Principal>
+      <Dependent Role="WCCLike">
+        <PropertyRef Name="WriterCommunCommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WCCReport_WriterCommunComment">
+    <End Role="WriterCommunComment" Type="Self.WriterCommunComment" Multiplicity="1" />
+    <End Role="WCCReport" Type="Self.WCCReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WriterCommunComment">
+        <PropertyRef Name="WriterCommunCommentID" />
+      </Principal>
+      <Dependent Role="WCCReport">
+        <PropertyRef Name="WriterCommunCommentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -332,19 +587,53 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ViewNewsEntities" annotation:LazyLoadingEnabled="true">
+  <Association Name="FK_WriterCommunComment_WriterCommunComment">
+    <End Role="WriterCommunComment" Type="Self.WriterCommunComment" Multiplicity="0..1" />
+    <End Role="WriterCommunComment1" Type="Self.WriterCommunComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WriterCommunComment">
+        <PropertyRef Name="WriterCommunCommentID" />
+      </Principal>
+      <Dependent Role="WriterCommunComment1">
+        <PropertyRef Name="WCCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ViewNewsEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ECCLike" EntityType="Self.ECCLike" />
+    <EntitySet Name="ECCReport" EntityType="Self.ECCReport" />
     <EntitySet Name="Editor" EntityType="Self.Editor" />
     <EntitySet Name="EssayCommun" EntityType="Self.EssayCommun" />
     <EntitySet Name="EssayCommunComment" EntityType="Self.EssayCommunComment" />
     <EntitySet Name="EssayCommunFalse" EntityType="Self.EssayCommunFalse" />
+    <EntitySet Name="NCLike" EntityType="Self.NCLike" />
+    <EntitySet Name="NCReport" EntityType="Self.NCReport" />
     <EntitySet Name="News" EntityType="Self.News" />
     <EntitySet Name="NewsComment" EntityType="Self.NewsComment" />
     <EntitySet Name="NewsFalse" EntityType="Self.NewsFalse" />
     <EntitySet Name="NewsUser" EntityType="Self.NewsUser" />
+    <EntitySet Name="WCCLike" EntityType="Self.WCCLike" />
+    <EntitySet Name="WCCReport" EntityType="Self.WCCReport" />
     <EntitySet Name="Writer" EntityType="Self.Writer" />
     <EntitySet Name="WriterCommun" EntityType="Self.WriterCommun" />
     <EntitySet Name="WriterCommunComment" EntityType="Self.WriterCommunComment" />
     <EntitySet Name="WriterCommunFalse" EntityType="Self.WriterCommunFalse" />
+    <AssociationSet Name="FK_ECCLike_EssayCommunComment" Association="Self.FK_ECCLike_EssayCommunComment">
+      <End Role="EssayCommunComment" EntitySet="EssayCommunComment" />
+      <End Role="ECCLike" EntitySet="ECCLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ECCLike_NewsUser" Association="Self.FK_ECCLike_NewsUser">
+      <End Role="NewsUser" EntitySet="NewsUser" />
+      <End Role="ECCLike" EntitySet="ECCLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ECCReport_EssayCommunComment" Association="Self.FK_ECCReport_EssayCommunComment">
+      <End Role="EssayCommunComment" EntitySet="EssayCommunComment" />
+      <End Role="ECCReport" EntitySet="ECCReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ECCReport_NewsUser" Association="Self.FK_ECCReport_NewsUser">
+      <End Role="NewsUser" EntitySet="NewsUser" />
+      <End Role="ECCReport" EntitySet="ECCReport" />
+    </AssociationSet>
     <AssociationSet Name="FK_News_Editor" Association="Self.FK_News_Editor">
       <End Role="Editor" EntitySet="Editor" />
       <End Role="News" EntitySet="News" />
@@ -369,6 +658,10 @@
       <End Role="EssayCommun" EntitySet="EssayCommun" />
       <End Role="EssayCommunComment" EntitySet="EssayCommunComment" />
     </AssociationSet>
+    <AssociationSet Name="FK_EssayCommunComment_EssayCommunComment" Association="Self.FK_EssayCommunComment_EssayCommunComment">
+      <End Role="EssayCommunComment" EntitySet="EssayCommunComment" />
+      <End Role="EssayCommunComment1" EntitySet="EssayCommunComment" />
+    </AssociationSet>
     <AssociationSet Name="FK_EssayCommunComment_NewsUser" Association="Self.FK_EssayCommunComment_NewsUser">
       <End Role="NewsUser" EntitySet="NewsUser" />
       <End Role="EssayCommunComment" EntitySet="EssayCommunComment" />
@@ -377,17 +670,53 @@
       <End Role="NewsUser" EntitySet="NewsUser" />
       <End Role="EssayCommunFalse" EntitySet="EssayCommunFalse" />
     </AssociationSet>
+    <AssociationSet Name="FK_NCLike_NewsComment" Association="Self.FK_NCLike_NewsComment">
+      <End Role="NewsComment" EntitySet="NewsComment" />
+      <End Role="NCLike" EntitySet="NCLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NCLike_NewsUser" Association="Self.FK_NCLike_NewsUser">
+      <End Role="NewsUser" EntitySet="NewsUser" />
+      <End Role="NCLike" EntitySet="NCLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NCReport_NewsComment" Association="Self.FK_NCReport_NewsComment">
+      <End Role="NewsComment" EntitySet="NewsComment" />
+      <End Role="NCReport" EntitySet="NCReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NCReport_NewsUser" Association="Self.FK_NCReport_NewsUser">
+      <End Role="NewsUser" EntitySet="NewsUser" />
+      <End Role="NCReport" EntitySet="NCReport" />
+    </AssociationSet>
     <AssociationSet Name="FK_NewsComment_News" Association="Self.FK_NewsComment_News">
       <End Role="News" EntitySet="News" />
       <End Role="NewsComment" EntitySet="NewsComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComment_NewsComment" Association="Self.FK_NewsComment_NewsComment">
+      <End Role="NewsComment" EntitySet="NewsComment" />
+      <End Role="NewsComment1" EntitySet="NewsComment" />
     </AssociationSet>
     <AssociationSet Name="FK_NewsComment_NewsUser" Association="Self.FK_NewsComment_NewsUser">
       <End Role="NewsUser" EntitySet="NewsUser" />
       <End Role="NewsComment" EntitySet="NewsComment" />
     </AssociationSet>
+    <AssociationSet Name="FK_WCCLike_NewsUser" Association="Self.FK_WCCLike_NewsUser">
+      <End Role="NewsUser" EntitySet="NewsUser" />
+      <End Role="WCCLike" EntitySet="WCCLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WCCReport_NewsUser" Association="Self.FK_WCCReport_NewsUser">
+      <End Role="NewsUser" EntitySet="NewsUser" />
+      <End Role="WCCReport" EntitySet="WCCReport" />
+    </AssociationSet>
     <AssociationSet Name="FK_WriterCommunComment_NewsUser" Association="Self.FK_WriterCommunComment_NewsUser">
       <End Role="NewsUser" EntitySet="NewsUser" />
       <End Role="WriterCommunComment" EntitySet="WriterCommunComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WCCLike_WriterCommunComment" Association="Self.FK_WCCLike_WriterCommunComment">
+      <End Role="WriterCommunComment" EntitySet="WriterCommunComment" />
+      <End Role="WCCLike" EntitySet="WCCLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WCCReport_WriterCommunComment" Association="Self.FK_WCCReport_WriterCommunComment">
+      <End Role="WriterCommunComment" EntitySet="WriterCommunComment" />
+      <End Role="WCCReport" EntitySet="WCCReport" />
     </AssociationSet>
     <AssociationSet Name="FK_WriterCommun_Writer" Association="Self.FK_WriterCommun_Writer">
       <End Role="Writer" EntitySet="Writer" />
@@ -400,6 +729,10 @@
     <AssociationSet Name="FK_WriterCommunComment_WriterCommun" Association="Self.FK_WriterCommunComment_WriterCommun">
       <End Role="WriterCommun" EntitySet="WriterCommun" />
       <End Role="WriterCommunComment" EntitySet="WriterCommunComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WriterCommunComment_WriterCommunComment" Association="Self.FK_WriterCommunComment_WriterCommunComment">
+      <End Role="WriterCommunComment" EntitySet="WriterCommunComment" />
+      <End Role="WriterCommunComment1" EntitySet="WriterCommunComment" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -14,13 +14,31 @@ namespace ViewNews.Models
     
     public partial class NewsComment
     {
-        public int NewsComment1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public NewsComment()
+        {
+            this.NCLike1 = new HashSet<NCLike>();
+            this.NCReport1 = new HashSet<NCReport>();
+            this.NewsComment1 = new HashSet<NewsComment>();
+        }
+    
+        public int NewsCommentID { get; set; }
         public int NewsID { get; set; }
         public int NewsUserID { get; set; }
         public string NCContent { get; set; }
         public System.DateTime NCTime { get; set; }
+        public Nullable<int> NCLike { get; set; }
+        public Nullable<int> NCReport { get; set; }
+        public Nullable<int> NCID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NCLike> NCLike1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NCReport> NCReport1 { get; set; }
         public virtual News News { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NewsComment> NewsComment1 { get; set; }
+        public virtual NewsComment NewsComment2 { get; set; }
         public virtual NewsUser NewsUser { get; set; }
     }
 }

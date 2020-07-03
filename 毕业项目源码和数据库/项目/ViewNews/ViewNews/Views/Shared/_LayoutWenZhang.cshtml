@@ -1,5 +1,8 @@
 ﻿<!DOCTYPE html>
-
+@using ViewNews.Models
+@{
+    NewsUser user = Session["userLogin"] as NewsUser;
+}
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,6 +22,53 @@
     <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/jquery-scroller-v1.min.js"></script>
     <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/kendo.web.min.js"></script>
     <script src="~/HelpSSS/一个新闻模板/xinwenmoban/js/custom.js"></script>
+    <style>
+        .remennews {
+            margin-left: 60px;
+        }
+
+        .writer_tu_image_writertu {
+            background-color: white;
+            width: 250px;
+            height: 160px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+            .writer_tu_image_writertu img {
+                height: 240px;
+                margin: 0 auto;
+            }
+        #yonghu {
+            text-decoration: none;
+        }
+
+        #yonghutu img {
+            border: 1px solid darkgrey;
+        }
+
+        #yonghutu:hover {
+            color: firebrick;
+        }
+
+        .writer_tu_user {
+            background-color: white;
+            width: 26px;
+            height: 26px;
+            overflow: hidden;
+            float: left;
+            text-align: center;
+        }
+
+            .writer_tu_user img {
+                width: 26px;
+                margin: 0 auto;
+            }
+
+        #outLogin a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body class="sub-1sidebar">
     <header id="header">
@@ -29,7 +79,38 @@
                 </div><!--end:welcome-->
                 <nav id="top-nav">
                     <ul id="top-menu" class="clearfix">
-                        <li class="current-menu-item"><a href="/LoginVNKH/LoginUser">登录/注册</a></li>
+                        <li class="current-menu-item">
+                            @if (Session["userLogin"] == null)
+                            {
+                                <a href="/LoginVNKH/LoginUser">登录/注册</a>
+                            }
+                            else
+                            {
+                                <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@user.NewsUserID" id="yonghu">
+                                    <div id="yonghutu">
+                                        <div class="writer_tu_user">
+                                            <img src="~/Content/imageKeHu/User/@user.NewsUserImage" />
+                                        </div>
+                                        @user.NewsUserName
+                                    </div>
+                                </a>
+                            }
+
+                        </li>
+                        @if (Session["userLogin"] == null)
+                        {
+
+                        }
+                        else
+                        {
+                            <li class="current-menu-item" id="outLogin">
+                                <a href="/LoginVNKH/OutLogin">
+                                    <div id="yonghutu">
+                                        注销
+                                    </div>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </nav><!--end:top-nav-->
             </div><!--wrapper-->
@@ -51,12 +132,6 @@
                         <a href="/WriterVNKH/Index">专家评议</a>
                         <ul>
                             <li><a href="news.html">Sport</a></li>
-                            <li>
-                                <a href="#">Asia</a>
-                                <ul>
-                                    <li><a href="#">Sport</a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
                     <li>
@@ -78,37 +153,62 @@
                     </header>
                     <article class="entry-box clearfix">
                         <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                            <a href="#">
+                                <div class="writer_tu_image">
+                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
+                                </div>
+                                <div class="remennews">
+                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
+                                </div>
+                            </a>
                         </div><!--end:entry_content-->
                     </article>
                     <article class="entry-box clearfix">
                         <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                            <a href="#">
+                                <div class="writer_tu_image">
+                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
+                                </div>
+                                <div class="remennews">
+                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
+                                </div>
+                            </a>
                         </div><!--end:entry_content-->
                     </article>
                     <article class="entry-box clearfix">
                         <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                            <a href="#">
+                                <div class="writer_tu_image">
+                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
+                                </div>
+                                <div class="remennews">
+                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
+                                </div>
+                            </a>
                         </div><!--end:entry_content-->
                     </article>
                     <article class="entry-box clearfix">
                         <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                            <a href="#">
+                                <div class="writer_tu_image">
+                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
+                                </div>
+                                <div class="remennews">
+                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
+                                </div>
+                            </a>
                         </div><!--end:entry_content-->
                     </article>
                     <article class="entry-box clearfix">
                         <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                            <a href="#">
+                                <div class="writer_tu_image">
+                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
+                                </div>
+                                <div class="remennews">
+                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
+                                </div>
+                            </a>
                         </div><!--end:entry_content-->
                     </article>
                 </aside>
@@ -119,37 +219,14 @@
                     </header>
                     <article class="entry-box clearfix">
                         <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                            <a href="#">
+                                <div class="writer_tu_image_writertu">
+                                    <img src="~/Content/WriterImage/Commun/背景.PNG" />
+                                </div>
+                                <div>
+                                    <h4>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</h4>
+                                </div>
+                            </a>
                         </div><!--end:entry_content-->
                     </article>
                 </aside>
@@ -159,37 +236,8 @@
                     </header>
                     <article class="entry-box clearfix">
                         <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <span class="entry-meta">On:&nbsp;</span><a class="entry-date" href="#">August .12 .2012</a>
-                            <h3 class="entry-title"><a href="#">There are many vaiations</a></h3>
-                            <span class="entry-author">by:&nbsp;</span><a class="entry-author" href="#">Admin</a>
+                            <span class="entry-meta">来自:&nbsp;</span><a class="entry-date" href="#">我的名字</a>
+                            <h4 class="entry-title"><a href="#">这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容</a></h4>
                         </div><!--end:entry_content-->
                     </article>
                 </aside>

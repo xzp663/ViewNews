@@ -142,6 +142,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ECCLike.cs">
+      <DependentUpon>ViewNewsDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ECCReport.cs">
+      <DependentUpon>ViewNewsDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Editor.cs">
       <DependentUpon>ViewNewsDB.tt</DependentUpon>
     </Compile>
@@ -152,6 +158,12 @@
       <DependentUpon>ViewNewsDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EssayCommunFalse.cs">
+      <DependentUpon>ViewNewsDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NCLike.cs">
+      <DependentUpon>ViewNewsDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NCReport.cs">
       <DependentUpon>ViewNewsDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\News.cs">
@@ -180,6 +192,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ViewNewsDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WCCLike.cs">
+      <DependentUpon>ViewNewsDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WCCReport.cs">
+      <DependentUpon>ViewNewsDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Writer.cs">
       <DependentUpon>ViewNewsDB.tt</DependentUpon>
@@ -219,7 +237,9 @@
     <Content Include="Content\imageGuanLi\statistics.png" />
     <Content Include="Content\imageGuanLi\syetem_management.png" />
     <Content Include="Content\imageGuanLi\system.png" />
+    <Content Include="Content\imageKeHu\UI\2.jpg" />
     <Content Include="Content\imageKeHu\UI\视野新闻网logo.png" />
+    <Content Include="Content\imageKeHu\User\会员卡.png" />
     <Content Include="Content\imageKeHu\User\通用.png" />
     <Content Include="Content\NewsImage\背景.PNG" />
     <Content Include="Content\style.css" />
@@ -337,6 +357,10 @@
     <Content Include="HelpSSS\一个新闻模板\xinwenmoban\style.css" />
     <Content Include="HelpSSS\弹出框\jQuery点击显示弹出框关闭按钮代码\index.html" />
     <Content Include="HelpSSS\弹出框\jQuery点击显示弹出框关闭按钮代码\js\jquery-1.8.0.min.js" />
+    <Content Include="HelpSSS\模态框\css\normalize.min.css" />
+    <Content Include="HelpSSS\模态框\css\style.css" />
+    <Content Include="HelpSSS\模态框\index.html" />
+    <Content Include="HelpSSS\模态框\js\index.js" />
     <Content Include="HelpSSS\用户登录注册可切换\css\style.css" />
     <Content Include="HelpSSS\用户登录注册可切换\images\1.png" />
     <Content Include="HelpSSS\用户登录注册可切换\images\2.png" />
@@ -362,8 +386,8 @@
     <Content Include="HelpSSS\简单好看的个人主页模板\js\plugin.js" />
     <Content Include="Models\ViewNewsDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ViewNewsDB.Context.cs</LastGenOutput>
       <DependentUpon>ViewNewsDB.edmx</DependentUpon>
+      <LastGenOutput>ViewNewsDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ViewNewsDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -372,13 +396,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ViewNewsDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ViewNewsDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ViewNewsDB.edmx.diagram">
-      <DependentUpon>ViewNewsDB.edmx</DependentUpon>
-    </Content>
     <Content Include="HelpSSS\简单好看的个人主页模板\css\bootstrap\glyphicons-halflings-regular.eot" />
     <Content Include="HelpSSS\简单好看的个人主页模板\css\bootstrap\glyphicons-halflings-regular.ttf" />
     <Content Include="HelpSSS\简单好看的个人主页模板\css\bootstrap\glyphicons-halflings-regular.woff" />
@@ -394,6 +411,13 @@
     <Content Include="HelpSSS\一个新闻模板\xinwenmoban\placeholders\avatar\Thumbs.db" />
     <Content Include="HelpSSS\一个新闻模板\xinwenmoban\placeholders\slider\Thumbs.db" />
     <Content Include="HelpSSS\一个新闻模板\xinwenmoban\placeholders\Thumbs.db" />
+    <EntityDeploy Include="Models\ViewNewsDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ViewNewsDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ViewNewsDB.edmx.diagram">
+      <DependentUpon>ViewNewsDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -457,6 +481,8 @@
     <Content Include="Views\NewsVNKH\NewsWenZhang.cshtml" />
     <Content Include="Views\WriterVNKH\WriterWenZhang.cshtml" />
     <Content Include="Views\UserVNKH\UserWenZhang.cshtml" />
+    <Content Include="Views\UserVNKH\UserXiangxiKeHu.cshtml" />
+    <Content Include="Views\UserVNKH\LookHuiFu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

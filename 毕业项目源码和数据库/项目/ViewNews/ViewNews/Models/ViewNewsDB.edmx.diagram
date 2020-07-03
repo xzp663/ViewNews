@@ -4,33 +4,54 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="51864842aa6546e896fbca1f9eadbd80" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="ViewNewsModel.Editor" Width="1.5" PointX="1.5" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.EssayCommun" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.EssayCommunComment" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.EssayCommunFalse" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.News" Width="1.5" PointX="3.75" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.NewsComment" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.NewsFalse" Width="1.5" PointX="3.75" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.NewsUser" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.Writer" Width="1.5" PointX="1.5" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.WriterCommun" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.WriterCommunComment" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ViewNewsModel.WriterCommunFalse" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+      <Diagram DiagramId="352188abca564085b8551d922bdc932a" Name="Diagram1">
+        <EntityTypeShape EntityType="ViewNewsModel.ECCLike" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.ECCReport" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.Editor" Width="1.5" PointX="4.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.EssayCommun" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.EssayCommunComment" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.EssayCommunFalse" Width="1.5" PointX="3" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.NCLike" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.NCReport" Width="1.5" PointX="8" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.News" Width="1.5" PointX="5.75" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.NewsComment" Width="1.5" PointX="8" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.NewsFalse" Width="1.5" PointX="6.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.NewsUser" Width="1.5" PointX="0.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.WCCLike" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.WCCReport" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.Writer" Width="1.5" PointX="4.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.WriterCommun" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.WriterCommunComment" Width="1.5" PointX="9" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ViewNewsModel.WriterCommunFalse" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="ViewNewsModel.FK_ECCLike_EssayCommunComment" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_ECCLike_NewsUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_ECCReport_EssayCommunComment" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_ECCReport_NewsUser" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_News_Editor" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_NewsFalse_Editor" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_WriterCommun_Editor" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_WriterCommunFalse_Editor" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_EssayCommun_NewsUser" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_EssayCommunComment_EssayCommun" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_EssayCommunComment_EssayCommunComment" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_EssayCommunComment_NewsUser" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_EssayCommunFalse_NewsUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_NCLike_NewsComment" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_NCLike_NewsUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_NCReport_NewsComment" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_NCReport_NewsUser" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_NewsComment_News" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_NewsComment_NewsComment" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_NewsComment_NewsUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_WCCLike_NewsUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_WCCReport_NewsUser" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_WriterCommunComment_NewsUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_WCCLike_WriterCommunComment" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_WCCReport_WriterCommunComment" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_WriterCommun_Writer" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_WriterCommunFalse_Writer" ManuallyRouted="false" />
         <AssociationConnector Association="ViewNewsModel.FK_WriterCommunComment_WriterCommun" ManuallyRouted="false" />
+        <AssociationConnector Association="ViewNewsModel.FK_WriterCommunComment_WriterCommunComment" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,268 @@
+﻿
+@{
+    ViewBag.Title = "LookHuiFu";
+    Layout = "~/Views/Shared/_LayoutWenZhang.cshtml";
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <style type="text/css">
+        /*.fanhui, .bianji {
+            margin-left: 1em;
+        }
+
+        h1, #contentText {
+            color: black;
+        }*/
+
+        h2 {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /*.news_quan {
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .news_zhong {
+            color: darkgray;
+            margin: 1em;
+        }
+
+        .new_time {
+            float: left;
+        }
+
+        .new_ziti {
+            margin-left: 100px;
+            float: left;
+        }
+
+        .new_yuan {
+            margin-left: 100px;
+            float: left;
+        }*/
+
+        /*.dibu {
+            text-align: right;
+            margin-right: 1em;
+        }*/
+
+        .writer_tu {
+            overflow: hidden;
+            margin: 1em;
+        }
+
+        .writer_tu_image {
+            background-color: #FF0000;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            float: left;
+        }
+
+            .writer_tu_image img {
+                height: 50px;
+                margin: 0 calc(50% - 25px);
+                border: 1px solid darkgray;
+            }
+
+        /*.writer_tu_man {
+            margin-left: 55px;
+            font-size: 12px;
+        }
+
+        .writer_tu_manname {
+            color: black;
+        }
+
+        .writer_tu_manPPP {
+            margin-top: 10px;
+            color: slategrey
+        }*/
+
+        #xian {
+            border-top: 1px dashed darkgray;
+        }
+
+        #Textar {
+            margin-left: 80px;
+            margin-bottom: 10px;
+        }
+
+        #Textar_2 {
+            margin-left: 60px;
+            margin-bottom: 10px;
+        }
+
+        #Textar_3 {
+            margin: 10px;
+        }
+
+        .touxiang {
+            margin-left: 20px;
+        }
+
+        .pinglun {
+            width: 80px;
+            height: 30px;
+            float: left;
+            margin-right: 1em;
+        }
+
+        .weizhi {
+            margin-left: 300px;
+            overflow: hidden;
+        }
+
+            .weizhi a {
+                text-decoration: none;
+            }
+
+        .qianming {
+            margin-top: 10px;
+            color: lightsteelblue;
+        }
+
+        .neirong {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        #collapseExample {
+            margin-top: 50px;
+        }
+
+        .huifuwen {
+            margin-top: 1em;
+            margin-left: 45em;
+        }
+
+        .neiqian {
+            margin-bottom:60px;
+            height: auto;
+        }
+
+        .neiqian_pinglun {
+            width: 80px;
+            height: 30px;
+            float: left;
+            margin-right: 1em;
+        }
+
+        .pinglun_time {
+            width: 160px;
+            float: left;
+            color: darkgrey;
+            margin-right: 1em;
+        }
+
+        .neiqian_fu {
+            overflow: hidden;
+        }
+
+        .dong {
+            margin-left: 26em;
+        }
+    </style>
+}
+@using ViewNews.Models
+@{
+    EssayCommun EComm = ViewBag.wenzhang;
+    EssayCommunComment esscommcomm = ViewBag.zhupinglun;
+    List<EssayCommunComment> EComComm = ViewBag.pinglun;
+    NewsUser user = Session["userLogin"] as NewsUser;
+}
+<div id="quan">
+
+</div>
+<h2>@EComm.ECTitle</h2>
+
+<div id="xian"></div>
+<div class="neiqian">
+    <a href="#">
+        <div class="writer_tu_image">
+            <img src="~/Content/imageKeHu/User/@esscommcomm.NewsUser.NewsUserImage" />
+        </div>
+    </a>
+    <div id="Textar_3">
+        <div>@esscommcomm.NewsUser.NewsUserName</div>
+        <div class="qianming">@esscommcomm.NewsUser.NewsUserMotto</div>
+        <div class="neirong">@esscommcomm.ECCContent</div>
+        <div class="neiqian_fu">
+            <div class="pinglun_time">@esscommcomm.ECCTime</div>
+            <div class="neiqian_fu dong">
+                <div class="neiqian_pinglun"></div>
+                <div class="neiqian_pinglun"><a href="">点赞 @esscommcomm.ECCLike</a></div>
+                <div class="neiqian_pinglun">
+                    <a role="button" data-toggle="collapse" href="#collapseExampleLimian_@esscommcomm.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
+                </div>
+                <div class="neiqian_pinglun"><a href="">举报</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="collapse" id="collapseExampleLimian_@esscommcomm.EssayCommunCommentID">
+        <div class="well">
+            <form action="/UserVNKH/ECCC_Add" method="post">
+                <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
+                <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
+                <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
+                <input type="hidden" name="ECCTime" id="ECCTime" />
+                <input type="hidden" name="ECCLike" id="ECCLike" value="0" />
+                <input type="hidden" name="ECCReport" id="ECCReport" value="0" />
+                <input type="hidden" name="ECCCID" id="ECCCID" value="@esscommcomm.EssayCommunCommentID" />
+                <input type="submit" class="btn btn-primary huifuwen" value="回复" />
+            </form>
+        </div>
+    </div>
+</div>
+<div>评论数：@EComComm.Count()</div>
+<div id="xian"></div>
+@foreach (var item in EComComm)
+{
+    <article class="entry-item box-hover clearfix">
+        <a href="#">
+            <div class="writer_tu_image">
+                <img src="~/Content/imageKeHu/User/@item.NewsUser.NewsUserImage" />
+            </div>
+        </a>
+        <div id="Textar_2">
+            <div>@item.NewsUser.NewsUserName</div>
+            <div class="qianming">@item.NewsUser.NewsUserMotto</div>
+            <div class="neirong">
+                @item.ECCContent
+            </div>
+            <div class="caozuo">
+                <div class="pinglun_time">@item.ECCTime</div>
+                <div class="weizhi">
+                    <div class="pinglun">
+                        @if (item.EssayCommunComment1.Where(a => a.ECCCID == item.EssayCommunCommentID).Count() != 0)
+                        {
+                            <a href="/UserVNKH/LookHuiFu/?ECCCID=@item.EssayCommunCommentID" target="_blank">查看回复</a>
+                        }
+                    </div>
+                    <div class="pinglun"><a href="">点赞 @item.ECCLike</a></div>
+                    <div class="pinglun">
+                        <a role="button" data-toggle="collapse" href="#collapseExample_@item.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
+                    </div>
+                    <div class="pinglun"><a href="">举报</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="collapse" id="collapseExample_@item.EssayCommunCommentID">
+            <div class="well">
+                <form action="/UserVNKH/ECCC_Add" method="post">
+                    <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
+                    <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
+                    <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
+                    <input type="hidden" name="ECCTime" id="ECCTime" />
+                    <input type="hidden" name="ECCLike" id="ECCLike" value="0" />
+                    <input type="hidden" name="ECCReport" id="ECCReport" value="0" />
+                    <input type="hidden" name="ECCCID" id="ECCCID" value="@item.EssayCommunCommentID" />
+                    <input type="submit" class="btn btn-primary huifuwen" value="回复" />
+                </form>
+            </div>
+        </div>
+    </article>
+}
+

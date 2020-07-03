@@ -1,0 +1,223 @@
+﻿
+@{
+    Layout = null;
+}
+@using ViewNews.Models
+@{
+    NewsUser user = ViewBag.user;
+    List<NewsComment> newss = ViewBag.newss;
+    List<WriterCommunComment> writers = ViewBag.writers;
+    List<EssayCommun> essayC = ViewBag.essayC;
+    List<EssayCommunComment> essayCC = ViewBag.essayCC;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>客户个人界面</title>
+    <link href="~/HelpSSS/简单好看的个人主页模板/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/HelpSSS/简单好看的个人主页模板/css/blog.css" rel="stylesheet" />
+    <style type="text/css">
+        .writer_tu_image {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-masthead">
+        <div class="container">
+            <nav class="blog-nav">
+                <input type="button" name=”Submit” onclick="javascript:history.back(-1);" class="btn btn-success fanhui" value="返回">
+                <a class="blog-nav-item active" href="">首页</a>
+                <a class="blog-nav-item" href="#part3">记录</a>
+            </nav>
+        </div>
+    </div>
+    <div class="intr">
+        <div class="writer_tu_image">
+                <img src="~/Content/imageKeHu/User/@user.NewsUserImage" width="150" height="150" />
+        </div>
+        <p class="peointr">@user.NewsUserName</p>
+        @if (user.NewsUserMotto == null)
+        {
+            <p class="peointr">这个人什么都没说</p>
+        }
+        else
+        {
+            <p class="peointr">@user.NewsUserMotto</p>
+        }
+        <p class="peointr">性别：@user.NewsUserSex</p>
+    </div>
+
+    <div class="title" id="part3">记录</div>
+    <div class="content">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#home" role="tab" data-toggle="tab">新闻评论</a></li>
+            <li><a href="#profile" role="tab" data-toggle="tab">专家文章评论</a></li>
+            <li><a href="#messages" role="tab" data-toggle="tab">社区文章评论</a></li>
+            <li><a href="#Kanfabiao" role="tab" data-toggle="tab">我发表的社区文章</a></li>
+            <li><a href="#Xiefabiao" role="tab" data-toggle="tab">发表社区文章</a></li>
+            <li><a href="#XinXiGai" role="tab" data-toggle="tab">修改个人信息</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                @if (newss == null)
+                {
+                    <p class="text"><div>暂无记录</div></p>
+                }
+                else
+                {
+                    foreach (var item in newss)
+                    {
+                        <p class="text">
+                            <a href="#"> @item.NCTime 评论了 @item.News.NewsTitle</a>
+                        </p>
+                    }
+                }
+            </div>
+            <div class="tab-pane" id="profile">
+                @if (writers == null)
+                {
+                    <p class="text"><div>暂无记录</div></p>
+                }
+                else
+                {
+                    foreach (var item in writers)
+                    {
+                        <p class="text">
+                            <a href="#"> @item.WCCTime 评论了专家 @item.WriterCommun.Writer 的 @item.WriterCommun.WCTitle</a>
+                        </p>
+                    }
+                }
+            </div>
+            <div class="tab-pane" id="messages">
+                @if (essayCC == null)
+                {
+                    <p class="text"><div>暂无记录</div></p>
+                }
+                else
+                {
+                    foreach (var item in essayCC)
+                    {
+                        <p class="text">
+                            <a href="#"> @item.ECCTime 评论了用户 @item.EssayCommun.NewsUser.NewsUserName 的 @item.EssayCommun.ECTitle</a>
+                        </p>
+                    }
+                }
+            </div>
+            <div class="tab-pane" id="Kanfabiao">
+                @if (essayCC == null)
+                {
+                    <p class="text"><div>暂无记录</div></p>
+                }
+                else
+                {
+                    foreach (var item in essayC)
+                    {
+                        @*未审核*@
+                        if (item.ECState == 0)
+                        {
+                            <p class="text">
+                                <a href="#"> @item.ECTime 发表了 @item.ECTitle 状态 未审核</a>
+                            </p>
+                        }
+                        @*通过*@
+                        if (item.ECState == 2)
+                        {
+                            <p class="text">
+                                <a href="#"> @item.ECTime 发表了 @item.ECTitle 状态 已通过</a>
+                            </p>
+                        }
+                        @*被打回*@
+                        if (item.ECState == 1)
+                        {
+                            <p class="text">
+                                <a href="#"> @item.ECTime 发表了 @item.ECTitle 状态 被打回 理由 @item.ECReturns</a>
+                            </p>
+                        }
+                    }
+                }
+            </div>
+            <div class="tab-pane" id="Xiefabiao">
+                <div>
+                    <form action="/UserVNKH/UserEssayCommAdd" method="post">
+                        <div class="form-group">
+                            <label for="ECTitle">标题</label>
+                            <input type="text" class="form-control" name="ECTitle" id="ECTitle">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ECContent">新闻内容</label>
+                            <textarea class="form-control" name="ECContent" id="ECContent" rows="3">这里要改成富文本的</textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="ECState" id="ECState" value="0">
+                            <input type="hidden" name="ECClick" id="ECClick" value="0">
+                            <input type="hidden" name="ECTime" id="ECTime">
+                            <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID">
+                        </div>
+                        <input type="submit" class="btn btn-default" value="发表">
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane" id="XinXiGai">
+                <div>
+                    <form action="/UserVNKH/UserEdit" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID">
+                        <input type="hidden" name="NewsUserAccount" id="NewsUserAccount" value="@user.NewsUserAccount">
+                        <input type="hidden" name="NewsUserPwd" id="NewsUserPwd" value="@user.NewsUserPwd">
+                        <div class="form-group">
+                            <label for="NewsUserName">昵称</label>
+                            <input type="text" class="form-control" name="NewsUserName" id="NewsUserName" value="@user.NewsUserName">
+                        </div>
+                        <div class="form-group">
+                            <label for="NewsUserImage">头像</label>
+                            <img src="~/Content/imageKeHu/User/@user.NewsUserImage" width="50" height="50" />
+                            <input type="hidden" name="NewsUserImage" id="NewsUserImage" value="@user.NewsUserImage">
+                            <input type="file" name="ENewsUserImage" id="ENewsUserImage">
+                        </div>
+                        <div class="form-group">
+                            <label for="ECTitle">性别</label>
+                            @if (user.NewsUserSex == "男")
+                            {
+                                <input type="radio" name="NewsUserSex" id="NewsUserSex" value="男" checked /> @:男
+                                <input type="radio" name="NewsUserSex" id="NewsUserSex" value="女" /> @:女
+                                <input type="radio" name="NewsUserSex" id="NewsUserSex" value="保密" /> @:保密
+                            }
+                            else if (user.NewsUserSex == "女")
+                            {
+                                <input type="radio" name="NewsUserSex" id="NewsUserSex" value="男" /> @:男
+                                <input type="radio" name="NewsUserSex" id="NewsUserSex" value="女" checked /> @:女
+                                <input type="radio" name="NewsUserSex" id="NewsUserSex" value="保密" /> @:保密
+                            }
+                            else if (user.NewsUserSex == "保密")
+                            {
+                                <input type="radio" name="NewsUserSex" id="NewsUserSex" value="男" /> @:男
+                                <input type="radio" name="NewsUserSex" id="NewsUserSex" value="女" /> @:女
+                                <input type="radio" name="NewsUserSex" id="NewsUserSex" value="保密" checked /> @:保密
+                            }
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="NewsUserMotto">个性签名</label>
+                            <input type="text" class="form-control" name="NewsUserMotto" id="NewsUserMotto" value="@user.NewsUserMotto">
+                        </div>
+                        <input type="submit" class="btn btn-default" value="修改">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="" class="btt">顶部</a>
+    <!-- Js-->
+    <script src="~/HelpSSS/简单好看的个人主页模板/js/jquery-1.9.1.min.js"></script>
+    <script src="~/HelpSSS/简单好看的个人主页模板/js/bootstrap.min.js"></script>
+    <script src="~/HelpSSS/简单好看的个人主页模板/js/plugin.js"></script>
+</body>
+</html>

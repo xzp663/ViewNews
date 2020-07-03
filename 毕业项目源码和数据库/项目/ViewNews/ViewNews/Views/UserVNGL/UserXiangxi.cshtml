@@ -32,7 +32,7 @@
         <div class="container">
             <nav class="blog-nav">
                 <input type="button" name=”Submit” onclick="javascript:history.back(-1);" class="btn btn-success fanhui" value="返回">
-                <a class="blog-nav-item active" href="index.html">首页</a>
+                <a class="blog-nav-item active" href="">首页</a>
                 <a class="blog-nav-item" href="#part3">记录</a>
             </nav>
         </div>
@@ -131,7 +131,7 @@
                             </p>
                         }
                         @*通过*@
-                        if (item.ECState == 1)
+                        if (item.ECState == 2)
                         {
                             <p class="text">
                                 <a href="#"> @item.ECTime 发表了 @item.ECTitle 状态 已通过</a>

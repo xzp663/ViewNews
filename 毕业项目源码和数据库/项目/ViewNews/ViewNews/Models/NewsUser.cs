@@ -17,10 +17,16 @@ namespace ViewNews.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NewsUser()
         {
+            this.ECCLike = new HashSet<ECCLike>();
+            this.ECCReport = new HashSet<ECCReport>();
             this.EssayCommun = new HashSet<EssayCommun>();
             this.EssayCommunComment = new HashSet<EssayCommunComment>();
             this.EssayCommunFalse = new HashSet<EssayCommunFalse>();
+            this.NCLike = new HashSet<NCLike>();
+            this.NCReport = new HashSet<NCReport>();
             this.NewsComment = new HashSet<NewsComment>();
+            this.WCCLike = new HashSet<WCCLike>();
+            this.WCCReport = new HashSet<WCCReport>();
             this.WriterCommunComment = new HashSet<WriterCommunComment>();
         }
     
@@ -33,13 +39,25 @@ namespace ViewNews.Models
         public string NewsUserMotto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ECCLike> ECCLike { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ECCReport> ECCReport { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EssayCommun> EssayCommun { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EssayCommunComment> EssayCommunComment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EssayCommunFalse> EssayCommunFalse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NCLike> NCLike { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NCReport> NCReport { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NewsComment> NewsComment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WCCLike> WCCLike { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WCCReport> WCCReport { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WriterCommunComment> WriterCommunComment { get; set; }
     }
