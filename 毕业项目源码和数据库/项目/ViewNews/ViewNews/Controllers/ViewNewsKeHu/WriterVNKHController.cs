@@ -37,9 +37,53 @@ namespace ViewNews.Controllers.ViewNewsKeHu
             ViewBag.writersWen = writerCommun;
             ViewBag.EssCommComm = db.WriterCommunComment.Where(a => a.WriterCommunID == WriterCoID).OrderByDescending(a => a.WCCTime).ToList();
 
-            ViewBag.renews = db.News.OrderByDescending(a => a.NewsClick + (a.NewsComment.Count() * 2)).ToList();
-            ViewBag.rewritercommun = db.WriterCommun.OrderByDescending(a => a.WCClick + (a.WriterCommunComment.Count() * 2)).ToList();
-            ViewBag.reessaycommun = db.EssayCommun.OrderByDescending(a => a.ECClick + (a.EssayCommunComment.Count() * 2)).Where(a => a.ECState == 2).ToList();
+            List<News> news = db.News.OrderByDescending(a => a.NewsClick + (a.NewsComment.Count() * 2)).ToList();
+            List<News> newss = new List<News>();
+            foreach (var item in news)
+            {
+                DateTime timeHost1 = DateTime.Now;
+                DateTime timeHost2 = item.NewsTime;
+                var jian1 = timeHost1 - timeHost2;
+                var jieguoHost = jian1.TotalHours;
+                if (jieguoHost < 4)
+                {
+                    newss.Add(item);
+                }
+            }
+            ViewBag.renews = newss;
+            ViewBag.Allnews = news;
+            //ViewBag.renews = db.News.OrderByDescending(a => a.NewsClick + (a.NewsComment.Count() * 2)).ToList();
+            List<WriterCommun> writerCommuns = db.WriterCommun.OrderByDescending(a => a.WCClick + (a.WriterCommunComment.Count() * 2)).ToList();
+            List<WriterCommun> writerCommunss = new List<WriterCommun>();
+            foreach (var item in writerCommuns)
+            {
+                DateTime timeHost1 = DateTime.Now;
+                DateTime timeHost2 = item.WCTime;
+                var jian1 = timeHost1 - timeHost2;
+                var jieguoHost = jian1.TotalHours;
+                if (jieguoHost < 4)
+                {
+                    writerCommunss.Add(item);
+                }
+            }
+            ViewBag.rewritercommun = writerCommunss;
+            ViewBag.Allwritercommun = writerCommuns;
+
+            List<EssayCommun> essayCommuns = db.EssayCommun.OrderByDescending(a => a.ECClick + (a.EssayCommunComment.Count() * 2)).Where(a => a.ECState == 2).ToList();
+            List<EssayCommun> essayCommunss = new List<EssayCommun>();
+            foreach (var item in essayCommuns)
+            {
+                DateTime timeHost1 = DateTime.Now;
+                DateTime timeHost2 = item.ECTime;
+                var jian1 = timeHost1 - timeHost2;
+                var jieguoHost = jian1.TotalHours;
+                if (jieguoHost < 4)
+                {
+                    essayCommunss.Add(item);
+                }
+            }
+            ViewBag.reessaycommun = essayCommunss;
+            ViewBag.Allessaycommun = essayCommuns;
             return View();
         }
 
@@ -77,9 +121,53 @@ namespace ViewNews.Controllers.ViewNewsKeHu
             ViewBag.pinglun = db.WriterCommunComment.Where(a => a.WCCID == ECCCID).OrderByDescending(a => a.WCCTime).ToList();
             ViewBag.wenzhang = db.WriterCommun.Find(db.WriterCommunComment.Find(ECCCID).WriterCommunID);
 
-            ViewBag.renews = db.News.OrderByDescending(a => a.NewsClick + (a.NewsComment.Count() * 2)).ToList();
-            ViewBag.rewritercommun = db.WriterCommun.OrderByDescending(a => a.WCClick + (a.WriterCommunComment.Count() * 2)).ToList();
-            ViewBag.reessaycommun = db.EssayCommun.OrderByDescending(a => a.ECClick + (a.EssayCommunComment.Count() * 2)).Where(a => a.ECState == 2).ToList();
+            List<News> news = db.News.OrderByDescending(a => a.NewsClick + (a.NewsComment.Count() * 2)).ToList();
+            List<News> newss = new List<News>();
+            foreach (var item in news)
+            {
+                DateTime timeHost1 = DateTime.Now;
+                DateTime timeHost2 = item.NewsTime;
+                var jian1 = timeHost1 - timeHost2;
+                var jieguoHost = jian1.TotalHours;
+                if (jieguoHost < 4)
+                {
+                    newss.Add(item);
+                }
+            }
+            ViewBag.renews = newss;
+            ViewBag.Allnews = news;
+            //ViewBag.renews = db.News.OrderByDescending(a => a.NewsClick + (a.NewsComment.Count() * 2)).ToList();
+            List<WriterCommun> writerCommuns = db.WriterCommun.OrderByDescending(a => a.WCClick + (a.WriterCommunComment.Count() * 2)).ToList();
+            List<WriterCommun> writerCommunss = new List<WriterCommun>();
+            foreach (var item in writerCommuns)
+            {
+                DateTime timeHost1 = DateTime.Now;
+                DateTime timeHost2 = item.WCTime;
+                var jian1 = timeHost1 - timeHost2;
+                var jieguoHost = jian1.TotalHours;
+                if (jieguoHost < 4)
+                {
+                    writerCommunss.Add(item);
+                }
+            }
+            ViewBag.rewritercommun = writerCommunss;
+            ViewBag.Allwritercommun = writerCommuns;
+
+            List<EssayCommun> essayCommuns = db.EssayCommun.OrderByDescending(a => a.ECClick + (a.EssayCommunComment.Count() * 2)).Where(a => a.ECState == 2).ToList();
+            List<EssayCommun> essayCommunss = new List<EssayCommun>();
+            foreach (var item in essayCommuns)
+            {
+                DateTime timeHost1 = DateTime.Now;
+                DateTime timeHost2 = item.ECTime;
+                var jian1 = timeHost1 - timeHost2;
+                var jieguoHost = jian1.TotalHours;
+                if (jieguoHost < 4)
+                {
+                    essayCommunss.Add(item);
+                }
+            }
+            ViewBag.reessaycommun = essayCommunss;
+            ViewBag.Allessaycommun = essayCommuns;
             return View();
         }
 

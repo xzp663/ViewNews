@@ -163,7 +163,7 @@
                                 @if (item.ECState == 0)
                                 {
                                     <a href="/UserVNGL/EssayCommunTongYi/?EssayCoID=@item.EssayCommunID" class="btn btn-success">通过</a>
-                                    <a href="javascript:void(0)" class="btn btn-danger click_pop" id="dahui">
+                                    <a href="javascript:void(0)" class="btn btn-danger click_pop" id="dahui" onclick="Dianji(this)" xie="@item.EssayCommunID">
                                         打回
                                     </a>
                                 }
@@ -182,7 +182,6 @@
                                         解封
                                     </a>
                                 }
-                                <input type="hidden" name="ESSCid" id="ESSCid" value="@item.EssayCommunID" />
                             </td>
                         </tr>
                     }
@@ -214,18 +213,28 @@
         </form>
     </div>
     <script>
-        $(document).ready(function () {
+        $(function () {
+            
+            
+            //$("#dahui").click(function () {
+            //    alert("hahah");
+            //    var id = $(this).next().val();
+            //    $("#EssayCommunID").val(id);
+
+            //});
             $('.pop-close').click(function () {
                 $('.bgPop,.pop').hide();
             });
             $('.click_pop').click(function () {
                 $('.bgPop,.pop').show();
             });
-            $("#dahui").click(function () {
-                var id = $(this).next().val();
-                $("#EssayCommunID").val(id);
-            });
         })
+        function Dianji(a)
+        {
+            var id = $(a).attr("xie");
+            alert(id);
+            $("#EssayCommunID").val(id);
+        }
        
     </script>
 </body>

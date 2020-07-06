@@ -79,33 +79,33 @@
     <div class="row">
         @foreach (var item in writerss)
         {
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <div class="write">
-                    <a href="/WriterVNKH/WriterMen/?WriterID=@item.WriterID">
-                        <div class="writer_tu_write">
-                            <img src="~/Content/WriterImage/Men/@item.Writer.WriterImage" />
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <div class="write">
+                        <a href="/WriterVNKH/WriterMen/?WriterID=@item.WriterID">
+                            <div class="writer_tu_write">
+                                <img src="~/Content/WriterImage/Men/@item.Writer.WriterImage" />
+                            </div>
+                        </a>
+                        <div class="writer_tu_man">
+                            <a href="/WriterVNKH/WriterMen/?WriterID=@item.WriterID">
+                                <div class="writer_tu_manname">@item.Writer.WriterName</div>
+                            </a>
+                            <div class="writer_tu_manPPP">@item.Writer.WriterPosition</div>
+                        </div>
+                    </div>
+                    <a href="/WriterVNKH/WriterWenZhang/?WriterCoID=@item.WriterCommunID">
+                        <div class="writer_tu_image">
+                            <img src="~/Content/WriterImage/Commun/@item.WCImage" />
+                        </div>
+                        <div class="caption">
+                            <h3>@item.WCTitle</h3>
+                            <p><div>点击数:@item.WCClick</div><div>评论数:@item.WriterCommunComment.Count()</div></p>
+                            <p><div>时间:@item.WCTime</div></p>
                         </div>
                     </a>
-                    <div class="writer_tu_man">
-                        <a href="/WriterVNKH/WriterMen/?WriterID=@item.WriterID">
-                            <div class="writer_tu_manname">@item.Writer.WriterName</div>
-                        </a>
-                        <div class="writer_tu_manPPP">@item.Writer.WriterPosition</div>
-                    </div>
                 </div>
-                <a href="/WriterVNKH/WriterWenZhang/?WriterCoID=@item.WriterCommunID">
-                    <div class="writer_tu_image">
-                        <img src="~/Content/WriterImage/Commun/@item.WCImage" />
-                    </div>
-                    <div class="caption">
-                        <h3>@item.WCTitle</h3>
-                        <p><div>点击数:@item.WCClick</div><div>评论数:@item.WriterCommunComment.Count()</div></p>
-                        <p><div>时间:@item.WCTime</div></p>
-                    </div>
-                </a>
             </div>
-        </div>
         }
     </div>
 </div>

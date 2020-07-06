@@ -3,11 +3,17 @@
 @{
     NewsUser user = Session["userLogin"] as NewsUser;
     List<News> renews = ViewBag.renews as List<News>;
+    List<News> Allnews = ViewBag.Allnews as List<News>;
     int a = 0;
+    int aa = 0;
     List<WriterCommun> rewritercomm = ViewBag.rewritercommun as List<WriterCommun>;
+    List<WriterCommun> Allwritercommun = ViewBag.Allwritercommun as List<WriterCommun>;
     int b = 0;
+    int bb = 0;
     List<EssayCommun> reesscomm = ViewBag.reessaycommun as List<EssayCommun>;
+    List<EssayCommun> Allessaycommun = ViewBag.Allessaycommun as List<EssayCommun>;
     int c = 0;
+    int cc = 0;
 }
 <html>
 <head>
@@ -160,28 +166,57 @@
                     <header class="entry-header">
                         <h4 class="widget-title clearfix"><span>热门新闻</span></h4>
                     </header>
-                    @foreach (var item in renews)
+                    @if (renews.Count() == 0)
                     {
-                        if (a < 5)
+                        foreach (var item in Allnews)
                         {
-                <article class="entry-box clearfix">
-                    <div class="entry-content">
+                            if (aa < 5)
+                            {
+                                <article class="entry-box clearfix">
+                                    <div class="entry-content">
 
 
-                        <div class="writer_tu_image_writertu">
-                            <a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID"><img src="~/Content/WriterImage/Commun/@item.NewsImage" /></a>
-                        </div>
-                        <div>
-                            <h4 class="entry-title"><a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID">@item.NewsTitle</a></h4>
-                        </div>
-                    </div><!--end:entry_content-->
-                </article>
+                                        <div class="writer_tu_image_writertu">
+                                            <a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID"><img src="~/Content/NewsImage/@item.NewsImage" /></a>
+                                        </div>
+                                        <div>
+                                            <h4 class="entry-title"><a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID">@item.NewsTitle</a></h4>
+                                        </div>
+                                    </div><!--end:entry_content-->
+                                </article>
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            aa++;
                         }
-                        else
+                    }
+                    else
+                    {
+                        foreach (var item in renews)
                         {
-                            break;
+                            if (a < 5)
+                            {
+                                <article class="entry-box clearfix">
+                                    <div class="entry-content">
+
+
+                                        <div class="writer_tu_image_writertu">
+                                            <a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID"><img src="~/Content/NewsImage/@item.NewsImage" /></a>
+                                        </div>
+                                        <div>
+                                            <h4 class="entry-title"><a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID">@item.NewsTitle</a></h4>
+                                        </div>
+                                    </div><!--end:entry_content-->
+                                </article>
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            a++;
                         }
-                    a++;
                     }
                 </aside>
 
@@ -189,53 +224,106 @@
                     <header class="entry-header">
                         <h4 class="widget-title clearfix"><span>精选评议</span></h4>
                     </header>
-                    @foreach (var item in rewritercomm)
+                    @if (rewritercomm.Count() == 0)
                     {
-                        if (b < 5)
+                        foreach (var item in Allwritercommun)
                         {
-                            <article class="entry-box clearfix">
-                                <div class="entry-content">
+                            if (bb < 5)
+                            {
+                                <article class="entry-box clearfix">
+                                    <div class="entry-content">
                                         <div class="writer_tu_image">
                                             <a href="/WriterVNKH/WriterWenZhang/?WriterCoID=@item.WriterCommunID">
-                                                <img src="~/Content/NewsImage/@item.WCImage" />
+                                                <img src="~/Content/WriterImage/Commun/@item.WCImage" />
                                             </a>
                                         </div>
                                         <div class="remennews">
                                             <h4 class="entry-title">@item.Writer.WriterName :</h4>
                                             <h4 class="entry-title"><a href="/WriterVNKH/WriterWenZhang/?WriterCoID=@item.WriterCommunID">@item.WCTitle</a></h4>
                                         </div>
-                                </div><!--end:entry_content-->
-                            </article>
+                                    </div><!--end:entry_content-->
+                                </article>
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            bb++;
                         }
-                        else
-                        {
-                            break;
-                        }
-                        a++;
                     }
-
-                        </aside>
+                    else
+                    {
+                        foreach (var item in rewritercomm)
+                        {
+                            if (b < 5)
+                            {
+                                <article class="entry-box clearfix">
+                                    <div class="entry-content">
+                                        <div class="writer_tu_image">
+                                            <a href="/WriterVNKH/WriterWenZhang/?WriterCoID=@item.WriterCommunID">
+                                                <img src="~/Content/WriterImage/Commun/@item.WCImage" />
+                                            </a>
+                                        </div>
+                                        <div class="remennews">
+                                            <h4 class="entry-title">@item.Writer.WriterName :</h4>
+                                            <h4 class="entry-title"><a href="/WriterVNKH/WriterWenZhang/?WriterCoID=@item.WriterCommunID">@item.WCTitle</a></h4>
+                                        </div>
+                                    </div><!--end:entry_content-->
+                                </article>
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            b++;
+                        }
+                    }
+                </aside>
                 <aside class="widget box-hover">
                     <header class="entry-header">
                         <h4 class="widget-title clearfix"><span>社区热议</span></h4>
                     </header>
-                    @foreach (var item in reesscomm)
+                    @if (reesscomm.Count() == 0)
                     {
-                        if (c < 5)
+                        foreach (var item in Allessaycommun)
                         {
-                            <article class="entry-box clearfix">
-                                <div class="entry-content">
-                                    <span class="entry-meta">来自:&nbsp;</span><a class="entry-date" href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.NewsUserID">@item.NewsUser.NewsUserName</a>
-                                    <h4 class="entry-title"><a href="/UserVNKH/UserWenZhang/?ECid=@item.EssayCommunID">@item.ECTitle</a></h4>
-                                </div><!--end:entry_content-->
-                            </article>
+                            if (cc < 5)
+                            {
+                                <article class="entry-box clearfix">
+                                    <div class="entry-content">
+                                        <span class="entry-meta">来自:&nbsp;</span><a class="entry-date" href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.NewsUserID">@item.NewsUser.NewsUserName</a>
+                                        <h4 class="entry-title"><a href="/UserVNKH/UserWenZhang/?ECid=@item.EssayCommunID">@item.ECTitle</a></h4>
+                                    </div><!--end:entry_content-->
+                                </article>
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            cc++;
                         }
-                        else
-                        {
-                            break;
-                        }
-                        a++;
                     }
+                    else
+                    {
+                        foreach (var item in reesscomm)
+                        {
+                            if (c < 5)
+                            {
+                                <article class="entry-box clearfix">
+                                    <div class="entry-content">
+                                        <span class="entry-meta">来自:&nbsp;</span><a class="entry-date" href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.NewsUserID">@item.NewsUser.NewsUserName</a>
+                                        <h4 class="entry-title"><a href="/UserVNKH/UserWenZhang/?ECid=@item.EssayCommunID">@item.ECTitle</a></h4>
+                                    </div><!--end:entry_content-->
+                                </article>
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            c++;
+                        }
+                    }
+
 
                 </aside>
                 <div class="clear"></div>
