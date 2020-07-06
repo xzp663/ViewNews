@@ -15,6 +15,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         public ActionResult Index()
         {
             ViewBag.userEss = db.EssayCommun.OrderByDescending(a => a.ECTime).Where(a=>a.ECState==2).ToList();
+            
             return View();
         }
         [HttpPost]
@@ -29,8 +30,15 @@ namespace ViewNews.Controllers.ViewNewsKeHu
 
         public ActionResult UserWenZhang(int ECid)
         {
-            ViewBag.EssComms = db.EssayCommun.Find(ECid);
+            EssayCommun essaycomm = db.EssayCommun.Find(ECid);
+            essaycomm.ECClick = essaycomm.ECClick + 1;
+            db.SaveChanges();
+            ViewBag.EssComms = essaycomm;
             ViewBag.EssCommComm = db.EssayCommunComment.Where(a => a.EssayCommunID == ECid).OrderByDescending(a=>a.ECCTime).ToList();
+
+            ViewBag.renews = db.News.OrderByDescending(a=>a.NewsClick+(a.NewsComment.Count()*2)).ToList();
+            ViewBag.rewritercommun = db.WriterCommun.OrderByDescending(a => a.WCClick + (a.WriterCommunComment.Count() * 2)).ToList();
+            ViewBag.reessaycommun = db.EssayCommun.OrderByDescending(a => a.ECClick + (a.EssayCommunComment.Count() * 2)).Where(a => a.ECState == 2).ToList();
             return View();
         }
 
@@ -53,6 +61,17 @@ namespace ViewNews.Controllers.ViewNewsKeHu
             db.SaveChanges();
             return RedirectToAction("UserXiangxiKeHu", "UserVNKH",new { UserID = esscomm.NewsUserID });
         }
+
+        [HttpPost]
+        public ActionResult UserEssayCommEdit(EssayCommun esscomm)
+        {
+            esscomm.ECState = 0;
+            db.Entry(esscomm).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("UserXiangxiKeHu", "UserVNKH", new { UserID = esscomm.NewsUserID });
+        }
+
+
 
         [HttpPost]
         public ActionResult UserEdit(NewsUser user, HttpPostedFileBase ENewsUserImage)
@@ -84,8 +103,10 @@ namespace ViewNews.Controllers.ViewNewsKeHu
                     return Content("<script>alert('图片格式错误')</script>");
                 }
             }
+            
             db.Entry(user).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
+            Session["userLogin"] = user;
             return RedirectToAction("UserXiangxiKeHu", "UserVNKH",new { UserID =user.NewsUserID});
         }
 
@@ -114,6 +135,10 @@ namespace ViewNews.Controllers.ViewNewsKeHu
             ViewBag.zhupinglun = db.EssayCommunComment.Find(ECCCID);
             ViewBag.pinglun = db.EssayCommunComment.Where(a=>a.ECCCID==ECCCID).OrderByDescending(a => a.ECCTime).ToList();
             ViewBag.wenzhang = db.EssayCommun.Find(db.EssayCommunComment.Find(ECCCID).EssayCommunID);
+
+            ViewBag.renews = db.News.OrderByDescending(a => a.NewsClick + (a.NewsComment.Count() * 2)).ToList();
+            ViewBag.rewritercommun = db.WriterCommun.OrderByDescending(a => a.WCClick + (a.WriterCommunComment.Count() * 2)).ToList();
+            ViewBag.reessaycommun = db.EssayCommun.OrderByDescending(a => a.ECClick + (a.EssayCommunComment.Count() * 2)).Where(a=>a.ECState == 2).ToList();
             return View();
         }
 
@@ -136,6 +161,28 @@ namespace ViewNews.Controllers.ViewNewsKeHu
             else 
             {
                 return Content("<script>alert('已经点过赞了')</script>");
+            }
+        }
+
+        public ActionResult ECCReport(int ECCID, int ECCren)
+        {
+            ECCReport report = db.ECCReport.FirstOrDefault(a => a.NewsUserID == ECCren && a.EssayCommunCommentID == ECCID);
+            if (report == null)
+            {
+                EssayCommunComment ecc = db.EssayCommunComment.Find(ECCID);
+                ecc.ECCReport = ecc.ECCReport + 1;
+                ECCReport ecceccreport = new ECCReport()
+                {
+                    NewsUserID = ECCren,
+                    EssayCommunCommentID = ECCID
+                };
+                db.ECCReport.Add(ecceccreport);
+                db.SaveChanges();
+                return RedirectToAction("UserWenZhang", "UserVNKH", new { ECid = ecc.EssayCommunID });
+            }
+            else
+            {
+                return Content("<script>alert('已举报')</script>");
             }
         }
     }

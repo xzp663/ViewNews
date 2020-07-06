@@ -2,6 +2,12 @@
 @using ViewNews.Models
 @{
     NewsUser user = Session["userLogin"] as NewsUser;
+    List<News> renews = ViewBag.renews as List<News>;
+    int a = 0;
+    List<WriterCommun> rewritercomm = ViewBag.rewritercommun as List<WriterCommun>;
+    int b = 0;
+    List<EssayCommun> reesscomm = ViewBag.reessaycommun as List<EssayCommun>;
+    int c = 0;
 }
 <html>
 <head>
@@ -118,7 +124,7 @@
         <div id="header-middle">
             <div class="wrapper clearfix">
                 <div id="logo-image">
-                    <a href="index.html">
+                    <a href="/NewsVNKH/Index">
                         <img src="~/Content/imageKeHu/UI/视野新闻网logo.png" alt="logo" width="200" />
                     </a>
                 </div>
@@ -130,9 +136,12 @@
                     <li><a href="/NewsVNKH/Index">时事新闻</a></li>
                     <li>
                         <a href="/WriterVNKH/Index">专家评议</a>
-                        <ul>
-                            <li><a href="news.html">Sport</a></li>
-                        </ul>
+                        @if (Session["userLogin"] == null)
+                        {
+                            <ul>
+                                <li><a href="/LoginVNKH/LoginUser">需要登录才可观看 点击登录</a></li>
+                            </ul>
+                        }
                     </li>
                     <li>
                         <a href="/UserVNKH/Index">用户社区</a>
@@ -151,95 +160,83 @@
                     <header class="entry-header">
                         <h4 class="widget-title clearfix"><span>热门新闻</span></h4>
                     </header>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <a href="#">
-                                <div class="writer_tu_image">
-                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
-                                </div>
-                                <div class="remennews">
-                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
-                                </div>
-                            </a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <a href="#">
-                                <div class="writer_tu_image">
-                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
-                                </div>
-                                <div class="remennews">
-                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
-                                </div>
-                            </a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <a href="#">
-                                <div class="writer_tu_image">
-                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
-                                </div>
-                                <div class="remennews">
-                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
-                                </div>
-                            </a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <a href="#">
-                                <div class="writer_tu_image">
-                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
-                                </div>
-                                <div class="remennews">
-                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
-                                </div>
-                            </a>
-                        </div><!--end:entry_content-->
-                    </article>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <a href="#">
-                                <div class="writer_tu_image">
-                                    <img src="~/Content/imageKeHu/UI/2.jpg" />
-                                </div>
-                                <div class="remennews">
-                                    <h5>耍这把戏就不是“港独”了？大律师：难逃法网</h5>
-                                </div>
-                            </a>
-                        </div><!--end:entry_content-->
-                    </article>
+                    @foreach (var item in renews)
+                    {
+                        if (a < 5)
+                        {
+                <article class="entry-box clearfix">
+                    <div class="entry-content">
+
+
+                        <div class="writer_tu_image_writertu">
+                            <a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID"><img src="~/Content/WriterImage/Commun/@item.NewsImage" /></a>
+                        </div>
+                        <div>
+                            <h4 class="entry-title"><a href="/NewsVNKH/NewsWenZhang/?Newsid=@item.NewsID">@item.NewsTitle</a></h4>
+                        </div>
+                    </div><!--end:entry_content-->
+                </article>
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    a++;
+                    }
                 </aside>
 
                 <aside class="widget box-hover">
                     <header class="entry-header">
                         <h4 class="widget-title clearfix"><span>精选评议</span></h4>
                     </header>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <a href="#">
-                                <div class="writer_tu_image_writertu">
-                                    <img src="~/Content/WriterImage/Commun/背景.PNG" />
-                                </div>
-                                <div>
-                                    <h4>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</h4>
-                                </div>
-                            </a>
-                        </div><!--end:entry_content-->
-                    </article>
-                </aside>
+                    @foreach (var item in rewritercomm)
+                    {
+                        if (b < 5)
+                        {
+                            <article class="entry-box clearfix">
+                                <div class="entry-content">
+                                        <div class="writer_tu_image">
+                                            <a href="/WriterVNKH/WriterWenZhang/?WriterCoID=@item.WriterCommunID">
+                                                <img src="~/Content/NewsImage/@item.WCImage" />
+                                            </a>
+                                        </div>
+                                        <div class="remennews">
+                                            <h4 class="entry-title">@item.Writer.WriterName :</h4>
+                                            <h4 class="entry-title"><a href="/WriterVNKH/WriterWenZhang/?WriterCoID=@item.WriterCommunID">@item.WCTitle</a></h4>
+                                        </div>
+                                </div><!--end:entry_content-->
+                            </article>
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        a++;
+                    }
+
+                        </aside>
                 <aside class="widget box-hover">
                     <header class="entry-header">
                         <h4 class="widget-title clearfix"><span>社区热议</span></h4>
                     </header>
-                    <article class="entry-box clearfix">
-                        <div class="entry-content">
-                            <span class="entry-meta">来自:&nbsp;</span><a class="entry-date" href="#">我的名字</a>
-                            <h4 class="entry-title"><a href="#">这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容</a></h4>
-                        </div><!--end:entry_content-->
-                    </article>
+                    @foreach (var item in reesscomm)
+                    {
+                        if (c < 5)
+                        {
+                            <article class="entry-box clearfix">
+                                <div class="entry-content">
+                                    <span class="entry-meta">来自:&nbsp;</span><a class="entry-date" href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.NewsUserID">@item.NewsUser.NewsUserName</a>
+                                    <h4 class="entry-title"><a href="/UserVNKH/UserWenZhang/?ECid=@item.EssayCommunID">@item.ECTitle</a></h4>
+                                </div><!--end:entry_content-->
+                            </article>
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        a++;
+                    }
+
                 </aside>
                 <div class="clear"></div>
             </div><!--end:sidebar-->

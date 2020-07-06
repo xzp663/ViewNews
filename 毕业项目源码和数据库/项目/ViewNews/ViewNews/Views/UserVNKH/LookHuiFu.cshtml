@@ -120,6 +120,8 @@
             }
 
         .qianming {
+            width: 800px;
+            height: 20px;
             margin-top: 10px;
             color: lightsteelblue;
         }
@@ -139,7 +141,7 @@
         }
 
         .neiqian {
-            margin-bottom:60px;
+            margin-bottom: 60px;
             height: auto;
         }
 
@@ -178,78 +180,96 @@
 </div>
 <h2>@EComm.ECTitle</h2>
 
-<div id="xian"></div>
-<div class="neiqian">
-    <a href="#">
-        <div class="writer_tu_image">
-            <img src="~/Content/imageKeHu/User/@esscommcomm.NewsUser.NewsUserImage" />
-        </div>
-    </a>
-    <div id="Textar_3">
-        <div>@esscommcomm.NewsUser.NewsUserName</div>
-        <div class="qianming">@esscommcomm.NewsUser.NewsUserMotto</div>
-        <div class="neirong">@esscommcomm.ECCContent</div>
-        <div class="neiqian_fu">
-            <div class="pinglun_time">@esscommcomm.ECCTime</div>
-            <div class="neiqian_fu dong">
-                <div class="neiqian_pinglun"></div>
-                <div class="neiqian_pinglun"><a href="">点赞 @esscommcomm.ECCLike</a></div>
-                <div class="neiqian_pinglun">
-                    <a role="button" data-toggle="collapse" href="#collapseExampleLimian_@esscommcomm.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
-                </div>
-                <div class="neiqian_pinglun"><a href="">举报</a></div>
-            </div>
-        </div>
-    </div>
-    <div class="collapse" id="collapseExampleLimian_@esscommcomm.EssayCommunCommentID">
-        <div class="well">
-            <form action="/UserVNKH/ECCC_Add" method="post">
-                <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
-                <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
-                <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
-                <input type="hidden" name="ECCTime" id="ECCTime" />
-                <input type="hidden" name="ECCLike" id="ECCLike" value="0" />
-                <input type="hidden" name="ECCReport" id="ECCReport" value="0" />
-                <input type="hidden" name="ECCCID" id="ECCCID" value="@esscommcomm.EssayCommunCommentID" />
-                <input type="submit" class="btn btn-primary huifuwen" value="回复" />
-            </form>
-        </div>
-    </div>
-</div>
-<div>评论数：@EComComm.Count()</div>
-<div id="xian"></div>
-@foreach (var item in EComComm)
+
+@if (user == null)
 {
-    <article class="entry-item box-hover clearfix">
-        <a href="#">
+    <div id="xian"></div>
+    <div class="neiqian">
+        <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@esscommcomm.NewsUserID">
             <div class="writer_tu_image">
-                <img src="~/Content/imageKeHu/User/@item.NewsUser.NewsUserImage" />
+                <img src="~/Content/imageKeHu/User/@esscommcomm.NewsUser.NewsUserImage" />
             </div>
         </a>
-        <div id="Textar_2">
-            <div>@item.NewsUser.NewsUserName</div>
-            <div class="qianming">@item.NewsUser.NewsUserMotto</div>
-            <div class="neirong">
-                @item.ECCContent
-            </div>
-            <div class="caozuo">
-                <div class="pinglun_time">@item.ECCTime</div>
-                <div class="weizhi">
-                    <div class="pinglun">
-                        @if (item.EssayCommunComment1.Where(a => a.ECCCID == item.EssayCommunCommentID).Count() != 0)
-                        {
-                            <a href="/UserVNKH/LookHuiFu/?ECCCID=@item.EssayCommunCommentID" target="_blank">查看回复</a>
-                        }
+        <div id="Textar_3">
+            <div>@esscommcomm.NewsUser.NewsUserName</div>
+            <div class="qianming">@esscommcomm.NewsUser.NewsUserMotto</div>
+            <div class="neirong">@esscommcomm.ECCContent</div>
+            <div class="neiqian_fu">
+                <div class="pinglun_time">@esscommcomm.ECCTime</div>
+                <div class="neiqian_fu dong">
+                    <div class="neiqian_pinglun"></div>
+                    <div class="neiqian_pinglun"><a href="/LoginVNKH/LoginUser" onclick="return confirm('只有登录后才能点赞哦')">点赞 @esscommcomm.ECCLike</a></div>
+                    <div class="neiqian_pinglun">
+                        <a href="/LoginVNKH/LoginUser" onclick="return confirm('只有登录后才能回复哦')">回复</a>
                     </div>
-                    <div class="pinglun"><a href="">点赞 @item.ECCLike</a></div>
-                    <div class="pinglun">
-                        <a role="button" data-toggle="collapse" href="#collapseExample_@item.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
-                    </div>
-                    <div class="pinglun"><a href="">举报</a></div>
+                    <div class="neiqian_pinglun"><a href="/LoginVNKH/LoginUser" onclick="return confirm('只有登录后才能举报哦')">举报</a></div>
                 </div>
             </div>
         </div>
-        <div class="collapse" id="collapseExample_@item.EssayCommunCommentID">
+    </div>
+    <div>评论数：@EComComm.Count()</div>
+    <div id="xian"></div>
+
+    foreach (var item in EComComm)
+    {
+        <article class="entry-item box-hover clearfix">
+            <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.NewsUserID">
+                <div class="writer_tu_image">
+                    <img src="~/Content/imageKeHu/User/@item.NewsUser.NewsUserImage" />
+                </div>
+            </a>
+            <div id="Textar_2">
+                <div>@item.NewsUser.NewsUserName</div>
+                <div class="qianming">@item.NewsUser.NewsUserMotto</div>
+                <div class="neirong">
+                    @item.ECCContent
+                </div>
+                <div class="caozuo">
+                    <div class="pinglun_time">@item.ECCTime</div>
+                    <div class="weizhi">
+                        <div class="pinglun">
+                            @if (item.EssayCommunComment1.Where(a => a.ECCCID == item.EssayCommunCommentID).Count() != 0)
+                            {
+                                <a href="/UserVNKH/LookHuiFu/?ECCCID=@item.EssayCommunCommentID" target="_blank">查看回复</a>
+                            }
+                        </div>
+                        <div class="pinglun"><a href="/LoginVNKH/LoginUser" onclick="return confirm('只有登录后才能点赞哦')">点赞 @item.ECCLike</a></div>
+                        <div class="pinglun">
+                            <a href="/LoginVNKH/LoginUser" onclick="return confirm('只有登录后才能回复哦')">回复</a>
+                        </div>
+                        <div class="pinglun"><a href="/LoginVNKH/LoginUser" onclick="return confirm('只有登录后才能举报哦')">举报</a></div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    }
+}
+else
+{
+    <div id="xian"></div>
+    <div class="neiqian" id="zaila_@esscommcomm.EssayCommunCommentID">
+        <a href="#">
+            <div class="writer_tu_image">
+                <img src="~/Content/imageKeHu/User/@esscommcomm.NewsUser.NewsUserImage" />
+            </div>
+        </a>
+        <div id="Textar_3">
+            <div>@esscommcomm.NewsUser.NewsUserName</div>
+            <div class="qianming">@esscommcomm.NewsUser.NewsUserMotto</div>
+            <div class="neirong">@esscommcomm.ECCContent</div>
+            <div class="neiqian_fu">
+                <div class="pinglun_time">@esscommcomm.ECCTime</div>
+                <div class="neiqian_fu dong">
+                    <div class="neiqian_pinglun"></div>
+                    <div class="neiqian_pinglun"><a href="/UserVNKH/ECCLike/?ECCID=@esscommcomm.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@esscommcomm.EssayCommunCommentID">点赞 @esscommcomm.ECCLike</a></div>
+                    <div class="neiqian_pinglun">
+                        <a role="button" data-toggle="collapse" href="#collapseExampleLimian_@esscommcomm.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
+                    </div>
+                    <div class="neiqian_pinglun"><a href="/UserVNKH/ECCReport/?ECCID=@esscommcomm.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@esscommcomm.EssayCommunCommentID">举报</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="collapse" id="collapseExampleLimian_@esscommcomm.EssayCommunCommentID">
             <div class="well">
                 <form action="/UserVNKH/ECCC_Add" method="post">
                     <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
@@ -258,11 +278,63 @@
                     <input type="hidden" name="ECCTime" id="ECCTime" />
                     <input type="hidden" name="ECCLike" id="ECCLike" value="0" />
                     <input type="hidden" name="ECCReport" id="ECCReport" value="0" />
-                    <input type="hidden" name="ECCCID" id="ECCCID" value="@item.EssayCommunCommentID" />
+                    <input type="hidden" name="ECCCID" id="ECCCID" value="@esscommcomm.EssayCommunCommentID" />
                     <input type="submit" class="btn btn-primary huifuwen" value="回复" />
                 </form>
             </div>
         </div>
-    </article>
+    </div>
+    <div>评论数：@EComComm.Count()</div>
+    <div id="xian"></div>
+
+    foreach (var item in EComComm)
+    {
+        <article class="entry-item box-hover clearfix" id="zaila_@item.EssayCommunCommentID">
+            <a href="#">
+                <div class="writer_tu_image">
+                    <img src="~/Content/imageKeHu/User/@item.NewsUser.NewsUserImage" />
+                </div>
+            </a>
+            <div id="Textar_2">
+                <div>@item.NewsUser.NewsUserName</div>
+                <div class="qianming">@item.NewsUser.NewsUserMotto</div>
+                <div class="neirong">
+                    @item.ECCContent
+                </div>
+                <div class="caozuo">
+                    <div class="pinglun_time">@item.ECCTime</div>
+                    <div class="weizhi">
+                        <div class="pinglun">
+                            @if (item.EssayCommunComment1.Where(a => a.ECCCID == item.EssayCommunCommentID).Count() != 0)
+                            {
+                                <a href="/UserVNKH/LookHuiFu/?ECCCID=@item.EssayCommunCommentID" target="_blank">查看回复</a>
+                            }
+                        </div>
+                        <div class="pinglun"><a href="/UserVNKH/ECCLike/?ECCID=@item.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunCommentID">点赞 @item.ECCLike</a></div>
+                        <div class="pinglun">
+                            <a role="button" data-toggle="collapse" href="#collapseExample_@item.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
+                        </div>
+                        <div class="pinglun"><a href="/UserVNKH/ECCReport/?ECCID=@item.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunCommentID">举报</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="collapseExample_@item.EssayCommunCommentID">
+                <div class="well">
+                    <form action="/UserVNKH/ECCC_Add" method="post">
+                        <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
+                        <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
+                        <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
+                        <input type="hidden" name="ECCTime" id="ECCTime" />
+                        <input type="hidden" name="ECCLike" id="ECCLike" value="0" />
+                        <input type="hidden" name="ECCReport" id="ECCReport" value="0" />
+                        <input type="hidden" name="ECCCID" id="ECCCID" value="@item.EssayCommunCommentID" />
+                        <input type="submit" class="btn btn-primary huifuwen" value="回复" />
+                    </form>
+                </div>
+            </div>
+        </article>
+    }
+
 }
+
 
