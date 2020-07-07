@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "WriterZuoJiaEdits";
+    Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
+    <style>
+        .news {
+            margin: 1em;
+        }
+
+        .juli {
+            margin-top: 2em;
+            margin-left: 2em;
+        }
+
+        label {
+            font-size: 20px;
+        }
+
+        .writer_tu_image {
+            background-color: #FF0000;
+            width: 45px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+            .writer_tu_image img {
+                height: 50px;
+                margin: 0 calc(50% - 30px);
+            }
+    </style>
+}
+@using ViewNews.Models
+@{
+    Writer wri = ViewBag.writerzuojia;
+}
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font"></i><a href="/LoginVNGLGD/Index">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/WriterVNGLGD/Writer">专家列表</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="">专家修改</a></div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <div class="juli">
+            <form action="/WriterVNGLGD/WriterZuoJiaEdits" method="post" enctype="multipart/form-data">
+
+                <table class="insert-tab" width="100%">
+                    <tbody>
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>作家名字：</th>
+                            <td>
+                                <input type="text" class="form-control" name="WriterName" id="WriterName" value="@wri.WriterName">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>作家头像：</th>
+                            <td>
+                                <div class="writer_tu_image">
+                                    <img src="~/Content/WriterImage/Men/@wri.WriterImage" />
+                                </div>
+                                <input type="hidden" name="WriterImage" id="WriterImage" value="@wri.WriterImage">
+                                <input type="file" name="EWriterImage" id="EWriterImage">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>作家职称：</th>
+                            <td><input type="text" class="form-control" name="WriterPosition" id="WriterPosition" value="@wri.WriterPosition"></td>
+                        </tr>
+
+                        <tr>
+                            <th>
+
+                            </th>
+                            <td>
+                                <input type="hidden" name="WriterID" id="WriterID" value="@wri.WriterID">
+                                <input type="submit" class="btn btn-info" value="修改">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+

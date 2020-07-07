@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "WriterAdd";
+    Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
+    <style>
+        .news {
+            margin: 1em;
+        }
+
+        .juli {
+            margin-top: 2em;
+            margin-left: 2em;
+        }
+
+        label {
+            font-size: 20px;
+        }
+    </style>
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font"></i><a href="/LoginVNGLGD/Index">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/WriterVNGLGD/Writer">专家列表</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="">专家添加</a></div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <div class="juli">
+            <form action="/WriterVNGLGD/WriterAdd" method="post" enctype="multipart/form-data">
+
+                <table class="insert-tab" width="100%">
+                    <tbody>
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>作家名字：</th>
+                            <td>
+                                <input type="text" class="form-control" name="WriterName" id="WriterName">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>作家头像：</th>
+                            <td>
+                                <input type="file" name="WriterImage" id="WriterImage">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>作家职称：</th>
+                            <td><input type="text" class="form-control" name="WriterPosition" id="WriterPosition"></td>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                
+                            </th>
+                            <td>
+                                <input type="submit" class="btn btn-info" value="添加">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+

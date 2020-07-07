@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
+    <style>
+        .news {
+            margin-top: 1em;
+            margin-left: 2em;
+            width: 95%;
+        }
+
+        .juli {
+            margin: 1em;
+            vertical-align: middle;
+        }
+    </style>
+}
+@using ViewNews.Models
+@{
+    List<NewsUser> user = ViewBag.user;
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font"></i><a href="/LoginVNGLGD/Index">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/NewsVNGLGD/Index">新闻列表</a></div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <div class="news">
+            <h2>用户列表</h2>
+            <div class="juli">
+                <table class="insert-tab" width="100%">
+                    <tr>
+                        <td>用户账号</td>
+                        <td>用户密码</td>
+                        <td>用户昵称</td>
+                        <td>用户头像</td>
+                        <td>用户性别</td>
+                        <td>用户个性签名</td>
+                        <td>操作</td>
+                    </tr>
+                    @foreach (var item in user)
+                    {
+                        <tr class="info">
+                            <td>@item.NewsUserAccount</td>
+                            <td>@item.NewsUserPwd</td>
+                            <td>@item.NewsUserName</td>
+                            <td>
+                                @if (@item.NewsUserImage == null)
+                                {
+                                    <img src="~/Content/imageKeHu/User/通用.png" width="50" />
+                                }
+                                else
+                                {
+                                    <img src="~/Content/imageKeHu/User/@item.NewsUserImage" width="50" />
+                                }
+                            </td>
+                            <td>@item.NewsUserSex</td>
+                            <td>@item.NewsUserMotto</td>
+                            <td>
+                                <a href="/UserVNGLGD/UserXiangxi/?UserID=@item.NewsUserID" class="btn btn-primary">查看</a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

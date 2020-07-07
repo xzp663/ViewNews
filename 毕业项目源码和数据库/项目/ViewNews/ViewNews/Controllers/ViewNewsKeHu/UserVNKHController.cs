@@ -97,6 +97,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UserEssayCommAdd(EssayCommun esscomm)
         {
 
@@ -107,6 +108,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UserEssayCommEdit(EssayCommun esscomm)
         {
             esscomm.ECState = 0;
@@ -155,6 +157,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult ECCAdd(EssayCommunComment esscommComm)
         {
 
@@ -165,6 +168,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult ECCC_Add(EssayCommunComment esscommComm)
         {
 

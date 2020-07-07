@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "WriterCommunAdd";
+    Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
+    <link href="~/Content/XiaLaKuang/jquery.searchableSelect.css" rel="stylesheet" />
+    <script src="~/Scripts/XiaLaKuang/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/XiaLaKuang/jquery.searchableSelect.js"></script>
+    <style>
+        .news {
+            margin: 1em;
+        }
+
+        .juli {
+            margin-top: 2em;
+            margin-left: 2em;
+        }
+
+        label {
+            font-size: 20px;
+        }
+        #fuwencne {
+            width: 1000px;
+        }
+    </style>
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.config.js"></script>
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.all.min.js"></script>
+}
+@using ViewNews.Models
+@{
+    Editor edi = Session["Editors"] as Editor;
+}
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font"></i><a href="/LoginVNGLGD/Index">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/WriterVNGLGD/Index">专家评议列表</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="">专家评议编辑</a></div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+
+        <div class="juli">
+            <form action="/WriterVNGLGD/WriterCommunAdd" method="post" enctype="multipart/form-data">
+
+                <table class="insert-tab" width="100%">
+                    <tbody>
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>作家文章标题：</th>
+                            <td>
+                                <input type="text" class="form-control" name="WCTitle" id="WCTitle">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>作家文章封面图片：</th>
+                            <td>
+                                <input type="file" name="WCImage" id="WCImage">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>作家文章内容：</th>
+                            <td>
+                                <div id="fuwencne">
+                                    <textarea class="form-control" name="WCContent" id="WCContent"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>作家：</th>
+                            <td>
+                                <select name="WriterID">
+                                    @foreach (var item in ViewBag.writers as List<Writer>)
+                                    {
+                                        <option value="@item.WriterID">@item.WriterName</option>
+                                    }
+                                </select>
+                                <script>
+                                    $(function () {
+                                        $('select').searchableSelect();
+                                    });
+                                </script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="hidden" name="WCTime" id="WCTime">
+                                <input type="hidden" name="WCClick" id="WCClick" value="0">
+                                <input type="hidden" name="EditorID" id="EditorID" value="@edi.EditorID">
+                            </th>
+                            <td>
+                                <input type="submit" class="btn btn-info" value="添加">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var ue = UE.getEditor('WCContent');
+</script>
+

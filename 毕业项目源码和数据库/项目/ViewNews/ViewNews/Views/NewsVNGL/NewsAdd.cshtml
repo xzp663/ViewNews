@@ -3,7 +3,7 @@
     Layout = null;
 }
 @using ViewNews.Models
-@{ 
+@{
     Editor edi = Session["Editors"] as Editor;
 }
 
@@ -17,17 +17,19 @@
         .news {
             margin: 1em;
         }
+
         .juli {
             margin-top: 2em;
             margin-left: 2em;
         }
+
         label {
-        font-size:20px;
-        }
-        #NewsTitle {
-            width:800px;
+            font-size: 20px;
         }
 
+        #NewsTitle {
+            width: 800px;
+        }
     </style>
 </head>
 <body>
@@ -47,12 +49,12 @@
                     </div>
                     <div class="form-group">
                         <label for="NewsContent">新闻内容</label>
-                        <textarea class="form-control" name="NewsContent" id="NewsContent" rows="3">这里要改成富文本的</textarea>
+                        <textarea class="form-control" name="NewsContent" id="NewsContent"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="NewsTime" id="NewsTime">
                         <input type="hidden" name="NewsClick" id="NewsClick" value="0">
-                        <input type="hidden" name="EditorID" id="EditorID" value="@edi.EditorID">
+                        @*<input type="hidden" name="EditorID" id="EditorID" value="@edi.EditorID">*@
                     </div>
                     <input type="submit" class="btn btn-default" value="添加">
                 </form>
@@ -61,4 +63,8 @@
     </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    var ue = UE.getEditor('NewsContent');
+</script>
 

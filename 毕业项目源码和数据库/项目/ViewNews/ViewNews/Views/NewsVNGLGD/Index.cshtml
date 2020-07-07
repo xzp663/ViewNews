@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+@using ViewNews.Models
+@{
+    List<News> news = ViewBag.newss;
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font"></i><a href="/LoginVNGLGD/Index">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/NewsVNGLGD/Index">新闻列表</a></div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <h2>新闻列表</h2>
+        <div class="juli">
+            <a href="/NewsVNGLGD/NewsAdd" class="btn btn-info">添加</a>
+            <table class="insert-tab" width="100%">
+                <tr>
+                    <td>新闻标题</td>
+                    <td>新闻封面图片</td>
+                    <td>发表时间</td>
+                    <td>点击数</td>
+                    <td>责任编辑</td>
+                    <td>操作</td>
+                </tr>
+                @foreach (var item in news)
+                {
+                    <tr class="success">
+                        <td>@item.NewsTitle</td>
+                        <td>
+                            <img src="~/Content/NewsImage/@item.NewsImage" width="50" />
+                        </td>
+                        <td>@item.NewsTime</td>
+                        <td>@item.NewsClick</td>
+                        <td>@item.Editor.EditorName</td>
+                        <td>
+                            <a href="/NewsVNGLGD/NewsXiangXi/?NewsID=@item.NewsID" class="btn btn-success">详情</a>
+                            
+                            <a href="/NewsVNGLGD/NewsEdits/?NewsID=@item.NewsID" class="btn btn-primary">修改</a>
+                            <a href="/NewsVNGLGD/NewsDel/?NewsID=@item.NewsID" onclick="return confirm('确定删除 @item.NewsTitle 吗')" class="btn btn-warning">删除</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -88,4 +88,3 @@ D:\毕业项目—视野新闻网\毕业项目源码和数据库\项目\ViewNews
 D:\毕业项目—视野新闻网\毕业项目源码和数据库\项目\ViewNews\ViewNews\bin\EntityFramework.xml
 D:\毕业项目—视野新闻网\毕业项目源码和数据库\项目\ViewNews\ViewNews\bin\EntityFramework.SqlServer.xml
 D:\毕业项目—视野新闻网\毕业项目源码和数据库\项目\ViewNews\ViewNews\bin\zh-Hans\EntityFramework.resources.dll
-D:\毕业项目—视野新闻网\毕业项目源码和数据库\项目\ViewNews\ViewNews\obj\Debug\ViewNews.csprojAssemblyReference.cache

@@ -96,6 +96,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
 
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult ECCAdd(WriterCommunComment esscommComm)
         {
 
@@ -106,6 +107,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult ECCC_Add(WriterCommunComment esscommComm)
         {
 
@@ -189,7 +191,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
             }
             else
             {
-                return Content("<script>alert('已经点过赞了')</script>");
+                return Content("<script>alert('已经点过赞了');history.go(-1);</script>");
             }
         }
 
@@ -211,7 +213,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
             }
             else
             {
-                return Content("<script>alert('已举报')</script>");
+                return Content("<script>alert('已举报');history.go(-1);</script>");
             }
         }
     }

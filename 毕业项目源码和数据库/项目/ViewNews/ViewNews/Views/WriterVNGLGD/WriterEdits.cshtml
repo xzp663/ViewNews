@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "WriterEdits";
+    Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
+    <link href="~/Content/XiaLaKuang/jquery.searchableSelect.css" rel="stylesheet" />
+    <script src="~/Scripts/XiaLaKuang/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/XiaLaKuang/jquery.searchableSelect.js"></script>
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.config.js"></script>
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.all.min.js"></script>
+    <style>
+        .news {
+            margin: 1em;
+        }
+
+        .juli {
+            margin-top: 2em;
+            margin-left: 2em;
+        }
+
+        label {
+            font-size: 20px;
+        }
+    </style>
+}
+@using ViewNews.Models
+@{
+    WriterCommun wrc = ViewBag.writer;
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font"></i><a href="/LoginVNGLGD/Index">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/WriterVNGLGD/Index">专家评议列表</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="">专家评议编辑</a></div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+
+        <div class="juli">
+            <form action="/WriterVNGLGD/WriterEdits" method="post" enctype="multipart/form-data">
+
+                <table class="insert-tab" width="100%">
+                    <tbody>
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>作家文章标题：</th>
+                            <td>
+                                <input type="text" class="form-control" name="WCTitle" id="WCTitle" value="@wrc.WCTitle">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>作家文章封面图片：</th>
+                            <td>
+                                <img src="~/Content/WriterImage/Commun/@wrc.WCImage" width="100" />
+                                <input type="hidden" name="WCImage" id="WCImage" value="@wrc.WCImage">
+                                <input type="file" name="EWCImage" id="EWCImage">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>作家文章内容：</th>
+                            <td><textarea class="form-control" name="WCContent" id="WCContent" rows="3">@wrc.WCContent</textarea></td>
+                        </tr>
+                        <tr>
+                            <th>作家：</th>
+                            <td>
+                                <select name="WriterID">
+                                    @foreach (var item in ViewBag.writers as List<Writer>)
+                                    {
+                                        if (item.WriterID == wrc.WriterID)
+                                        {
+                                            <option value="@item.WriterID" selected>@item.WriterName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.WriterID">@item.WriterName</option>
+                                        }
+
+                                    }
+                                </select>
+                                <script>
+                                    $(function () {
+                                        $('select').searchableSelect();
+                                    });
+                                </script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="hidden" name="WCTime" id="WCTime">
+                                <input type="hidden" name="WCClick" id="WCClick" value="@wrc.WCClick">
+                                <input type="hidden" name="EditorID" id="EditorID" value="@wrc.EditorID">
+                                <input type="hidden" name="WriterCommunID" id="WriterCommunID" value="@wrc.WriterCommunID">
+                            </th>
+                            <td>
+                                <input type="submit" class="btn btn-info" value="修改">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var ue = UE.getEditor('WCContent');
+</script>
+

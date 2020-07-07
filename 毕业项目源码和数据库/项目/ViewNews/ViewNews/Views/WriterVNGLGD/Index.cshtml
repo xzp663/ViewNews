@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
+    <style>
+        .news {
+            margin-top: 1em;
+            margin-left: 2em;
+            width: 95%;
+        }
+
+        .juli {
+            margin: 1em;
+            vertical-align: middle;
+        }
+    </style>
+}
+@using ViewNews.Models
+@{
+    List<WriterCommun> wrc = ViewBag.writer;
+}
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font"></i><a href="/LoginVNGLGD/Index">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/WriterVNGLGD/Index">专家评议列表</a></div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <h2>评议列表</h2>
+        <div class="juli">
+            <a href="/WriterVNGLGD/WriterCommunAdd" class="btn btn-info">添加</a>
+            <table class="insert-tab" width="100%">
+                <tr>
+                    <td>作家文章标题</td>
+                    <td>作家文章封面图片</td>
+                    <td>发表时间</td>
+                    <td>点击数</td>
+                    <td>作家</td>
+                    <td>责任编辑</td>
+                    <td>操作</td>
+                </tr>
+                @foreach (var item in wrc)
+                {
+                    <tr class="warning">
+                        <td>@item.WCTitle</td>
+                        <td>
+                            <img src="~/Content/WriterImage/Commun/@item.WCImage" width="50" />
+                        </td>
+                        <td>@item.WCTime</td>
+                        <td>@item.WCClick</td>
+                        <td>@item.Writer.WriterName</td>
+                        <td>@item.Editor.EditorName</td>
+                        <td>
+                            <a href="/WriterVNGLGD/WriterXiangXi/?WriterID=@item.WriterCommunID" class="btn btn-success">详情</a>
+                            <a href="/WriterVNGLGD/WriterEdits/?WriterID=@item.WriterCommunID" class="btn btn-primary">修改</a>
+                            <a href="/WriterVNGLGD/WriterDel?WriterID=@item.WriterCommunID" onclick="return confirm('确定删除 @item.WCTitle  吗')" class="btn btn-warning">删除</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+

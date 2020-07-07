@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
+    <style>
+        .news {
+            margin-top: 1em;
+            margin-left: 2em;
+            width: 95%;
+        }
+
+        .juli {
+            margin: 1em;
+            vertical-align: middle;
+        }
+    </style>
+}
+@using ViewNews.Models
+@{
+    List<Editor> edit = ViewBag.Edits;
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font"></i><a href="/LoginVNGLGD/Index">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/EditorVNGLGD/Index">责任编辑列表</a></div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <h2>责任编辑表列表</h2>
+        <div class="juli">
+            <table class="insert-tab" width="100%">
+                <tr>
+                    <td>责任编辑账号</td>
+                    <td>责任编辑密码</td>
+                    <td>责任编辑名字</td>
+                    <td>操作</td>
+                </tr>
+                @foreach (var item in edit)
+                {
+                    <tr class="active">
+                        <td>@item.EditorAccount</td>
+                        <td>@item.EditorPwd</td>
+                        <td>@item.EditorName</td>
+                        <td>
+                            <a href="/EditorVNGLGD/EditorAdd" class="btn btn-info">添加</a>
+                            <a href="/EditorVNGLGD/EditorEdits/?EditorID=@item.EditorID" class="btn btn-primary">修改</a>
+                            <a href="/EditorVNGLGD/EditorLook/?EditorID=@item.EditorID" class="btn btn-success">查看记录</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+

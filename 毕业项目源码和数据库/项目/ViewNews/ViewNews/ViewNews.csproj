@@ -129,6 +129,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ViewNewsGuanLiGaiDong\EditorVNGLGDController.cs" />
+    <Compile Include="Controllers\ViewNewsGuanLiGaiDong\LoginVNGLGDController.cs" />
+    <Compile Include="Controllers\ViewNewsGuanLiGaiDong\NewsVNGLGDController.cs" />
+    <Compile Include="Controllers\ViewNewsGuanLiGaiDong\UserVNGLGDController.cs" />
+    <Compile Include="Controllers\ViewNewsGuanLiGaiDong\WriterVNGLGDController.cs" />
     <Compile Include="Controllers\ViewNewsGuanLi\EditorVNGLController.cs" />
     <Compile Include="Controllers\ViewNewsGuanLi\LoginVNGLController.cs" />
     <Compile Include="Controllers\ViewNewsGuanLi\NewsVNGLController.cs" />
@@ -138,6 +143,7 @@
     <Compile Include="Controllers\ViewNewsKeHu\NewsVNKHController.cs" />
     <Compile Include="Controllers\ViewNewsKeHu\UserVNKHController.cs" />
     <Compile Include="Controllers\ViewNewsKeHu\WriterVNKHController.cs" />
+    <Compile Include="Filter\LoginVNGLGDAttribute.cs" />
     <Compile Include="Filter\LoginVNKHAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -757,6 +763,23 @@
     <Content Include="HelpSSS\简单好看的个人主页模板\js\bootstrap.min.js" />
     <Content Include="HelpSSS\简单好看的个人主页模板\js\jquery-1.9.1.min.js" />
     <Content Include="HelpSSS\简单好看的个人主页模板\js\plugin.js" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\css\admin_login.css" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\css\common.css" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\css\main.css" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\design.html" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\fonts\icomoon.dev.svg" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\fonts\icomoon.svg" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\images\login\admin-login-btnbg.gif" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\images\logo.png" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\images\onCorrect.gif" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\images\onError.gif" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\images\onFocus.gif" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\images\onShow.gif" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\images\tab-thbg.png" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\index.html" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\insert.html" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\login.html" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\system.html" />
     <Content Include="Models\ViewNewsDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ViewNewsDB.edmx</DependentUpon>
@@ -867,6 +890,9 @@
     <Content Include="HelpSSS\wangEditor富文本\wangEditor-3.1.1\src\less\menus.less" />
     <Content Include="HelpSSS\wangEditor富文本\wangEditor-3.1.1\src\less\panel.less" />
     <Content Include="HelpSSS\wangEditor富文本\wangEditor-3.1.1\src\less\text.less" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\fonts\icomoon.eot" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\fonts\icomoon.ttf" />
+    <Content Include="HelpSSS\简单通用文章系统后台管理模板\fonts\icomoon.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -934,9 +960,32 @@
     <Content Include="Views\UserVNKH\LookHuiFu.cshtml" />
     <Content Include="Views\NewsVNKH\LookHuiFu.cshtml" />
     <Content Include="Views\WriterVNKH\LookHuiFu.cshtml" />
+    <Content Include="Views\LoginVNGLGD\Index.cshtml" />
+    <Content Include="Views\LoginVNGLGD\VNGLGLogin.cshtml" />
+    <Content Include="Views\NewsVNGLGD\Index.cshtml" />
+    <Content Include="Views\NewsVNGLGD\NewsXiangXi.cshtml" />
+    <Content Include="Views\NewsVNGLGD\NewsAdd.cshtml" />
+    <Content Include="Views\NewsVNGLGD\NewsEdits.cshtml" />
+    <Content Include="Views\EditorVNGLGD\Index.cshtml" />
+    <Content Include="Views\EditorVNGLGD\EditorAdd.cshtml" />
+    <Content Include="Views\EditorVNGLGD\EditorLook.cshtml" />
+    <Content Include="Views\EditorVNGLGD\EditorEdits.cshtml" />
+    <Content Include="Views\WriterVNGLGD\Index.cshtml" />
+    <Content Include="Views\WriterVNGLGD\WriterCommunAdd.cshtml" />
+    <Content Include="Views\WriterVNGLGD\WriterXiangXi.cshtml" />
+    <Content Include="Views\WriterVNGLGD\WriterEdits.cshtml" />
+    <Content Include="Views\WriterVNGLGD\Writer.cshtml" />
+    <Content Include="Views\WriterVNGLGD\WriterAdd.cshtml" />
+    <Content Include="Views\WriterVNGLGD\WriterZuoJiaEdits.cshtml" />
+    <Content Include="Views\UserVNGLGD\Index.cshtml" />
+    <Content Include="Views\UserVNGLGD\UserXiangxi.cshtml" />
+    <Content Include="Views\UserVNGLGD\UserText.cshtml" />
+    <Content Include="Views\UserVNGLGD\EssayCommunXianQing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\fuwenben\" />
+    <Folder Include="HelpSSS\简单通用文章系统后台管理模板\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
