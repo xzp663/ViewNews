@@ -5,6 +5,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.config.js"></script>
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.all.min.js"></script>
     <style type="text/css">
         /*.fanhui, .bianji {
             margin-left: 1em;
@@ -129,6 +131,8 @@
         .neirong {
             margin-top: 1em;
             margin-bottom: 1em;
+            overflow: hidden;
+            width: 780px;
         }
 
         #collapseExample {
@@ -142,6 +146,8 @@
 
         .neiqian {
             margin-bottom: 60px;
+            overflow: hidden;
+            width: 780px;
             height: auto;
         }
 
@@ -174,6 +180,7 @@
     EssayCommunComment esscommcomm = ViewBag.zhupinglun;
     List<EssayCommunComment> EComComm = ViewBag.pinglun;
     NewsUser user = Session["userLogin"] as NewsUser;
+    int ha = 0;
 }
 <div id="quan">
 
@@ -193,7 +200,7 @@
         <div id="Textar_3">
             <div>@esscommcomm.NewsUser.NewsUserName</div>
             <div class="qianming">@esscommcomm.NewsUser.NewsUserMotto</div>
-            <div class="neirong">@esscommcomm.ECCContent</div>
+            <div class="neirong">@Html.Raw(esscommcomm.ECCContent)</div>
             <div class="neiqian_fu">
                 <div class="pinglun_time">@esscommcomm.ECCTime</div>
                 <div class="neiqian_fu dong">
@@ -222,7 +229,7 @@
                 <div>@item.NewsUser.NewsUserName</div>
                 <div class="qianming">@item.NewsUser.NewsUserMotto</div>
                 <div class="neirong">
-                    @item.ECCContent
+                    @Html.Raw(item.ECCContent)
                 </div>
                 <div class="caozuo">
                     <div class="pinglun_time">@item.ECCTime</div>
@@ -256,7 +263,7 @@ else
         <div id="Textar_3">
             <div>@esscommcomm.NewsUser.NewsUserName</div>
             <div class="qianming">@esscommcomm.NewsUser.NewsUserMotto</div>
-            <div class="neirong">@esscommcomm.ECCContent</div>
+            <div class="neirong">@Html.Raw(esscommcomm.ECCContent)</div>
             <div class="neiqian_fu">
                 <div class="pinglun_time">@esscommcomm.ECCTime</div>
                 <div class="neiqian_fu dong">
@@ -272,7 +279,7 @@ else
         <div class="collapse" id="collapseExampleLimian_@esscommcomm.EssayCommunCommentID">
             <div class="well">
                 <form action="/UserVNKH/ECCC_Add" method="post">
-                    <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
+                    <textarea name="ECCContent" id="ECCContent" rows="5"></textarea>
                     <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
                     <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
                     <input type="hidden" name="ECCTime" id="ECCTime" />
@@ -289,6 +296,7 @@ else
 
     foreach (var item in EComComm)
     {
+        ha++;
         <article class="entry-item box-hover clearfix" id="zaila_@item.EssayCommunCommentID">
             <a href="#">
                 <div class="writer_tu_image">
@@ -299,7 +307,7 @@ else
                 <div>@item.NewsUser.NewsUserName</div>
                 <div class="qianming">@item.NewsUser.NewsUserMotto</div>
                 <div class="neirong">
-                    @item.ECCContent
+                    @Html.Raw(item.ECCContent)
                 </div>
                 <div class="caozuo">
                     <div class="pinglun_time">@item.ECCTime</div>
@@ -321,7 +329,7 @@ else
             <div class="collapse" id="collapseExample_@item.EssayCommunCommentID">
                 <div class="well">
                     <form action="/UserVNKH/ECCC_Add" method="post">
-                        <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
+                        <textarea name="ECCContent" id="ECCContent_@ha" rows="5"></textarea>
                         <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
                         <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
                         <input type="hidden" name="ECCTime" id="ECCTime" />
@@ -330,11 +338,17 @@ else
                         <input type="hidden" name="ECCCID" id="ECCCID" value="@item.EssayCommunCommentID" />
                         <input type="submit" class="btn btn-primary huifuwen" value="回复" />
                     </form>
+                    <script type="text/javascript">
+                        var ue = UE.getEditor('ECCContent_@ha');
+                    </script>
                 </div>
             </div>
         </article>
     }
 
 }
+<script type="text/javascript">
+    var ue = UE.getEditor('ECCContent');
+</script>
 
 

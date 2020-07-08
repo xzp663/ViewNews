@@ -300,7 +300,7 @@
                                 <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.NewsComment2.NewsUserID">
                                     <div>@item.NewsComment2.NewsUser.NewsUserName</div>
                                 </a>
-                                <div class="neirong"> @Html.Raw(@item.NewsComment2.NCContent)</div>
+                                <div class="neirong"> @Html.Raw(item.NewsComment2.NCContent)</div>
                                 <div class="neiqian_fu">
                                     <div class="pinglun_time">@item.NewsComment2.NCTime</div>
                                     <div class="neiqian_fu dong">
@@ -390,7 +390,7 @@ else
                         <div class="collapse" id="collapseExampleLimian_@item.NewsCommentID">
                             <div class="well">
                                 <form action="/NewsVNKH/ECCC_Add" method="post">
-                                    <textarea name="NCContent" id="NCContent_@ha" rows="5"></textarea>
+                                    <textarea name="NCContent" id="NCContent_@ha"></textarea>
                                     <input type="hidden" name="NewsID" id="NewsID" value="@newss.NewsID" />
                                     <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
                                     <input type="hidden" name="NCTime" id="NCTime" />

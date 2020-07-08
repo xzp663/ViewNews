@@ -5,10 +5,13 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.config.js"></script>
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.all.min.js"></script>
     <style type="text/css">
         * {
             text-decoration: none;
         }
+
         .fanhui, .bianji {
             margin-left: 1em;
         }
@@ -128,6 +131,9 @@
         .neirong {
             margin-top: 1em;
             margin-bottom: 1em;
+            overflow: hidden;
+            width: 720px;
+            height: auto;
         }
 
         #collapseExample {
@@ -143,6 +149,8 @@
             background-color: oldlace;
             border-radius: 10px;
             border: 1px solid black;
+            overflow: hidden;
+            width: 700px;
             height: auto;
         }
 
@@ -200,6 +208,7 @@
     EssayCommun EComm = ViewBag.EssComms;
     List<EssayCommunComment> EComComm = ViewBag.EssCommComm;
     NewsUser user = Session["userLogin"] as NewsUser;
+    int ha = 0;
 }
 
 <div class="news_quan">
@@ -234,7 +243,7 @@
 
     <DIV id=contentText>
 
-        @EComm.ECContent
+        @Html.Raw(EComm.ECContent)
 
     </DIV>
     <div>
@@ -261,13 +270,13 @@
     <div id="Textar">
         @if (user == null)
         {
-            <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
+            <textarea name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
             <a href="/LoginVNKH/LoginUser" class="btn btn-primary huifuwen" onclick="return confirm('只有登录后才能回复')">回复</a>
         }
         else
         {
             <form action="/UserVNKH/ECCAdd" method="post">
-                <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
+                <textarea name="ECCContent" id="ECCContent" rows="5"></textarea>
                 <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
                 <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
                 <input type="hidden" name="ECCTime" id="ECCTime" />
@@ -293,7 +302,7 @@
                 <div>@item.NewsUser.NewsUserName</div>
                 <div class="qianming">@item.NewsUser.NewsUserMotto</div>
                 <div class="neirong">
-                    @item.ECCContent
+                    @Html.Raw(item.ECCContent)
                     @if (item.ECCCID != null)
                     {
                         <div class="neiqian" id="zaila_@item.EssayCommunComment2.EssayCommunCommentID">
@@ -301,7 +310,7 @@
                                 <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.EssayCommunComment2.NewsUserID">
                                     <div>@item.EssayCommunComment2.NewsUser.NewsUserName</div>
                                 </a>
-                                <div class="neirong">@item.EssayCommunComment2.ECCContent</div>
+                                <div class="neirong">@Html.Raw(item.EssayCommunComment2.ECCContent)</div>
                                 <div class="neiqian_fu">
                                     <div class="pinglun_time">@item.EssayCommunComment2.ECCTime</div>
                                     <div class="neiqian_fu dong">
@@ -349,97 +358,111 @@ else
 {
     foreach (var item in EComComm)
     {
-        <article class="entry-item box-hover clearfix" id="zaila_@item.EssayCommunCommentID">
-            <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.NewsUserID">
-                <div class="writer_tu_image">
-                    <img src="~/Content/imageKeHu/User/@item.NewsUser.NewsUserImage" />
-                </div>
-            </a>
-            <div id="Textar_2">
-                <div>@item.NewsUser.NewsUserName</div>
-                <div class="qianming">@item.NewsUser.NewsUserMotto</div>
-                <div class="neirong">
-                    @item.ECCContent
-                    @if (item.ECCCID != null)
-                    {
-                        <div class="neiqian" id="zaila_@item.EssayCommunComment2.EssayCommunCommentID">
-                            <div id="Textar_3">
-                                <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.EssayCommunComment2.NewsUserID">
-                                    <div>@item.EssayCommunComment2.NewsUser.NewsUserName</div>
-                                </a>
-                                <div class="neirong">@item.EssayCommunComment2.ECCContent</div>
-                                <div class="neiqian_fu">
-                                    <div class="pinglun_time">@item.EssayCommunComment2.ECCTime</div>
-                                    <div class="neiqian_fu dong">
-                                        <div class="neiqian_pinglun">
-                                            <a href="/UserVNKH/LookHuiFu/?ECCCID=@item.EssayCommunComment2.EssayCommunCommentID" target="_blank">查看回复</a>
-                                        </div>
-                                        <div class="neiqian_pinglun">
-                                            <a href="/UserVNKH/ECCLike/?ECCID=@item.EssayCommunComment2.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunComment2.EssayCommunCommentID">点赞 @item.EssayCommunComment2.ECCLike</a>
-                                        </div>
-                                        <div class="neiqian_pinglun">
-                                            <a role="button" data-toggle="collapse" href="#collapseExampleLimian_@item.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
-                                        </div>
-                                        <div class="neiqian_pinglun">
-                                            <a href="/UserVNKH/ECCReport/?ECCID=@item.EssayCommunComment2.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunComment2.EssayCommunCommentID">举报</a>
-                                        </div>
-                                    </div>
+        ha++;
+<article class="entry-item box-hover clearfix" id="zaila_@item.EssayCommunCommentID">
+    <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.NewsUserID">
+        <div class="writer_tu_image">
+            <img src="~/Content/imageKeHu/User/@item.NewsUser.NewsUserImage" />
+        </div>
+    </a>
+    <div id="Textar_2">
+        <div>@item.NewsUser.NewsUserName</div>
+        <div class="qianming">@item.NewsUser.NewsUserMotto</div>
+        <div class="neirong">
+            @Html.Raw(item.ECCContent)
+            @if (item.ECCCID != null)
+            {
+                ha++;
+                <div class="neiqian" id="zaila_@item.EssayCommunComment2.EssayCommunCommentID">
+                    <div id="Textar_3">
+                        <a href="/UserVNKH/UserXiangxiKeHu/?UserID=@item.EssayCommunComment2.NewsUserID">
+                            <div>@item.EssayCommunComment2.NewsUser.NewsUserName</div>
+                        </a>
+                        <div class="neirong">@Html.Raw(item.EssayCommunComment2.ECCContent)</div>
+                        <div class="neiqian_fu">
+                            <div class="pinglun_time">@item.EssayCommunComment2.ECCTime</div>
+                            <div class="neiqian_fu dong">
+                                <div class="neiqian_pinglun">
+                                    <a href="/UserVNKH/LookHuiFu/?ECCCID=@item.EssayCommunComment2.EssayCommunCommentID" target="_blank">查看回复</a>
                                 </div>
-                            </div>
-                            <div class="collapse" id="collapseExampleLimian_@item.EssayCommunCommentID">
-                                <div class="well">
-                                    <form action="/UserVNKH/ECCC_Add" method="post">
-                                        <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
-                                        <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
-                                        <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
-                                        <input type="hidden" name="ECCTime" id="ECCTime" />
-                                        <input type="hidden" name="ECCLike" id="ECCLike" value="0" />
-                                        <input type="hidden" name="ECCReport" id="ECCReport" value="0" />
-                                        <input type="hidden" name="ECCCID" id="ECCCID" value="@item.EssayCommunCommentID" />
-                                        <input type="submit" class="btn btn-primary huifuwen" value="回复" />
-                                    </form>
+                                <div class="neiqian_pinglun">
+                                    <a href="/UserVNKH/ECCLike/?ECCID=@item.EssayCommunComment2.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunComment2.EssayCommunCommentID">点赞 @item.EssayCommunComment2.ECCLike</a>
+                                </div>
+                                <div class="neiqian_pinglun">
+                                    <a role="button" data-toggle="collapse" href="#collapseExampleLimian_@item.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
+                                </div>
+                                <div class="neiqian_pinglun">
+                                    <a href="/UserVNKH/ECCReport/?ECCID=@item.EssayCommunComment2.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunComment2.EssayCommunCommentID">举报</a>
                                 </div>
                             </div>
                         </div>
-                    }
-                </div>
-                <div class="caozuo">
-                    <div class="pinglun_time">@item.ECCTime</div>
-                    <div class="weizhi">
-                        <div class="pinglun">
-                            @if (item.EssayCommunComment1.Where(a => a.ECCCID == item.EssayCommunCommentID).Count() != 0)
-                            {
-                                <a href="/UserVNKH/LookHuiFu/?ECCCID=@item.EssayCommunCommentID" target="_blank">查看回复</a>
-                            }
+                    </div>
+                    <div class="collapse" id="collapseExampleLimian_@item.EssayCommunCommentID">
+                        <div class="well">
+                            <form action="/UserVNKH/ECCC_Add" method="post">
+                                <textarea name="ECCContent" id="ECCContent_@ha" rows="5"></textarea>
+                                <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
+                                <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
+                                <input type="hidden" name="ECCTime" id="ECCTime" />
+                                <input type="hidden" name="ECCLike" id="ECCLike" value="0" />
+                                <input type="hidden" name="ECCReport" id="ECCReport" value="0" />
+                                <input type="hidden" name="ECCCID" id="ECCCID" value="@item.EssayCommunCommentID" />
+                                <input type="submit" class="btn btn-primary huifuwen" value="回复" />
+                            </form>
+                            <script type="text/javascript">
+                                        var ue = UE.getEditor('ECCContent_@ha');
+                            </script>
                         </div>
-                        <div class="pinglun">
-                            <a href="/UserVNKH/ECCLike/?ECCID=@item.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunCommentID">点赞 @item.ECCLike</a>
-                        </div>
-                        <div class="pinglun">
-                            <a role="button" data-toggle="collapse" href="#collapseExample_@item.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
-                        </div>
-                        <div class="pinglun"><a href="/UserVNKH/ECCReport/?ECCID=@item.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunCommentID">举报</a></div>
                     </div>
                 </div>
-            </div>
-            <div class="collapse" id="collapseExample_@item.EssayCommunCommentID">
-                <div class="well">
-                    <form action="/UserVNKH/ECCC_Add" method="post">
-                        <textarea class="form-control" name="ECCContent" id="ECCContent" rows="5">这里要改成富文本的</textarea>
-                        <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
-                        <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
-                        <input type="hidden" name="ECCTime" id="ECCTime" />
-                        <input type="hidden" name="ECCLike" id="ECCLike" value="0" />
-                        <input type="hidden" name="ECCReport" id="ECCReport" value="0" />
-                        <input type="hidden" name="ECCCID" id="ECCCID" value="@item.EssayCommunCommentID" />
-                        <input type="submit" class="btn btn-primary huifuwen" value="回复" />
-                    </form>
+            }
+        </div>
+        @{
+            ha++;
+        }
+        <div class="caozuo">
+            <div class="pinglun_time">@item.ECCTime</div>
+            <div class="weizhi">
+                <div class="pinglun">
+                    @if (item.EssayCommunComment1.Where(a => a.ECCCID == item.EssayCommunCommentID).Count() != 0)
+                    {
+                        <a href="/UserVNKH/LookHuiFu/?ECCCID=@item.EssayCommunCommentID" target="_blank">查看回复</a>
+                    }
                 </div>
+                <div class="pinglun">
+                    <a href="/UserVNKH/ECCLike/?ECCID=@item.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunCommentID">点赞 @item.ECCLike</a>
+                </div>
+                <div class="pinglun">
+                    <a role="button" data-toggle="collapse" href="#collapseExample_@item.EssayCommunCommentID" aria-expanded="false" aria-controls="collapseExample">回复</a>
+                </div>
+                <div class="pinglun"><a href="/UserVNKH/ECCReport/?ECCID=@item.EssayCommunCommentID&ECCren=@user.NewsUserID#zaila_@item.EssayCommunCommentID">举报</a></div>
             </div>
-        </article>
-    }
+        </div>
+    </div>
+    <div class="collapse" id="collapseExample_@item.EssayCommunCommentID">
+        <div class="well">
+            <form action="/UserVNKH/ECCC_Add" method="post">
+                <textarea name="ECCContent" id="ECCContent_@ha" rows="5"></textarea>
+                <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@EComm.EssayCommunID" />
+                <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
+                <input type="hidden" name="ECCTime" id="ECCTime" />
+                <input type="hidden" name="ECCLike" id="ECCLike" value="0" />
+                <input type="hidden" name="ECCReport" id="ECCReport" value="0" />
+                <input type="hidden" name="ECCCID" id="ECCCID" value="@item.EssayCommunCommentID" />
+                <input type="submit" class="btn btn-primary huifuwen" value="回复" />
+            </form>
+            <script type="text/javascript">
+                                        var ue = UE.getEditor('ECCContent_@ha');
+            </script>
+        </div>
+    </div>
+</article>
+                }
 
-}
+            }
+<script type="text/javascript">
+    var ue = UE.getEditor('ECCContent');
+</script>
 
 
 

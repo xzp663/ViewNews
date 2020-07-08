@@ -10,6 +10,7 @@
     List<EssayCommun> essayC = ViewBag.essayC;
     List<EssayCommunComment> essayCC = ViewBag.essayCC;
     NewsUser users = Session["userLogin"] as NewsUser;
+    int ha = 0;
 }
 <!DOCTYPE html>
 
@@ -25,6 +26,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.config.js"></script>
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.all.min.js"></script>
     <style type="text/css">
         .writer_tu_image {
             padding-top: 50px;
@@ -145,8 +148,8 @@
                             </p>
                         }
                         @*被打回*@
-                        if (item.ECState == 1)
-                        {
+                if (item.ECState == 1)
+                {
                             <p class="text">
                                 <a href="/UserVNKH/UserWenZhang/?ECid=@item.EssayCommunID"> @item.ECTime 发表了 @item.ECTitle 状态 被打回 理由 @item.ECReturns</a>
                                 @if (users != null)
@@ -167,7 +170,7 @@
 
                                         <div class="form-group">
                                             <label for="ECContent">新闻内容</label>
-                                            <textarea class="form-control" name="ECContent" id="ECContent" rows="3">@item.ECContent</textarea>
+                                            <textarea name="ECContent" id="ECContent_@ha" rows="3">@item.ECContent</textarea>
                                         </div>
                                         <div class="form-group">
                                             <input type="hidden" name="EssayCommunID" id="EssayCommunID" value="@item.EssayCommunID">
@@ -178,9 +181,13 @@
                                         </div>
                                         <input type="submit" class="btn btn-default" value="发表">
                                     </form>
+                                    <script type="text/javascript">
+                                        var ue = UE.getEditor('ECContent_@ha');
+                                    </script>
                                 </div>
                             </div>
-                        }
+                                ha++;
+                                }
                         @*封禁*@
                         if (item.ECState == 3)
                         {
@@ -205,7 +212,7 @@
 
                                 <div class="form-group">
                                     <label for="ECContent">新闻内容</label>
-                                    <textarea class="form-control" name="ECContent" id="ECContent" rows="3">这里要改成富文本的</textarea>
+                                    <textarea name="ECContent" id="ECContent" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="hidden" name="ECState" id="ECState" value="0">
@@ -215,6 +222,9 @@
                                 </div>
                                 <input type="submit" class="btn btn-default" value="发表">
                             </form>
+                            <script type="text/javascript">
+                                var ue = UE.getEditor('ECContent');
+                            </script>
                         </div>
                     </div>
                     <div class="tab-pane" id="XinXiGai">

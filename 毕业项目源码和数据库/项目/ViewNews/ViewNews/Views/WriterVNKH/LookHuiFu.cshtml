@@ -5,6 +5,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.config.js"></script>
+    <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.all.min.js"></script>
     <style type="text/css">
 
         h2 {
@@ -80,6 +82,8 @@
         .neirong {
             margin-top: 1em;
             margin-bottom: 1em;
+            overflow: hidden;
+            width: 780px;
         }
 
         #collapseExample {
@@ -93,6 +97,8 @@
 
         .neiqian {
             margin-bottom: 60px;
+            overflow: hidden;
+            width: 780px;
             height: auto;
         }
 
@@ -124,7 +130,8 @@
     WriterCommun EComm = ViewBag.wenzhang;
     WriterCommunComment esscommcomm = ViewBag.zhupinglun;
     List<WriterCommunComment> EComComm = ViewBag.pinglun;
-    NewsUser user = Session["userLogin"] as NewsUser;
+    NewsUser user = Session["userLogin"] as NewsUser; 
+    int ha = 0;
 }
 
 
@@ -146,7 +153,7 @@
         <div id="Textar_3">
             <div>@esscommcomm.NewsUser.NewsUserName</div>
             <div class="qianming">@esscommcomm.NewsUser.NewsUserMotto</div>
-            <div class="neirong">@esscommcomm.WCCContent</div>
+            <div class="neirong">@Html.Raw(esscommcomm.WCCContent)</div>
             <div class="neiqian_fu">
                 <div class="pinglun_time">@esscommcomm.WCCTime</div>
                 <div class="neiqian_fu dong">
@@ -175,7 +182,7 @@
                 <div>@item.NewsUser.NewsUserName</div>
                 <div class="qianming">@item.NewsUser.NewsUserMotto</div>
                 <div class="neirong">
-                    @item.WCCContent
+                    @Html.Raw(@item.WCCContent)
                 </div>
                 <div class="caozuo">
                     <div class="pinglun_time">@item.WCCTime</div>
@@ -201,7 +208,7 @@ else
 {
     <div id="xian"></div>
     <div class="neiqian" id="zaila_@esscommcomm.WriterCommunCommentID">
-        <a href="#">
+        <a href="">
             <div class="writer_tu_image">
                 <img src="~/Content/imageKeHu/User/@esscommcomm.NewsUser.NewsUserImage" />
             </div>
@@ -209,7 +216,7 @@ else
         <div id="Textar_3">
             <div>@esscommcomm.NewsUser.NewsUserName</div>
             <div class="qianming">@esscommcomm.NewsUser.NewsUserMotto</div>
-            <div class="neirong">@esscommcomm.WCCContent</div>
+            <div class="neirong">@Html.Raw(esscommcomm.WCCContent)</div>
             <div class="neiqian_fu">
                 <div class="pinglun_time">@esscommcomm.WCCTime</div>
                 <div class="neiqian_fu dong">
@@ -225,7 +232,7 @@ else
         <div class="collapse" id="collapseExampleLimian_@esscommcomm.WriterCommunCommentID">
             <div class="well">
                 <form action="/WriterVNKH/ECCC_Add" method="post">
-                    <textarea class="form-control" name="WCCContent" id="WCCContent" rows="5">这里要改成富文本的</textarea>
+                    <textarea name="WCCContent" id="WCCContent" rows="5"></textarea>
                     <input type="hidden" name="WriterCommunID" id="WriterCommunID" value="@EComm.WriterCommunID" />
                     <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
                     <input type="hidden" name="WCCTime" id="WCCTime" />
@@ -242,6 +249,7 @@ else
 
     foreach (var item in EComComm)
     {
+        ha++;
         <article class="entry-item box-hover clearfix" id="zaila_@item.WriterCommunCommentID">
             <a href="#">
                 <div class="writer_tu_image">
@@ -252,7 +260,7 @@ else
                 <div>@item.NewsUser.NewsUserName</div>
                 <div class="qianming">@item.NewsUser.NewsUserMotto</div>
                 <div class="neirong">
-                    @item.WCCContent
+                    @Html.Raw(@item.WCCContent)
                 </div>
                 <div class="caozuo">
                     <div class="pinglun_time">@item.WCCTime</div>
@@ -274,7 +282,7 @@ else
             <div class="collapse" id="collapseExample_@item.WriterCommunCommentID">
                 <div class="well">
                     <form action="/WriterVNKH/ECCC_Add" method="post">
-                        <textarea class="form-control" name="WCCContent" id="WCCContent" rows="5">这里要改成富文本的</textarea>
+                        <textarea name="WCCContent" id="WCCContent_@ha" rows="5"></textarea>
                         <input type="hidden" name="WriterCommunID" id="WriterCommunID" value="@EComm.WriterCommunID" />
                         <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID" />
                         <input type="hidden" name="WCCTime" id="WCCTime" />
@@ -283,9 +291,15 @@ else
                         <input type="hidden" name="WCCID" id="WCCID" value="@item.WriterCommunCommentID" />
                         <input type="submit" class="btn btn-primary huifuwen" value="回复" />
                     </form>
+                    <script type="text/javascript">
+                        var ue = UE.getEditor('WCCContent_@ha');
+                    </script>
                 </div>
             </div>
         </article>
     }
 
 }
+<script type="text/javascript">
+    var ue = UE.getEditor('WCCContent');
+</script>
