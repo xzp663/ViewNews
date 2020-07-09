@@ -24,6 +24,21 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
         //专家文章删除
         public ActionResult WriterDel(int? WriterID)
         {
+            List<WriterCommunComment> ncomm = db.WriterCommunComment.Where(a => a.WriterCommunID == WriterID).ToList();
+            foreach (var item in ncomm)
+            {
+                List<WCCLike> nclike = db.WCCLike.Where(a => a.WriterCommunCommentID == item.WriterCommunCommentID).ToList();
+                foreach (var item1 in nclike)
+                {
+                    db.WCCLike.Remove(item1);
+                }
+                List<WCCReport> ncreport = db.WCCReport.Where(a => a.WriterCommunCommentID == item.WriterCommunCommentID).ToList();
+                foreach (var item1 in ncreport)
+                {
+                    db.WCCReport.Remove(item1);
+                }
+                db.WriterCommunComment.Remove(item);
+            }
             db.WriterCommun.Remove(db.WriterCommun.Find(WriterID));
             db.SaveChanges();
             return RedirectToAction("Index", "WriterVNGLGD");

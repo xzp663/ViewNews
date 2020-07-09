@@ -121,6 +121,22 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
 
         public ActionResult NewsDel(int? NewsID)
         {
+            
+            List<NewsComment> ncomm = db.NewsComment.Where(a => a.NewsID == NewsID).ToList();
+            foreach (var item in ncomm)
+            {
+                List<NCLike> nclike = db.NCLike.Where(a => a.NewsCommentID == item.NewsCommentID).ToList();
+                foreach (var item1 in nclike)
+                {
+                    db.NCLike.Remove(item1);
+                }
+                List<NCReport> ncreport = db.NCReport.Where(a => a.NewsCommentID == item.NewsCommentID).ToList();
+                foreach (var item1 in ncreport)
+                {
+                    db.NCReport.Remove(item1);
+                }
+                db.NewsComment.Remove(item);
+            }
             db.News.Remove(db.News.Find(NewsID));
             db.SaveChanges();
             return RedirectToAction("Index", "NewsVNGLGD");
