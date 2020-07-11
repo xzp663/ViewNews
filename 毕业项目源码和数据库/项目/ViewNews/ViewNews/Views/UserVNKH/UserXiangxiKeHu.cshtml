@@ -46,7 +46,7 @@
     </div>
     <div class="intr">
         <div class="writer_tu_image">
-                <img src="~/Content/imageKeHu/User/@user.NewsUserImage" width="150" height="150" />
+            <img src="~/Content/imageKeHu/User/@user.NewsUserImage" width="150" height="150" />
         </div>
         <p class="peointr">@user.NewsUserName</p>
         @if (user.NewsUserMotto == null)
@@ -67,13 +67,13 @@
             <li><a href="#profile" role="tab" data-toggle="tab">专家文章评论</a></li>
             <li><a href="#messages" role="tab" data-toggle="tab">社区文章评论</a></li>
             <li><a href="#Kanfabiao" role="tab" data-toggle="tab">发表的社区文章</a></li>
-            @if (users!=null)
+            @if (users != null)
             {
-            if (user.NewsUserID==users.NewsUserID)
-            {
-                <li><a href="#Xiefabiao" role="tab" data-toggle="tab">发表社区文章</a></li>
-                <li><a href="#XinXiGai" role="tab" data-toggle="tab">修改个人信息</a></li>
-            }
+                if (user.NewsUserID == users.NewsUserID)
+                {
+                    <li><a href="#Xiefabiao" role="tab" data-toggle="tab">发表社区文章</a></li>
+                    <li><a href="#XinXiGai" role="tab" data-toggle="tab">修改个人信息</a></li>
+                }
             }
 
         </ul>
@@ -148,8 +148,8 @@
                             </p>
                         }
                         @*被打回*@
-                if (item.ECState == 1)
-                {
+                        if (item.ECState == 1)
+                        {
                             <p class="text">
                                 <a href="/UserVNKH/UserWenZhang/?ECid=@item.EssayCommunID"> @item.ECTime 发表了 @item.ECTitle 状态 被打回 理由 @item.ECReturns</a>
                                 @if (users != null)
@@ -162,7 +162,7 @@
                             </p>
                             <div class="collapse" id="collapseExampleLimian_@item.EssayCommunID">
                                 <div class="well">
-                                    <form action="/UserVNKH/UserEssayCommEdit" method="post">
+                                    <form action="/UserVNKH/UserEssayCommEdit" method="post" id="form1">
                                         <div class="form-group">
                                             <label for="ECTitle">标题</label>
                                             <input type="text" class="form-control" name="ECTitle" id="ECTitle" value="@item.ECTitle">
@@ -186,8 +186,8 @@
                                     </script>
                                 </div>
                             </div>
-                                ha++;
-                                }
+                            ha++;
+                        }
                         @*封禁*@
                         if (item.ECState == 3)
                         {
@@ -204,7 +204,7 @@
                 {
                     <div class="tab-pane" id="Xiefabiao">
                         <div>
-                            <form action="/UserVNKH/UserEssayCommAdd" method="post">
+                            <form action="/UserVNKH/UserEssayCommAdd" method="post" id="form2">
                                 <div class="form-group">
                                     <label for="ECTitle">标题</label>
                                     <input type="text" class="form-control" name="ECTitle" id="ECTitle">
@@ -229,7 +229,7 @@
                     </div>
                     <div class="tab-pane" id="XinXiGai">
                         <div>
-                            <form action="/UserVNKH/UserEdit" method="post" enctype="multipart/form-data">
+                            <form action="/UserVNKH/UserEdit" method="post" enctype="multipart/form-data" id="form3">
                                 <input type="hidden" name="NewsUserID" id="NewsUserID" value="@user.NewsUserID">
                                 <input type="hidden" name="NewsUserAccount" id="NewsUserAccount" value="@user.NewsUserAccount">
                                 <input type="hidden" name="NewsUserPwd" id="NewsUserPwd" value="@user.NewsUserPwd">
@@ -274,9 +274,9 @@
                             </form>
                         </div>
                     </div>
-                    }
                 }
-            </div>
+            }
+        </div>
     </div>
 
     <a href="" class="btt">顶部</a>
@@ -286,3 +286,44 @@
     <script src="~/HelpSSS/简单好看的个人主页模板/js/plugin.js"></script>
 </body>
 </html>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#form1").validate({
+            rules: {
+                ECTitle: { required: true },
+                ECContent: { required: true }
+            },
+            messages: {
+                ECTitle: { required: "必填"},
+                ECContent: { required: "必填"}
+            }
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#form2").validate({
+            rules: {
+                ECTitle: { required: true },
+                ECContent: { required: true }
+            },
+            messages: {
+                ECTitle: { required: "必填" },
+                ECContent: { required: "必填" }
+            }
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#form3").validate({
+            rules: {
+                NewsUserName: { required: true }
+            },
+            messages: {
+                NewsUserName: { required: "必填" }
+            }
+        })
+    })
+</script>

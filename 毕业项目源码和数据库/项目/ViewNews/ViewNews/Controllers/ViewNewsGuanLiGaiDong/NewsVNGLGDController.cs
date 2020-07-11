@@ -62,12 +62,12 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
                 }
                 else
                 {
-                    return Content("<script>alert('图片格式错误')</script>");
+                    return Content("<script>alert('图片格式错误');history.go(-1);</script>");
                 }
             }
             else
             {
-                return Content("<script>alert('未获取上传文件')</script>");
+                return Content("<script>alert('未获取上传文件');history.go(-1);</script>");
             }
             news.NewsTime = DateTime.Now;
             db.News.Add(news);
@@ -110,7 +110,7 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
                 }
                 else
                 {
-                    return Content("<script>alert('图片格式错误')</script>");
+                    return Content("<script>alert('图片格式错误');history.go(-1);</script>");
                 }
             }
             news.NewsTime = DateTime.Now;

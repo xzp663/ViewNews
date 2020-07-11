@@ -19,12 +19,22 @@
         #NewsTitle {
             width: 800px;
         }
+
         #fuwencne {
-        width:1000px;
+            width: 1000px;
+        }
+
+        #NewsTitle-error {
+            color: red;
+        }
+
+        #NewsImage-error {
+            color: red;
         }
     </style>
     <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.config.js"></script>
     <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.all.min.js"></script>
+
 }
 @using ViewNews.Models
 @{
@@ -38,14 +48,14 @@
     <div class="result-content">
 
         <div class="juli">
-            <form action="/NewsVNGLGD/NewsAdd" method="post" enctype="multipart/form-data">
+            <form action="/NewsVNGLGD/NewsAdd" method="post" enctype="multipart/form-data" id="form1">
 
                 <table class="insert-tab" width="100%">
                     <tbody>
                         <tr>
                             <th width="120"><i class="require-red">*</i>新闻标题：</th>
                             <td>
-                                <input type="text" class="form-control" name="NewsTitle" id="NewsTitle">
+                                <input type="text" class="form-control" name="NewsTitle" id="NewsTitle" placeholder="请输入不多于25个字符">
                             </td>
                         </tr>
                         <tr>
@@ -82,4 +92,26 @@
 
 <script type="text/javascript">
     var ue = UE.getEditor('NewsContent');
+</script>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#form1").validate({
+            rules: {
+                NewsTitle: {
+                    required: true,
+                    maxlength: 25
+                },
+                NewsImage: { required: true },
+                NewsContent: { required: true }
+            },
+            messages: {
+                NewsTitle: { required: "必填", maxlength: "请输入不多于25个字符" },
+                NewsImage: { required: "必填" },
+                NewsContent: { required: "必填" }
+            }
+        })
+    })
 </script>

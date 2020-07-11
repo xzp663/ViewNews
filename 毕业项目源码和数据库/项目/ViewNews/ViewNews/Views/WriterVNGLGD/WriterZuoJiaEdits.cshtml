@@ -27,6 +27,18 @@
                 height: 50px;
                 margin: 0 calc(50% - 30px);
             }
+
+        #WriterName-error {
+            color: red;
+        }
+
+        #WriterImage-error {
+            color: red;
+        }
+
+        #WriterPosition-error {
+            color: red;
+        }
     </style>
 }
 @using ViewNews.Models
@@ -39,7 +51,7 @@
 <div class="result-wrap">
     <div class="result-content">
         <div class="juli">
-            <form action="/WriterVNGLGD/WriterZuoJiaEdits" method="post" enctype="multipart/form-data">
+            <form action="/WriterVNGLGD/WriterZuoJiaEdits" method="post" enctype="multipart/form-data" id="form1">
 
                 <table class="insert-tab" width="100%">
                     <tbody>
@@ -79,4 +91,22 @@
         </div>
     </div>
 </div>
-
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#form1").validate({
+            rules: {
+                WriterName: { required: true },
+                WriterImage: { required: true },
+                WriterPosition: { required: true }
+            },
+            messages: {
+                WriterName: { required: "必填" },
+                WriterImage: { required: "必填" },
+                WriterPosition: { required: "必填" }
+            }
+        })
+    })
+</script>

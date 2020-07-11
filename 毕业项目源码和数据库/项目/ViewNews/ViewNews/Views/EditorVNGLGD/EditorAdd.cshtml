@@ -19,6 +19,18 @@
         #NewsTitle {
             width: 800px;
         }
+
+        #EditorAccount-error {
+            color: red;
+        }
+
+        #EditorPwd-error {
+            color: red;
+        }
+
+        #EditorName-error {
+            color: red;
+        }
     </style>
 }
 
@@ -29,20 +41,20 @@
     <div class="result-content">
 
         <div class="juli">
-            <form action="/EditorVNGLGD/EditorAdd" method="post">
+            <form action="/EditorVNGLGD/EditorAdd" method="post" id="form1">
 
                 <table class="insert-tab" width="100%">
                     <tbody>
                         <tr>
                             <th width="120"><i class="require-red">*</i>责任编辑账号：</th>
                             <td>
-                                <input type="text" class="form-control" name="EditorAccount" id="EditorAccount">
+                                <input type="text" class="form-control" name="EditorAccount" id="EditorAccount" placeholder="请输入6-12个字符">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red">*</i>责任编辑密码：</th>
                             <td>
-                                <input type="text" class="form-control" name="EditorPwd" id="EditorPwd">
+                                <input type="text" class="form-control" name="EditorPwd" id="EditorPwd" placeholder="请输入6-12个字符">
                             </td>
                         </tr>
                         <tr>
@@ -61,4 +73,22 @@
         </div>
     </div>
 </div>
-
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#form1").validate({
+            rules: {
+                EditorAccount: { required: true, rangelength: [6, 12]},
+                EditorPwd: { required: true, rangelength: [6, 12]},
+                EditorName: { required: true }
+            },
+            messages: {
+                EditorAccount: { required: "必填", rangelength:"请输入6-12个字符" },
+                EditorPwd: { required: "必填", rangelength: "请输入6-12个字符"},
+                EditorName: { required: "必填" }
+            }
+        })
+    })
+</script>

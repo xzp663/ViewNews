@@ -15,6 +15,17 @@
         label {
             font-size: 20px;
         }
+        #WriterName-error {
+            color: red;
+        }
+
+        #WriterImage-error {
+            color: red;
+        }
+        #WriterPosition-error {
+            color: red;
+        }
+
     </style>
 }
 
@@ -24,7 +35,7 @@
 <div class="result-wrap">
     <div class="result-content">
         <div class="juli">
-            <form action="/WriterVNGLGD/WriterAdd" method="post" enctype="multipart/form-data">
+            <form action="/WriterVNGLGD/WriterAdd" method="post" enctype="multipart/form-data" id="form1">
 
                 <table class="insert-tab" width="100%">
                     <tbody>
@@ -37,7 +48,7 @@
                         <tr>
                             <th><i class="require-red">*</i>作家头像：</th>
                             <td>
-                                <input type="file" name="WriterImage" id="WriterImage">
+                                <input type="file"  name="WriterImage" id="WriterImage">
                             </td>
                         </tr>
                         <tr>
@@ -47,7 +58,7 @@
 
                         <tr>
                             <th>
-                                
+
                             </th>
                             <td>
                                 <input type="submit" class="btn btn-info" value="添加">
@@ -59,4 +70,23 @@
         </div>
     </div>
 </div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#form1").validate({
+            rules: {
+                WriterName: {required: true },
+                WriterImage: { required: true },
+                WriterPosition: { required: true }
+            },
+            messages: {
+                WriterName: { required: "必填" },
+                WriterImage: { required: "必填" },
+                WriterPosition: { required: "必填" }
+            }
+        })
+    })
+</script>
 

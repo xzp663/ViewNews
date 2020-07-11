@@ -3,7 +3,8 @@
     ViewBag.Title = "WriterEdits";
     Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
     <link href="~/Content/XiaLaKuang/jquery.searchableSelect.css" rel="stylesheet" />
-    <script src="~/Scripts/XiaLaKuang/jquery-1.11.1.min.js"></script>
+    @*<script src="~/Scripts/XiaLaKuang/jquery-1.11.1.min.js"></script>*@
+    @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/XiaLaKuang/jquery.searchableSelect.js"></script>
     <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.config.js"></script>
     <script src="~/HelpSSS/百度富文本/utf8-asp/ueditor.all.min.js"></script>
@@ -20,6 +21,14 @@
         label {
             font-size: 20px;
         }
+
+        #WCTitle-error {
+            color: red;
+        }
+
+        #WCImage-error {
+            color: red;
+        }
     </style>
 }
 @using ViewNews.Models
@@ -34,7 +43,7 @@
     <div class="result-content">
 
         <div class="juli">
-            <form action="/WriterVNGLGD/WriterEdits" method="post" enctype="multipart/form-data">
+            <form action="/WriterVNGLGD/WriterEdits" method="post" enctype="multipart/form-data" id="form1">
 
                 <table class="insert-tab" width="100%">
                     <tbody>
@@ -54,7 +63,7 @@
                         </tr>
                         <tr>
                             <th>作家文章内容：</th>
-                            <td><textarea class="form-control" name="WCContent" id="WCContent" rows="3">@wrc.WCContent</textarea></td>
+                            <td><textarea class="form-control" name="WCContent" id="WCContent" style="width:800px">@wrc.WCContent</textarea></td>
                         </tr>
                         <tr>
                             <th>作家：</th>
@@ -100,4 +109,23 @@
 <script type="text/javascript">
     var ue = UE.getEditor('WCContent');
 </script>
-
+<script src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#form1").validate({
+            rules: {
+                WCTitle: {
+                    required: true,
+                    maxlength: 25
+                },
+                WCImage: { required: true },
+                WCContent: { required: true }
+            },
+            messages: {
+                WCTitle: { required: "必填", maxlength: "请输入不多于25个字符" },
+                WCImage: { required: "必填" },
+                WCContent: { required: "必填" }
+            }
+        })
+    })
+</script>

@@ -104,9 +104,9 @@ namespace ViewNews.Controllers.ViewNewsKeHu
             esscomm.ECTime = DateTime.Now;
             db.EssayCommun.Add(esscomm);
             db.SaveChanges();
-            return RedirectToAction("UserXiangxiKeHu", "UserVNKH",new { UserID = esscomm.NewsUserID });
-        }
+            return RedirectToAction("UserXiangxiKeHu", "UserVNKH", new { UserID = esscomm.NewsUserID });
 
+        }
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult UserEssayCommEdit(EssayCommun esscomm)
@@ -146,7 +146,7 @@ namespace ViewNews.Controllers.ViewNewsKeHu
                 }
                 else
                 {
-                    return Content("<script>alert('图片格式错误')</script>");
+                    return Content("<script>alert('图片格式错误');history.go(-1);</script>");
                 }
             }
             
@@ -160,22 +160,33 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         [ValidateInput(false)]
         public ActionResult ECCAdd(EssayCommunComment esscommComm)
         {
-
-            esscommComm.ECCTime = DateTime.Now;
-            db.EssayCommunComment.Add(esscommComm);
-            db.SaveChanges();
-            return RedirectToAction("UserWenZhang", "UserVNKH", new { ECid = esscommComm.EssayCommunID });
+            if (esscommComm.ECCContent == null)
+            {
+                return Content("<script>alert('请输入评论内容');history.go(-1);</script>");
+            }
+            else
+            {
+                esscommComm.ECCTime = DateTime.Now;
+                db.EssayCommunComment.Add(esscommComm);
+                db.SaveChanges();
+                return RedirectToAction("UserWenZhang", "UserVNKH", new { ECid = esscommComm.EssayCommunID });
+            }
         }
-
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult ECCC_Add(EssayCommunComment esscommComm)
         {
-
-            esscommComm.ECCTime = DateTime.Now;
-            db.EssayCommunComment.Add(esscommComm);
-            db.SaveChanges();
-            return RedirectToAction("UserWenZhang", "UserVNKH", new { ECid = esscommComm.EssayCommunID });
+            if (esscommComm.ECCContent == null)
+            {
+                return Content("<script>alert('请输入评论内容');history.go(-1);</script>");
+            }
+            else
+            {
+                esscommComm.ECCTime = DateTime.Now;
+                db.EssayCommunComment.Add(esscommComm);
+                db.SaveChanges();
+                return RedirectToAction("UserWenZhang", "UserVNKH", new { ECid = esscommComm.EssayCommunID });
+            }
         }
 
         public ActionResult LookHuiFu(int ECCCID)

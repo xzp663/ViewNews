@@ -29,6 +29,10 @@
                 height: 180px;
                 margin: 0 auto;
             }
+        #biaoti {
+            width:auto;
+        height:250px;
+        }
     </style>
 }
 @using ViewNews.Models
@@ -53,7 +57,9 @@
                         <img src="~/Content/NewsImage/@item.NewsImage" />
                     </div>
                     <div class="caption">
-                        <h3>@item.NewsTitle</h3>
+                        <div id="biaoti">
+                            <h3>@item.NewsTitle</h3>
+                        </div>
                         <p><div>点击数:@item.NewsClick</div><div>评论数:@item.NewsComment.Count()</div></p>
                         <p><div>时间:@item.NewsTime</div></p>
                     </div>

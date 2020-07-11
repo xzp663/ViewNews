@@ -19,6 +19,18 @@
         #NewsTitle {
             width: 800px;
         }
+
+        #EditorAccount-error {
+            color: red;
+        }
+
+        #EditorPwd-error {
+            color: red;
+        }
+
+        #EditorName-error {
+            color: red;
+        }
     </style>
 }
 @using ViewNews.Models
@@ -33,7 +45,7 @@
     <div class="result-content">
 
         <div class="juli">
-            <form action="/EditorVNGLGD/EditorEdits" method="post">
+            <form action="/EditorVNGLGD/EditorEdits" method="post" id="form1">
 
                 <table class="insert-tab" width="100%">
                     <tbody>
@@ -66,4 +78,22 @@
         </div>
     </div>
 </div>
-
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#form1").validate({
+            rules: {
+                EditorAccount: { required: true, rangelength: [6, 12]},
+                EditorPwd: { required: true, rangelength: [6, 12]},
+                EditorName: { required: true }
+            },
+            messages: {
+                EditorAccount: { required: "必填", rangelength:"请输入6-12个字符" },
+                EditorPwd: { required: "必填", rangelength: "请输入6-12个字符"},
+                EditorName: { required: "必填" }
+            }
+        })
+    })
+</script>

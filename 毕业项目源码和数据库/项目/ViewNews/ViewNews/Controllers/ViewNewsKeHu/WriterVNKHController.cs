@@ -99,22 +99,34 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         [ValidateInput(false)]
         public ActionResult ECCAdd(WriterCommunComment esscommComm)
         {
-
-            esscommComm.WCCTime = DateTime.Now;
-            db.WriterCommunComment.Add(esscommComm);
-            db.SaveChanges();
-            return RedirectToAction("WriterWenZhang", "WriterVNKH", new { WriterCoID = esscommComm.WriterCommunID });
+            if (esscommComm.WCCContent == null)
+            {
+                return Content("<script>alert('请输入评论内容');history.go(-1);</script>");
+            }
+            else
+            {
+                esscommComm.WCCTime = DateTime.Now;
+                db.WriterCommunComment.Add(esscommComm);
+                db.SaveChanges();
+                return RedirectToAction("WriterWenZhang", "WriterVNKH", new { WriterCoID = esscommComm.WriterCommunID });
+            }
         }
 
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult ECCC_Add(WriterCommunComment esscommComm)
         {
-
-            esscommComm.WCCTime = DateTime.Now;
-            db.WriterCommunComment.Add(esscommComm);
-            db.SaveChanges();
-            return RedirectToAction("WriterWenZhang", "WriterVNKH", new { WriterCoID = esscommComm.WriterCommunID });
+            if (esscommComm.WCCContent == null)
+            {
+                return Content("<script>alert('请输入评论内容');history.go(-1);</script>");
+            }
+            else
+            {
+                esscommComm.WCCTime = DateTime.Now;
+                db.WriterCommunComment.Add(esscommComm);
+                db.SaveChanges();
+                return RedirectToAction("WriterWenZhang", "WriterVNKH", new { WriterCoID = esscommComm.WriterCommunID });
+            }
         }
 
         public ActionResult LookHuiFu(int ECCCID)

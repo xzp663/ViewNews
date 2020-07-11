@@ -28,9 +28,18 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
         [HttpPost]
         public ActionResult EditorAdd(Editor eidt)
         {
-            db.Editor.Add(eidt);
+            Editor eidts = db.Editor.Where(a => a.EditorAccount == eidt.EditorAccount && a.EditorPwd == eidt.EditorPwd).FirstOrDefault();
+            if (eidts==null)
+            {
+                db.Editor.Add(eidt);
             db.SaveChanges();
             return RedirectToAction("Index", "EditorVNGLGD");
+            }
+            else 
+            {
+            return Content("<script>alert('该责任编辑已存在');history.go(-1);</script>");
+            }
+           
         }
 
         //责任编辑详情
@@ -51,9 +60,17 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
         [HttpPost]
         public ActionResult EditorEdits(Editor eidt)
         {
-            db.Entry(eidt).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index", "EditorVNGLGD");
+            Editor eidts = db.Editor.Where(a => a.EditorAccount == eidt.EditorAccount && a.EditorPwd == eidt.EditorPwd).FirstOrDefault();
+            if (eidts == null)
+            {
+                db.Entry(eidt).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "EditorVNGLGD");
+            }
+            else
+            {
+                return Content("<script>alert('该责任编辑已存在');history.go(-1);</script>");
+            }
         }
     }
 }

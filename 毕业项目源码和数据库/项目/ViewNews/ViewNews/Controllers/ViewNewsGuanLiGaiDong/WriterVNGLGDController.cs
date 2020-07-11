@@ -81,12 +81,12 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
                 }
                 else
                 {
-                    return Content("<script>alert('图片格式错误')</script>");
+                    return Content("<script>alert('图片格式错误');history.go(-1);</script>");
                 }
             }
             else
             {
-                return Content("<script>alert('未获取上传文件')</script>");
+                return Content("<script>alert('未获取上传文件');history.go(-1);</script>");
             }
             wic.WCTime = DateTime.Now;
             db.WriterCommun.Add(wic);
@@ -140,7 +140,7 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
                 }
                 else
                 {
-                    return Content("<script>alert('图片格式错误')</script>");
+                    return Content("<script>alert('图片格式错误');history.go(-1);</script>");
                 }
             }
             wir.WCTime = DateTime.Now;
@@ -188,12 +188,12 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
                 }
                 else
                 {
-                    return Content("<script>alert('图片格式错误')</script>");
+                    return Content("<script>alert('图片格式错误');history.go(-1);</script>");
                 }
             }
             else
             {
-                return Content("<script>alert('未获取上传文件')</script>");
+                return Content("<script>alert('未获取上传文件');history.go(-1);</script>");
             }
             db.Writer.Add(wir);
             db.SaveChanges();
@@ -243,7 +243,7 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
                 }
                 else
                 {
-                    return Content("<script>alert('图片格式错误')</script>");
+                    return Content("<script>alert('图片格式错误');history.go(-1);</script>");
                 }
             }
             db.Entry(wir).State = System.Data.Entity.EntityState.Modified;

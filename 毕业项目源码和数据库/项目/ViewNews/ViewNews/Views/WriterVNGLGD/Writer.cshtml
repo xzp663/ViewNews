@@ -4,14 +4,7 @@
     Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
     <style>
         .news {
-            margin-top: 1em;
-            margin-left: 2em;
             width: 95%;
-        }
-
-        .juli {
-            margin: 1em;
-            vertical-align: middle;
         }
 
         .writer_tu_image {
@@ -41,6 +34,7 @@
         <div class="news">
             <h2>作家列表</h2>
             <div class="juli">
+                <a href="/WriterVNGLGD/WriterAdd" class="btn btn-info">添加</a>
                 <table class="insert-tab" width="100%">
                     <tr>
                         <td>作家名字</td>
@@ -58,7 +52,7 @@
                             </td>
                             <td>@item.WriterPosition</td>
                             <td>
-                                <a href="/WriterVNGLGD/WriterAdd" class="btn btn-info">添加</a>
+                                
                                 <a href="/WriterVNGLGD/WriterZuoJiaEdits/?WriterID=@item.WriterID" class="btn btn-primary">修改</a>
                                 <a href="/WriterVNGLGD/WriterZuoJiaDel?WriterID=@item.WriterID" onclick="return confirm('确定删除 @item.WriterName  吗')" class="btn btn-warning">删除</a>
                             </td>

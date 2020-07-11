@@ -89,22 +89,34 @@ namespace ViewNews.Controllers.ViewNewsKeHu
         [ValidateInput(false)]
         public ActionResult ECCAdd(NewsComment esscommComm)
         {
-
-            esscommComm.NCTime = DateTime.Now;
-            db.NewsComment.Add(esscommComm);
-            db.SaveChanges();
-            return RedirectToAction("NewsWenZhang", "NewsVNKH", new { Newsid = esscommComm.NewsID });
+            if (esscommComm.NCContent == null)
+            {
+                return Content("<script>alert('请输入评论内容');history.go(-1);</script>");
+            }
+            else
+            {
+                esscommComm.NCTime = DateTime.Now;
+                db.NewsComment.Add(esscommComm);
+                db.SaveChanges();
+                return RedirectToAction("NewsWenZhang", "NewsVNKH", new { Newsid = esscommComm.NewsID });
+            }
         }
 
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult ECCC_Add(NewsComment esscommComm)
         {
-
-            esscommComm.NCTime = DateTime.Now;
-            db.NewsComment.Add(esscommComm);
-            db.SaveChanges();
-            return RedirectToAction("NewsWenZhang", "NewsVNKH", new { Newsid = esscommComm.NewsID });
+            if (esscommComm.NCContent == null)
+            {
+                return Content("<script>alert('请输入评论内容');history.go(-1);</script>");
+            }
+            else
+            {
+                esscommComm.NCTime = DateTime.Now;
+                db.NewsComment.Add(esscommComm);
+                db.SaveChanges();
+                return RedirectToAction("NewsWenZhang", "NewsVNKH", new { Newsid = esscommComm.NewsID });
+            }
         }
 
         public ActionResult LookHuiFu(int ECCCID)
