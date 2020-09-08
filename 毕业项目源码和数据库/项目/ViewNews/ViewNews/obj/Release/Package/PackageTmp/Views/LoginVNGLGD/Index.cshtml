@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutVNGL.cshtml";
+}
+@using ViewNews.Models
+@{
+    Editor edi = Session["Editors"] as Editor;
+}
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span>欢迎 @edi.EditorName</span></div>
+</div>
+<div class="result-wrap">
+   
+</div>
+<div class="result-wrap">
+    <div class="result-title">
+        <h1>视野新闻网后台管理系统</h1>
+    </div>
+    <div class="result-content">
+        <ul class="sys-info-list">
+            <li>
+                <label class="res-lab">我们的宗旨是：</label><span class="res-info">提供不同的视角来解读社会事件，开拓新思路</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+

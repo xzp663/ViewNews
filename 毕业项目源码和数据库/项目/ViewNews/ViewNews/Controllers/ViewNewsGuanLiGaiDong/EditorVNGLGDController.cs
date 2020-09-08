@@ -72,5 +72,22 @@ namespace ViewNews.Controllers.ViewNewsGuanLiGaiDong
                 return Content("<script>alert('该责任编辑已存在');history.go(-1);</script>");
             }
         }
+
+        //编辑删除
+        //public ActionResult EditorDelects(int? EditorID)
+        //{
+        //    Editor chaedit = db.Editor.Find(EditorID);
+        //    Editor eidts = db.Editor.Where(a => a.EditorAccount == chaedit.EditorAccount && a.EditorPwd == chaedit.EditorPwd).FirstOrDefault();
+        //    if (eidts == null)
+        //    {
+        //        db.Editor.Remove(chaedit);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index", "EditorVNGLGD");
+        //    }
+        //    else
+        //    {
+        //        return Content("<script>alert('');history.go(-1);</script>");
+        //    }
+        //}
     }
 }
